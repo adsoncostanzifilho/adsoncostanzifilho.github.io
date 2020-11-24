@@ -1,0 +1,50 @@
+---
+title: soothsayeR
+author: Adson Costanzi Filho
+date: '2020-11-23'
+slug: soothsayer
+categories:
+  - R
+  - shiny
+tags:
+  - shiny
+  - shinyjs
+banner: "img/banners/soothsayer.png"
+---
+
+
+## Overview 
+
+<a href="https://github.com/adsoncostanzifilho/soothsayeR">
+  <i class="fab fa-github-square my_social"></i>
+</a>
+
+**SoothsayeR** is an interface based on the old prank called ‘Peter answers’..
+
+The game’s idea is to play with your friends making questions that you know the answer, and make them believe that R is who is answering…
+
+The app demonstrates how easy it is to integrate **Shiny** with **Javascript** through the **shinyjs** library.
+
+The tool is online on shinyapps' repository at the address <https://adsoncostanzi.shinyapps.io/soothsayeR/>.
+ 
+
+## How to play with soothsayeR?
+
+You just need to press dot (.) on the keyboard in the request session and then write the answer secretly. When you press dot in the request text input everything you type will be masked, so you could put the answer without anyone noticing.
+
+Then, when you have finished typing the answer you just need to press dot again and complete the request phrase anyway you want.
+
+![](/img/soothsayeR/request2.png){width="80%"}
+
+### Example
+
+You tell a friend next to you that R can answer any question. To prove it you say you’re going to ask R the color of the shirt he’s wearing. 
+
+In the request session you will write '.**red**.ase answer', but, only 'R please answer' will be shown on the screen. In the next step you will write the following question: 'What is the color of the t-shirt of the person next to me?'. 
+
+That done, just press 'Guess' button and the answer **red** will appear! 
+
+![](/img/soothsayeR/ex.gif){width="80%"}
+
+
+
