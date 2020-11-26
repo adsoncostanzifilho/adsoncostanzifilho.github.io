@@ -6,7 +6,25 @@
     <description>Recent content in Tags on Adson Costanzi Filho</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>blogdown</title>
+      <link>https://adsoncostanzifilho.github.io/tags/blogdown/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/tags/blogdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rmarkdown</title>
+      <link>https://adsoncostanzifilho.github.io/tags/rmarkdown/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/tags/rmarkdown/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>rtweet</title>
       <link>https://adsoncostanzifilho.github.io/tags/rtweet/</link>

@@ -7,13 +7,13 @@
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title>soothsayeR</title>
+  <title>Blogdown Tutorial</title>
   <meta name="author" content="Adson Costanzi Filho" />
   
   
   
   
-  <meta name="keywords" content="devows, hugo, go, shiny, shinyjs">
+  <meta name="keywords" content="devows, hugo, go, blogdown, rmarkdown">
   
   
   <meta name="description" content="Site template made by devcows using hugo">
@@ -66,38 +66,38 @@
   
   <meta property="og:locale" content="en_us">
   <meta property="og:site_name" content="Adson Costanzi Filho">
-  <meta property="og:title" content="soothsayeR">
+  <meta property="og:title" content="Blogdown Tutorial">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://adsoncostanzifilho.github.io/blog/2020/11/23/soothsayer/" />
+  <meta property="og:url" content="https://adsoncostanzifilho.github.io/blog/2020/11/25/blogdown-tutorial/" />
   <meta property="og:description" content="Site template made by devcows using hugo">
-  <meta property="og:image" content="https://adsoncostanzifilho.github.io/img/banners/soothsayer.png">
+  <meta property="og:image" content="https://adsoncostanzifilho.github.io/img/banners/blogdown_tutorial.png">
   <meta property="og:image:type" content="image/png">
   
   
   
-    <meta property="og:image:width" content="259">
+    <meta property="og:image:width" content="260">
     <meta property="og:image:height" content="300">
   
   
-  <meta property="og:updated_time" content="2020-11-23T00:00:00Z">
+  <meta property="og:updated_time" content="2020-11-25T00:00:00Z">
   
     
     
     <meta property="article:section" content="R">
-    <meta property="article:tag" content="shiny">
-    <meta property="article:tag" content="shinyjs">
+    <meta property="article:tag" content="blogdown">
+    <meta property="article:tag" content="rmarkdown">
     
     
-    <meta property="article:published_time" content="2020-11-23T00:00:00Z">
-    <meta property="article:modified_time" content="2020-11-23T00:00:00Z">
+    <meta property="article:published_time" content="2020-11-25T00:00:00Z">
+    <meta property="article:modified_time" content="2020-11-25T00:00:00Z">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@GoHugoIO">
-  <meta name="twitter:title" content="soothsayeR">
+  <meta name="twitter:title" content="Blogdown Tutorial">
   
-  <meta name="twitter:image" content="https://adsoncostanzifilho.github.io/img/banners/soothsayer.png">
+  <meta name="twitter:image" content="https://adsoncostanzifilho.github.io/img/banners/blogdown_tutorial.png">
   
   <meta name="twitter:description" content="Site template made by devcows using hugo">
   
@@ -115,7 +115,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand home" href="https://adsoncostanzifilho.github.io/" id="logo">Adson Costanzi Filho
                    
-                    <span class="sr-only">soothsayeR - go to homepage</span>
+                    <span class="sr-only">Blogdown Tutorial - go to homepage</span>
                     
                 </a>
                 <div class="navbar-buttons">
@@ -178,7 +178,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>soothsayeR</h1>
+                <h1>Blogdown Tutorial</h1>
             </div>
         </div>
     </div>
@@ -198,7 +198,7 @@
                           <p class="text-muted text-uppercase mb-small text-right">
                             By <a href="#">Adson Costanzi Filho</a>
                              | 
-                            November 23, 2020
+                            November 25, 2020
                           </p>
                         
 
@@ -208,28 +208,83 @@
 <script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
-<div id="overview" class="section level2">
-<h2>Overview</h2>
-<p><a href="https://github.com/adsoncostanzifilho/soothsayeR">
-<i class="fab fa-github-square my_social"></i>
-</a></p>
-<p><strong>SoothsayeR</strong> is an interface based on the old prank called ‘Peter answers’..</p>
-<p>The game’s idea is to play with your friends making questions that you know the answer, and make them believe that R is who is answering…</p>
-<p>The app demonstrates how easy it is to integrate <strong>Shiny</strong> with <strong>Javascript</strong> through the <strong>shinyjs</strong> library.</p>
-<p>The tool is online on shinyapps’ repository at the address <a href="https://adsoncostanzi.shinyapps.io/soothsayeR/" class="uri">https://adsoncostanzi.shinyapps.io/soothsayeR/</a>.</p>
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<p>I had the idea of writing some “walking through” about blogdown, first because it was my first time using the package and I still have all the necessary steps fresh in my mind and second because probably I will need to have it all documented if I decided to refresh this blog one day. Of course, there are a lot of great tutorials about blogdown over the internet (the <a href="https://bookdown.org/yihui/blogdown/">blogdown book</a> for example), but maybe someone could find this one easier in some way..</p>
+<p>This post is divided into 3 sections: <strong>How to start</strong>, <strong>How to customize and use</strong>, <strong>How to deploy</strong>. In the first section, you will find some hints on how to start the development of your own page using RStudio and blogdown, the second section is about the functionalities blogdown has to make our life easier and, the last one is the necessary steps to deploy your page.</p>
 </div>
-<div id="how-to-play-with-soothsayer" class="section level2">
-<h2>How to play with soothsayeR?</h2>
-<p>You just need to press dot (.) on the keyboard in the request session and then write the answer secretly. When you press dot in the request text input everything you type will be masked, so you could put the answer without anyone noticing.</p>
-<p>Then, when you have finished typing the answer you just need to press dot again and complete the request phrase anyway you want.</p>
-<p><img src="/img/soothsayeR/request2.png" style="width:80.0%" /></p>
-<div id="example" class="section level3">
-<h3>Example</h3>
-<p>You tell a friend next to you that R can answer any question. To prove it you say you’re going to ask R the color of the shirt he’s wearing.</p>
-<p>In the request session you will write ‘.<strong>red</strong>.ase answer’, but, only ‘R please answer’ will be shown on the screen. In the next step you will write the following question: ‘What is the color of the t-shirt of the person next to me?’.</p>
-<p>That done, just press ‘Guess’ button and the answer <strong>red</strong> will appear!</p>
-<p><img src="/img/soothsayeR/ex.gif" style="width:80.0%" /></p>
+<div id="how-to-start" class="section level2">
+<h2>How to start</h2>
+<p>The very first thing to do is <code>install.packages(&quot;blogdown&quot;)</code> to install the blogdown package. Once it is done you will need to install Hugo <code>blogdown::install_hugo(force = TRUE)</code> which is the static site generator blogdown uses (the <code>force =TRUE</code> parameter will update the Hugo version you may have installed).</p>
+<p>Now that everything is installed we can start the development of our page. There are two ways to start: using the RStudio Addins or by command lines in the console, let’s try do it in both!</p>
+<p>To start a new blogdown project over RStudio is very easy, you just need to jump in the menu <em>File &gt; New Project &gt; New Directory</em> and click in <strong>Website using blogdown</strong> option.</p>
+<p><img src="/img/blogdown_tutorial/project.png" style="width:70.0%" /></p>
+<p>In the second screen you will need to choose a name for the project folder, the sub-directory of the project and the <strong>Hugo template</strong> (here is the fun part). Hugo has A LOT of templates available <a href="https://themes.gohugo.io/">here</a>, I strongly recommend you to try some of them and choose that one which best fits your expectations.</p>
+<p>After choose the hugo template you just need to click in the “Download” button and you will be redirected to the <strong>template repository</strong> on Github.</p>
+<p>Now you just need to fill the repository in the <strong>Hugo theme</strong> option and click in Create Project.</p>
+<p><img src="/img/blogdown_tutorial/project2.png" style="width:70.0%" /></p>
+<p>If you prefer to use the console (<em>old school style</em>) you just need to execute the <code>blogdown::new_site(theme = &quot;devcows/hugo-universal-theme&quot;)</code> function and fill the theme parameter.</p>
+<blockquote>
+<p>This page was developed using the <a href="https://themes.gohugo.io/hugo-universal-theme/">Universal Theme</a></p>
+</blockquote>
 </div>
+<div id="how-to-customize-and-use" class="section level2">
+<h2>How to customize and use</h2>
+<p>If everything went well, RStudio should show you a preview of your site in the <strong>Viewer</strong> tab, and it should open a <strong>config.toml</strong> script. Inside your project folder blogdwon will create A LOT of folders, we will jump on that later.</p>
+<p>The <strong>config.toml</strong> script gives you the option to customize your site without change anything in the CSS, HTML, or JavaScript (of course, if you want to deeply change your site you must have some knowledge in CSS at least). In this file you will find options to change the name of your site, images, some colors, etc. I encourage you to modify those options and see the results, once you save the file the <strong>Viewer</strong> tab will refresh your site automatically, so you will be able to see your changes.</p>
+<blockquote>
+<p>Almost all templates have a README file with some explanations about the functionalities the template has, it will help you to use the theme properly (you can find it inside the themes folder).</p>
+</blockquote>
+<div id="the-folders-confounded" class="section level3">
+<h3>The folders 😖</h3>
+<p>I know this folder structure can be very confusing at first, that is one of the reasons I decided to create this post (because I don’t know if I will remember all of it in the next week).</p>
+<ol style="list-style-type: decimal">
+<li>content folder</li>
+</ol>
+<p>The <strong><em>content</em></strong> folder is where all your posts and tabs must be stored, every time you write a new post this folder will be updated with the content of your post. We will talk more about the new posts later.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>static folder</li>
+</ol>
+<p>The <strong><em>static</em></strong> folder is where you will update all the images you want to use in your page. You should replace the existing images presented in this folder with your own images.</p>
+<blockquote>
+<p>Sometimes, it is necessary to clean the cache of your browser to see the new image you just changed, and restart your R over the RStudio menu <em>Session &gt; Restart R</em> to see it in the Viewer tab.</p>
+</blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>themes folder</li>
+</ol>
+<p>The <strong><em>themes</em></strong> folder is the main folder of your template, here you can find the README file, CSS, JS, HTML, and you may find for some themes an Example folder. This is the place you should go if you want to change some structures of your page.</p>
+</div>
+<div id="new-posts" class="section level3">
+<h3>New posts</h3>
+<p>You probably want to create new posts on your page without pain. With that in mind, Yihui Xie, the responsible for the blogdown package, creates the function <code>blogdown::new_post()</code> (or over the RStudio <em>Addins &gt; New Post</em>).</p>
+<p>Before we start using it, there is another thing we can do to make this “new post” creation process even easier. Let’s change some <em>Global options</em>! To do that we need to modify and save the <code>.Rprofile</code> file, this is a script that is executed every time your R session is started. Here is the command to open this script: <code>file.edit('.Rprofile')</code>. Now we can set some default options for our new posts (take a look at <a href="https://bookdown.org/yihui/blogdown/global-options.html">here</a> to see the other possible options).</p>
+<pre class="r"><code># default extension and default author
+
+options(blogdown.ext = &#39;.Rmd&#39;, blogdown.author = &#39;Your Name&#39;)</code></pre>
+</div>
+</div>
+<div id="how-to-deploy" class="section level2">
+<h2>How to deploy</h2>
+<p>Now that everything is done on our page, it is time to deploy it. I will show how to do that using the <a href="https://pages.github.com/">Github Pages</a>, but of course there are many other options (I just think this is the easier one..). To deploy our page we just need this 6 steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a <a href="https://github.com/">Github account</a></p></li>
+<li><p>Create a new repository</p></li>
+</ol>
+<p>The name of you repository <strong>MUST BE</strong> your Github username + .github.io (USERNAME.github.io)</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Clone this repository <strong>INSIDE</strong> your project folder</p></li>
+<li><p>Execute the function <code>blogdown::build_site()</code></p></li>
+</ol>
+<p>Before execute this function you should change the <code>publishDir</code> option inside the <code>config.toml</code> to the folder USERNAME.github.io (which is your Github repository).</p>
+<pre class="r"><code>publishDir = &quot;USERNAME.github.io&quot;</code></pre>
+<p><strong>PS</strong>: If your <code>config.toml</code> doesn’t have this option you can create it by yourself.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Push the changes to your Github Repository</li>
+</ol>
+<p>On the Terminal tab go inside the <em>USERNAME.github.io</em> folder using <code>cd</code>. Once inside that folder you just need to: <code>git add</code>, <code>git commit -m &quot;first deploy my blog&quot;</code>, <code>git push</code>.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Your page will be online on USERNAME.github.io</li>
+</ol>
 </div>
 
                         </div>
