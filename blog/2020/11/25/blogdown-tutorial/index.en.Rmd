@@ -14,7 +14,7 @@ banner: "img/banners/blogdown_tutorial.png"
 
 ## Motivation
 
-I had the idea of writing some "walking through" about blogdown, first because it was my first time using the package and I still have all the necessary steps fresh in my mind and second because probably I will need to have it all documented if I decided to refresh this blog one day. Of course, there are a lot of great tutorials about blogdown over the internet (the [blogdown book](https://bookdown.org/yihui/blogdown/) for example), but maybe someone could find this one easier in some way..
+I had the idea of writing some "walking through" about blogdown, first because it was my first time using the package and I still have all the necessary steps fresh in my mind and second because probably I will need to have it all documented if I decided to refresh this blog one day. Of course, there are a lot of great tutorials about blogdown over the internet (the [blogdown book](https://bookdown.org/yihui/blogdown/) for example), but maybe someone could find this one easier in some way...
 
 This post is divided into 3 sections: **How to start**, **How to customize and use**, **How to deploy**. In the first section, you will find some hints on how to start the development of your own page using RStudio and blogdown, the second section is about the functionalities blogdown has to make our life easier and, the last one is the necessary steps to deploy your page.
 
@@ -92,7 +92,7 @@ Now that everything is done on our page, it is time to deploy it. I will show ho
 
 2. Create a new repository
 
-The name of you repository **MUST BE** your Github username + .github.io (USERNAME.github.io)
+The name of your repository **MUST BE** your Github username + .github.io (USERNAME.github.io)
 
 3. Clone this repository **INSIDE** your project folder
 
@@ -112,4 +112,9 @@ On the Terminal tab go inside the *USERNAME.github.io* folder using `cd`. Once i
 
 6. Your page will be online on USERNAME.github.io
 
+## That is all
+
+The blogdown package has **MUCH MORE** features than those presented in this post. To learn more about it I recommend you to read the [blogdown book](https://bookdown.org/yihui/blogdown/).
+
+I hope someone finds this tutorial useful. As always your feedback is much appreciated, feel free to get in touch with me over social media! :smile:
 
