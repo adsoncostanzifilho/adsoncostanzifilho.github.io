@@ -3625,3 +3625,8 @@ a.list-group-item.active > .badge,
   width: 65% !important;
   margin: 0 auto !important;
 }
+
+img.bmc {
+  vertical-align: top !important;
+}
+

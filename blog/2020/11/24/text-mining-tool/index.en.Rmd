@@ -33,3 +33,6 @@ Once you have finished the "data collection" step on the Search tab, you will be
 
 PS: You will find over the interface some **?** signs, once you click in one of those a pop-up with explanations will open to guide you on how to use that option properly.
 
+
+
+

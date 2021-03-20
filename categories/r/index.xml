@@ -6,7 +6,17 @@
     <description>Recent content in R on Adson Costanzi Filho</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Package Development Tutorial</title>
+      <link>https://adsoncostanzifilho.github.io/blog/2021/03/17/package-development-tutorial/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/blog/2021/03/17/package-development-tutorial/</guid>
+      <description>Motivation Recently I experienced the whole flow to create a new R package with the help of amazing packages like devtools, usethis, pkgdown, and roxygen2. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).
+ If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package.</description>
+    </item>
+    
     <item>
       <title>Blogdown Tutorial</title>
       <link>https://adsoncostanzifilho.github.io/blog/2020/11/25/blogdown-tutorial/</link>
