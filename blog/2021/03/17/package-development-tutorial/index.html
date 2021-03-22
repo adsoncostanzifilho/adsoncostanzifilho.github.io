@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-  <head>
+  
+<head>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
   <meta charset="utf-8">
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
@@ -211,12 +213,11 @@
 
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
-<p>Recently I experienced the whole flow to create a new R package with the help of amazing packages like <code>devtools</code>, <code>usethis</code>, <code>pkgdown</code>, and <code>roxygen2</code>. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).</p>
 <blockquote>
 <p>If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “<em>I heard it from someone, but I don’t remember who..</em>”</p>
 </blockquote>
+<p>Recently I experienced the whole flow to create a new R package with the help of amazing packages like <code>devtools</code>, <code>usethis</code>, <code>pkgdown</code>, and <code>roxygen2</code>. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).</p>
 <p>The material I followed to guide me through this process was the <a href="%22https://r-pkgs.org/%22">R Packages Book</a> by Hadley Wickham. Of course, there is MUCH MORE content in his book than the one presented here, but maybe this post can also help someone in some way.</p>
-<p>This post is divided into XXX sections:</p>
 </div>
 <div id="functions" class="section level2">
 <h2>Functions</h2>
@@ -224,9 +225,9 @@
 <blockquote>
 <p>This post will not cover the guidelines to create useful functions. For that I recommend you to take a look on the <em>Functions section</em> of the <a href="%22https://adv-r.hadley.nz/functions.html%22">Advanced R Book</a>.</p>
 </blockquote>
-<p>In order to make the next steps easier for you to pack your functions it is important to keep in mind two things:</p>
+<p>In order to make the next steps easier for you to pack your functions, it is important to keep in mind two things:</p>
 <ul>
-<li><p>First, develop your functions the more generic as possible, and <strong>always include comments</strong> explaining the inputs, outputs and at least one example on how to use it.</p></li>
+<li><p>First, develop your functions the more generic as possible, and <strong>always include comments</strong> explaining the <em>inputs</em>, <em>outputs</em> and at least one <em>example</em> on how to use it.</p></li>
 <li><p>Second, remember <strong>all the packages you used</strong> and if possible always use the <code>package::function</code> structure when using foreigners functions inside your own one.</p></li>
 </ul>
 <p><em>PS</em>: Be careful with those packages we always use but usually we forget about because “they were always there”, such as <code>stats</code> and <code>utils</code>.</p>
@@ -244,7 +245,7 @@
 <ul>
 <li><p><strong>R folder</strong>: The R folder will be the place where you should put your scripts (which contains your functions, the .R files). There isn’t a rule on how you should organize your scripts inside this folder, however I like to follow the one function per script rule. For me, having one function per script structure makes the process of <em>debugging</em> and documentation easier. But at the end it is up to you!</p></li>
 <li><p><strong>DESCRIPTION</strong>: This file will expose some important information about your package. It is not that challenge to fill the main options inside this file, indeed the file has very good explanations on how to fill it correctly. Also we have functions like <code>usethis::use_package("packagename")</code> to help us on how to fill the other sections of this file. We will talk more about it later.</p></li>
-<li><p><strong>NAMESPACE</strong>: This file brings all the functions the user of your package will be able to use (all those functions defined with a <code>@export</code>, we will cover more about it later). You should not edit this file, instead, you can run <code>devtools::document()</code> to update it.</p></li>
+<li><p><strong>NAMESPACE</strong>: This file brings all the functions the user of your package will be able to use (all those functions defined with a <code>@export</code>. We also will cover more about it later). You should not edit this file, instead, you can run <code>devtools::document()</code> to update it.</p></li>
 </ul>
 </div>
 <div id="function-documentation" class="section level2">
@@ -299,7 +300,7 @@ myfunction &lt;- function(a,b)
 <div id="foreigner-packages" class="section level2">
 <h2>Foreigner Packages</h2>
 <p>It is very unlikely that you will create your functions without using ANY dependencies (foreigner packages), and that is not a problem at all. However you must provide this information for the end user in some way, otherwise, the users will not be able to run your codes as expected.</p>
-<p>The rigth place for this information is inside the DESCRIPTION file in the <strong>“Imports” section</strong>. It is possible to fill this by hand by opening the DESCRIPTION file and including all the packages you used in your functions (separated by “,”) OR you can use the function <code>usethis::use_package("ggplot2")</code> and it will take care of filling it for you.</p>
+<p>The right place for this information is inside the DESCRIPTION file in the <strong>“Imports” section</strong>. It is possible to fill this by hand by opening the DESCRIPTION file and including all the packages you used in your functions (separated by “,”) OR you can use the function <code>usethis::use_package("ggplot2")</code> and it will take care of filling it for you.</p>
 <blockquote>
 <p>The <code>use_package</code> function also provides options like the minimum pakage version and the type of dependency.</p>
 </blockquote>
@@ -366,7 +367,7 @@ usethis::use_data(mydf)</code></pre>
 <div id="creating-vignettes" class="section level2">
 <h2>Creating Vignettes</h2>
 <p>The Vignettes are an important part of the package development process because it is the space for you to actually make a “walking through” your package capabilities. It is important to highlight that you can create as many vignettes as you like!</p>
-<p>Starting a new Vignette is really simple, you just need to run <code>devtools::use_vignette("intro")</code>. It will create a new folder called “vignettes” and inside this folder, you can see a file named “intro.Rmd”. The “intro.Rmd” is at the end a standard Rmarkdown file, now it is only create the content of it.</p>
+<p>Starting a new Vignette is really simple, you just need to run <code>devtools::use_vignette("intro")</code>. It will create a new folder called “vignettes” and inside this folder, you can see a file named “intro.Rmd”. The “intro.Rmd” is at the end a standard Rmarkdown file, now you can create the content of it the way you like.</p>
 <blockquote>
 <p>If you need some help with the <code>rmarkdown</code> package my advice is to take a look at the <a href="%22https://bookdown.org/yihui/rmarkdown/%22">Rmarkdown Book</a>!</p>
 </blockquote>
@@ -380,13 +381,16 @@ usethis::use_data(mydf)</code></pre>
 <blockquote>
 <p>It is a good idea to take a look in other packages repositories on Github to get inspiration.</p>
 </blockquote>
+<blockquote>
+<p>To include the <strong>badges</strong> you can use the <code>usethis</code> package (ex:<code>usethis::use_badge()</code>, <code>usethis::use_cran_badge()</code>, etc).</p>
+</blockquote>
 </div>
 <div id="cran-submission" class="section level2">
 <h2>CRAN Submission</h2>
 <p>Now it is time to update your package on the main R repository the <strong>Comprehensive R Archive Network</strong>, CRAN. All the work we have done so far is essential to have your package accepted on CRAN repository.</p>
 <p>The first thing to do is be in accordance with the <a href="%22https://cran.r-project.org/web/packages/policies.html%22">CRAN Repository Policy</a>. Here you will find the rules and guidelines to follow to have your package hosted by CRAN. The next step is to fill the <a href="%22https://cran.r-project.org/%22">web form</a>.</p>
 <p><strong>Spoiler Alert</strong>: The web form will request you to provide your package in a <em>.tar.gz</em> file, and also they will run some automatic routines to verify if your package is in a good shape to be review by someone on CRAN. Before we “build” your package in a <em>.tar.gz</em> format let’s take a look if our package will pass the CRAN’s automatic tests. To simulate the CRAN’s check procedure you can run the <code>devtools::check()</code>, it should provide you a good idea if your package is ready to be hosted by CRAN.</p>
-<p>Now that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build our package in the <em>.tar.gz</em>. The simple way to do that is running the <code>devtools::build()</code> and that’s it! Your package now is ready to be submitted on CRAN, follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).</p>
+<p>Now that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build the package in the <em>.tar.gz</em>. The simple way to do that is by running the <code>devtools::build()</code> and that’s it! Your package now is ready to be submitted on CRAN! Follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).</p>
 </div>
 
                         </div>
@@ -541,6 +545,15 @@ usethis::use_data(mydf)</code></pre>
         
 
         <footer id="footer">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js">
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js">
+  </script>
+
+  <script>
+  hljs.initHighlightingOnLoad();
+  </script>
   
   
    <div class="my_footer">

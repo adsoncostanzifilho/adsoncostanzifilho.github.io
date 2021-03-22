@@ -16,13 +16,11 @@ banner: "img/banners/packagedev_tutorial.png"
 
 ## Motivation
 
-Recently I experienced the whole flow to create a new R package with the help of amazing packages like `devtools`, `usethis`, `pkgdown`, and `roxygen2`. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github). 
-
 > If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. "*I heard it from someone, but I don't remember who..*"
 
-The material I followed to guide me through this process was the [R Packages Book]("https://r-pkgs.org/") by Hadley Wickham. Of course, there is MUCH MORE content in his book than the one presented here, but maybe this post can also help someone in some way. 
+Recently I experienced the whole flow to create a new R package with the help of amazing packages like `devtools`, `usethis`, `pkgdown`, and `roxygen2`. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github). 
 
-This post is divided into XXX sections:
+The material I followed to guide me through this process was the [R Packages Book]("https://r-pkgs.org/") by Hadley Wickham. Of course, there is MUCH MORE content in his book than the one presented here, but maybe this post can also help someone in some way. 
 
 ## Functions
 
@@ -30,9 +28,9 @@ A package is nothing more than a bunch of functions together in the same place (
 
 >This post will not cover the guidelines to create useful functions. For that I recommend you to take a look on the *Functions section* of the [Advanced R Book]("https://adv-r.hadley.nz/functions.html").
 
-In order to make the next steps easier for you to pack your functions it is important to keep in mind two things: 
+In order to make the next steps easier for you to pack your functions, it is important to keep in mind two things: 
 
-* First, develop your functions the more generic as possible, and **always include comments** explaining the inputs, outputs and at least one example on how to use it.
+* First, develop your functions the more generic as possible, and **always include comments** explaining the *inputs*, *outputs* and at least one *example* on how to use it.
 
 * Second, remember **all the packages you used** and if possible always use the `package::function` structure when using foreigners functions inside your own one. 
 
@@ -60,7 +58,7 @@ Now it should be possible to run the command `devtools::create("~/path/mypackage
 
 * **DESCRIPTION**: This file will expose some important information about your package. It is not that challenge to fill the main options inside this file, indeed the file has very good explanations on how to fill it correctly. Also we have functions like `usethis::use_package("packagename")` to help us on how to fill the other sections of this file. We will talk more about it later.
 
-* **NAMESPACE**: This file brings all the functions the user of your package will be able to use (all those functions defined with a `@export`, we will cover more about it later). You should not edit this file, instead, you can run `devtools::document()` to update it.
+* **NAMESPACE**: This file brings all the functions the user of your package will be able to use (all those functions defined with a `@export`. We also will cover more about it later). You should not edit this file, instead, you can run `devtools::document()` to update it.
 
 ## Function Documentation
 
@@ -127,7 +125,7 @@ You can also run `devtools::load_all()` to load your package in your current R s
 
 It is very unlikely that you will create your functions without using ANY dependencies (foreigner packages), and that is not a problem at all. However you must provide this information for the end user in some way, otherwise, the users will not be able to run your codes as expected. 
 
-The rigth place for this information is inside the DESCRIPTION file in the **"Imports" section**. It is possible to fill this by hand by opening the DESCRIPTION file and including all the packages you used in your functions (separated by ",") OR you can use the function `usethis::use_package("ggplot2")` and it will take care of filling it for you. 
+The right place for this information is inside the DESCRIPTION file in the **"Imports" section**. It is possible to fill this by hand by opening the DESCRIPTION file and including all the packages you used in your functions (separated by ",") OR you can use the function `usethis::use_package("ggplot2")` and it will take care of filling it for you. 
 
 > The `use_package` function also provides options like the minimum pakage version and the type of dependency.
 
@@ -209,7 +207,7 @@ Once you finish this process you can run `devtools::document()` and a new file n
 
 The Vignettes are an important part of the package development process because it is the space for you to actually make a "walking through" your package capabilities. It is important to highlight that you can create as many vignettes as you like!
 
-Starting a new Vignette is really simple, you just need to run `devtools::use_vignette("intro")`. It will create a new folder called "vignettes" and inside this folder, you can see a file named "intro.Rmd". The "intro.Rmd" is at the end a standard Rmarkdown file, now it is only create the content of it. 
+Starting a new Vignette is really simple, you just need to run `devtools::use_vignette("intro")`. It will create a new folder called "vignettes" and inside this folder, you can see a file named "intro.Rmd". The "intro.Rmd" is at the end a standard Rmarkdown file, now you can create the content of it the way you like. 
 
 > If you need some help with the `rmarkdown` package my advice is to take a look at the [Rmarkdown Book]("https://bookdown.org/yihui/rmarkdown/")!
 
@@ -221,6 +219,8 @@ As the idea is also to make the package available on Github it is almost mandato
 
 > It is a good idea to take a look in other packages repositories on Github to get inspiration.
 
+> To include the **badges** you can use the `usethis` package (ex:`usethis::use_badge()`, `usethis::use_cran_badge()`, etc).
+
 ## CRAN Submission
 
 Now it is time to update your package on the main R repository the **Comprehensive R Archive Network**, CRAN. All the work we have done so far is essential to have your package accepted on CRAN repository. 
@@ -229,7 +229,7 @@ The first thing to do is be in accordance with the [CRAN Repository Policy]("htt
 
 **Spoiler Alert**: The web form will request you to provide your package in a *.tar.gz* file, and also they will run some automatic routines to verify if your package is in a good shape to be review by someone on CRAN. Before we "build" your package in a *.tar.gz* format let's take a look if our package will pass the CRAN's automatic tests. To simulate the CRAN's check procedure you can run the `devtools::check()`, it should provide you a good idea if your package is ready to be hosted by CRAN.
 
-Now that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build our package in the *.tar.gz*. The simple way to do that is running the `devtools::build()` and that's it! Your package now is ready to be submitted on CRAN, follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).
+Now that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build the package in the *.tar.gz*. The simple way to do that is by running the `devtools::build()` and that's it! Your package now is ready to be submitted on CRAN! Follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).
 
 
 
