@@ -231,7 +231,9 @@ The first thing to do is be in accordance with the [CRAN Repository Policy]("htt
 
 Now that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build the package in the *.tar.gz*. The simple way to do that is by running the `devtools::build()` and that's it! Your package now is ready to be submitted on CRAN! Follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).
 
+## `pkgdown`
 
+TBD
 
 
 
