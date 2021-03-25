@@ -4,6 +4,7 @@ author: Adson Costanzi Filho
 date: '2020-11-23'
 slug: soothsayer
 categories:
+  - Projects
   - R
   - shiny
 tags:

@@ -6,7 +6,20 @@
     <description>Recent content in Blogs on Adson Costanzi Filho</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSGo Package</title>
+      <link>https://adsoncostanzifilho.github.io/blog/2021/03/25/csgo-package/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/blog/2021/03/25/csgo-package/</guid>
+      <description>Overview  
+The CSGo package is an R client for accessing Steam’s REST API specifically for the Counter-Strike Global Offensive Game (CS Go) data. Check out the Steam documentation website for more information.
+ Installation To get the current released version from CRAN:
+install.packages(&amp;quot;CSGo&amp;quot;) To get the current development version from GitHub:
+# install.packages(&amp;quot;devtools&amp;quot;) devtools::install_github(&amp;quot;adsoncostanzifilho/CSGo&amp;quot;)  Example The first step to use the CSGo package is to have your own credentials (API key) to pull the CSGo data from the Steam API.</description>
+    </item>
+    
     <item>
       <title>Package Development Tutorial</title>
       <link>https://adsoncostanzifilho.github.io/blog/2021/03/17/package-development-tutorial/</link>
