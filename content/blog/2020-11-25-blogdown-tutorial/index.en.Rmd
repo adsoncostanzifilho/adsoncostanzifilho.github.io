@@ -4,8 +4,8 @@ author: Adson Costanzi Filho
 date: '2020-11-25'
 slug: blogdown-tutorial
 categories:
-  - R
   - Tutorial
+  - R
 tags:
   - blogdown
   - rmarkdown

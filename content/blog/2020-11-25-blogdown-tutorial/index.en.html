@@ -4,16 +4,15 @@ author: Adson Costanzi Filho
 date: '2020-11-25'
 slug: blogdown-tutorial
 categories:
-  - R
   - Tutorial
+  - R
 tags:
   - blogdown
   - rmarkdown
 banner: "img/banners/blogdown_tutorial.png"
 ---
 
-<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
 
 
 <div id="motivation" class="section level2">
@@ -23,7 +22,7 @@ banner: "img/banners/blogdown_tutorial.png"
 </div>
 <div id="how-to-start" class="section level2">
 <h2>How to start</h2>
-<p>The very first thing to do is <code>install.packages(&quot;blogdown&quot;)</code> to install the blogdown package. Once it is done you will need to install Hugo <code>blogdown::install_hugo(force = TRUE)</code> which is the static site generator blogdown uses (the <code>force =TRUE</code> parameter will update the Hugo version you may have installed).</p>
+<p>The very first thing to do is <code>install.packages("blogdown")</code> to install the blogdown package. Once it is done you will need to install Hugo <code>blogdown::install_hugo(force = TRUE)</code> which is the static site generator blogdown uses (the <code>force =TRUE</code> parameter will update the Hugo version you may have installed).</p>
 <p>Now that everything is installed we can start the development of our page. There are two ways to start: using the RStudio Addins or by command lines in the console, let’s try do it in both!</p>
 <p>To start a new blogdown project over RStudio is very easy, you just need to jump in the menu <em>File &gt; New Project &gt; New Directory</em> and click in <strong>Website using blogdown</strong> option.</p>
 <p><img src="/img/blogdown_tutorial/project.png" style="width:70.0%" /></p>
@@ -31,7 +30,7 @@ banner: "img/banners/blogdown_tutorial.png"
 <p>After choose the hugo template you just need to click in the “Download” button and you will be redirected to the <strong>template repository</strong> on Github.</p>
 <p>Now you just need to fill the repository in the <strong>Hugo theme</strong> option and click in Create Project.</p>
 <p><img src="/img/blogdown_tutorial/project2.png" style="width:70.0%" /></p>
-<p>If you prefer to use the console (<em>old school style</em>) you just need to execute the <code>blogdown::new_site(theme = &quot;devcows/hugo-universal-theme&quot;)</code> function and fill the theme parameter.</p>
+<p>If you prefer to use the console (<em>old school style</em>) you just need to execute the <code>blogdown::new_site(theme = "devcows/hugo-universal-theme")</code> function and fill the theme parameter.</p>
 <blockquote>
 <p>This page was developed using the <a href="https://themes.gohugo.io/hugo-universal-theme/">Universal Theme</a></p>
 </blockquote>
@@ -93,7 +92,7 @@ options(blogdown.ext = &#39;.Rmd&#39;, blogdown.author = &#39;Your Name&#39;)</c
 <ol start="5" style="list-style-type: decimal">
 <li>Push the changes to your Github Repository</li>
 </ol>
-<p>On the Terminal tab go inside the <em>USERNAME.github.io</em> folder using <code>cd</code>. Once inside that folder you just need to: <code>git add</code>, <code>git commit -m &quot;first deploy my blog&quot;</code>, <code>git push</code>.</p>
+<p>On the Terminal tab go inside the <em>USERNAME.github.io</em> folder using <code>cd</code>. Once inside that folder you just need to: <code>git add</code>, <code>git commit -m "first deploy my blog"</code>, <code>git push</code>.</p>
 <ol start="6" style="list-style-type: decimal">
 <li>Your page will be online on USERNAME.github.io</li>
 </ol>

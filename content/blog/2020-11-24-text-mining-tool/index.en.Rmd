@@ -4,6 +4,7 @@ author: Adson Costanzi Filho
 date: '2020-11-24'
 slug: text-mining-tool
 categories:
+  - Project
   - R
   - shiny
 tags:
