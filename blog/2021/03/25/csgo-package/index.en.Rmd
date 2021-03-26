@@ -38,13 +38,11 @@ devtools::install_github("adsoncostanzifilho/CSGo")
 
 ## Example
 
-The first step to use the `CSGo` package is to have your own credentials (API key) to pull the CSGo data from the Steam API.
+The first step to use the `CSGo` package is to have your own credentials (API key) to pull the CSGo data from the Steam API. For more information about how to get your own API Key run in your R `vignette("auth", package = "CSGo")`, or click [here](https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html).
 
-For more information about how to get your own API Key run in your R `vignette("auth", package = "CSGo")`, or click [here](https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html).
+Now that you already have your *API Key* you should be able to collect your own CSGo data as well as your friends' data. I hope my friend [Rodrigo](https://github.com/Rodrigo-Fontoura) doesn't mind us playing with his data (he is the '76561198263364899')!
 
-Now that you already have your API Key you should be able to collect your own CSGo data as well as your friends' data. I hope my friend [Rodrigo](https://github.com/Rodrigo-Fontoura) doesn't mind us playing with his data (he is the '76561198263364899')!
-
-First let's collect his CSGo data:
+First let's collect his CSGo statistics:
 
 ```{r eval = FALSE}
 library(CSGo)
@@ -54,7 +52,7 @@ rodrigo_stats <- get_stats_user(api_key = 'your_key', user_id = '765611982633648
 
 ```
 
-Let's just filter the data frame by "kills" and "weapon" to see the kills by weapon.
+Let's just filter the obtained data frame by "kills" and "weapon" to create an analysis of kills by type of weapon.
 
 ```{r eval = FALSE}
 library(dplyr)
@@ -71,7 +69,7 @@ rodrigo_weapon_kill <- rodrigo_stats %>%
 
 Now let's take a look at the graphic!
 
-*PS*: The `theme_csgo` and `scale_fill_csgo` are only available on the development version of the CSGo package!
+*PS*: The `theme_csgo`, `scale_fill_csgo`, and `scale_color_csgo` are only available on the development version of the CSGo package!
 
 ```{r eval = FALSE}
 library(ggplot2)
@@ -97,7 +95,7 @@ rodrigo_weapon_kill %>%
 
 So, these are the top 10 weapons by kills, but.. What about the efficiency? Is the **ak47** the Rodrigo's more efficient weapon? First, let's define "efficiency":
 
-* **kills_efficiency** means how many shots I did to kill (ex: 32% shots will kill) 
+* **kills_efficiency** means how many shots he did to kill (ex: 32% shots will kill) 
 
 * **hits_efficiency** means how many shots to have a hit, this is more related to Rodrigo's ability with each weapon (ex: 35% of the shots will hit).
 
@@ -109,10 +107,10 @@ library(dplyr)
 library(stringr)
 library(knitr)
 library(kableExtra)
-rodrigo_stats <- readRDS('rodrigo_stats.RDS')
+rodrigo_efficiency <- readRDS('rodrigo_efficiency.RDS')
 ```
 
-```{r eval = TRUE, message = FALSE, results='asis'}
+```{r eval = FALSE, message = FALSE, results='asis'}
 
 rodrigo_efficiency <- rodrigo_stats %>%
   filter(
@@ -142,6 +140,10 @@ kbl(rodrigo_efficiency) %>%
   kable_styling()
 ```
 
+```{r eval = TRUE, message = FALSE, echo = FALSE}
+kbl(rodrigo_efficiency) %>%
+  kable_styling()
+```
 
 ```{r eval = FALSE}
 rodrigo_efficiency %>%
@@ -150,7 +152,7 @@ rodrigo_efficiency %>%
   geom_point(aes(y = kills_efficiency, color = "Kills Efficiency")) +
   geom_point(aes(y = hits_efficiency, color = "Hits Efficiency")) +
   geom_point(aes(y = hits_to_kill, color = "Hits to Kill")) +
-  ggtitle("Weapon Efficiency") +
+  ggtitle("WEAPON EFFICIENCY") +
   ylab("Efficiency (%)") +
   xlab("") +
   labs(color = "Efficiency Type", size = "Shots") +
@@ -163,7 +165,7 @@ rodrigo_efficiency %>%
 ```
 
 ![](/img/csgo_package/weapon_effic.png){width="100%"}
-In conclusion, I would advise Rodrigo to use the **awp** in his next games, beacuse this weapon presented the best efficiency in terms of **shots to kill**, **shots to hit**, and **hits to kill**. But we definitely need more shots with this weapon to see if this efficiency remains.. hahahaha
+In conclusion, I would advise Rodrigo to use the **awp** in his next games, because this weapon presented the best efficiency in terms of **shots to kill**, **shots to hit**, and **hits to kill**. But we definitely need more shots with this weapon to see if this efficiency remains.. hahahaha
 
 
 
