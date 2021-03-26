@@ -35,15 +35,14 @@ devtools::install_github(&quot;adsoncostanzifilho/CSGo&quot;)</code></pre>
 </div>
 <div id="example" class="section level2">
 <h2>Example</h2>
-<p>The first step to use the <code>CSGo</code> package is to have your own credentials (API key) to pull the CSGo data from the Steam API.</p>
-<p>For more information about how to get your own API Key run in your R <code>vignette("auth", package = "CSGo")</code>, or click <a href="https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html">here</a>.</p>
-<p>Now that you already have your API Key you should be able to collect your own CSGo data as well as your friends’ data. I hope my friend <a href="https://github.com/Rodrigo-Fontoura">Rodrigo</a> doesn’t mind us playing with his data (he is the ‘76561198263364899’)!</p>
-<p>First let’s collect his CSGo data:</p>
+<p>The first step to use the <code>CSGo</code> package is to have your own credentials (API key) to pull the CSGo data from the Steam API. For more information about how to get your own API Key run in your R <code>vignette("auth", package = "CSGo")</code>, or click <a href="https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html">here</a>.</p>
+<p>Now that you already have your <em>API Key</em> you should be able to collect your own CSGo data as well as your friends’ data. I hope my friend <a href="https://github.com/Rodrigo-Fontoura">Rodrigo</a> doesn’t mind us playing with his data (he is the ‘76561198263364899’)!</p>
+<p>First let’s collect his CSGo statistics:</p>
 <pre class="r"><code>library(CSGo)
 
 # to get the statistics of the user 76561198263364899
 rodrigo_stats &lt;- get_stats_user(api_key = &#39;your_key&#39;, user_id = &#39;76561198263364899&#39;)</code></pre>
-<p>Let’s just filter the data frame by “kills” and “weapon” to see the kills by weapon.</p>
+<p>Let’s just filter the obtained data frame by “kills” and “weapon” to create an analysis of kills by type of weapon.</p>
 <pre class="r"><code>library(dplyr)
 library(stringr)
 
@@ -54,7 +53,7 @@ rodrigo_weapon_kill &lt;- rodrigo_stats %&gt;%
   ) %&gt;%
   arrange(desc(value))</code></pre>
 <p>Now let’s take a look at the graphic!</p>
-<p><em>PS</em>: The <code>theme_csgo</code> and <code>scale_fill_csgo</code> are only available on the development version of the CSGo package!</p>
+<p><em>PS</em>: The <code>theme_csgo</code>, <code>scale_fill_csgo</code>, and <code>scale_color_csgo</code> are only available on the development version of the CSGo package!</p>
 <pre class="r"><code>library(ggplot2)
 library(showtext)
 
@@ -74,7 +73,7 @@ rodrigo_weapon_kill %&gt;%
 <p><img src="/img/csgo_package/kills_weapon.png" style="width:100.0%" /></p>
 <p>So, these are the top 10 weapons by kills, but.. What about the efficiency? Is the <strong>ak47</strong> the Rodrigo’s more efficient weapon? First, let’s define “efficiency”:</p>
 <ul>
-<li><p><strong>kills_efficiency</strong> means how many shots I did to kill (ex: 32% shots will kill)</p></li>
+<li><p><strong>kills_efficiency</strong> means how many shots he did to kill (ex: 32% shots will kill)</p></li>
 <li><p><strong>hits_efficiency</strong> means how many shots to have a hit, this is more related to Rodrigo’s ability with each weapon (ex: 35% of the shots will hit).</p></li>
 <li><p><strong>hits_to_kill</strong> means how many hits are necessary to kill, this is more related to the weapon power/efficiency (ex: 91% of the hits will kills).</p></li>
 </ul>
@@ -369,7 +368,7 @@ m4a1
   geom_point(aes(y = kills_efficiency, color = &quot;Kills Efficiency&quot;)) +
   geom_point(aes(y = hits_efficiency, color = &quot;Hits Efficiency&quot;)) +
   geom_point(aes(y = hits_to_kill, color = &quot;Hits to Kill&quot;)) +
-  ggtitle(&quot;Weapon Efficiency&quot;) +
+  ggtitle(&quot;WEAPON EFFICIENCY&quot;) +
   ylab(&quot;Efficiency (%)&quot;) +
   xlab(&quot;&quot;) +
   labs(color = &quot;Efficiency Type&quot;, size = &quot;Shots&quot;) +
@@ -379,5 +378,5 @@ m4a1
   ) +
   scale_color_csgo()</code></pre>
 <p><img src="/img/csgo_package/weapon_effic.png" style="width:100.0%" />
-In conclusion, I would advise Rodrigo to use the <strong>awp</strong> in his next games, beacuse this weapon presented the best efficiency in terms of <strong>shots to kill</strong>, <strong>shots to hit</strong>, and <strong>hits to kill</strong>. But we definitely need more shots with this weapon to see if this efficiency remains.. hahahaha</p>
+In conclusion, I would advise Rodrigo to use the <strong>awp</strong> in his next games, because this weapon presented the best efficiency in terms of <strong>shots to kill</strong>, <strong>shots to hit</strong>, and <strong>hits to kill</strong>. But we definitely need more shots with this weapon to see if this efficiency remains.. hahahaha</p>
 </div>
