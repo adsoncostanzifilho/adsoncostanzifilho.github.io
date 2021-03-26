@@ -4,7 +4,7 @@ author: Adson Costanzi Filho
 date: '2020-11-23'
 slug: soothsayer
 categories:
-  - Projects
+  - Project
   - R
   - shiny
 tags:
@@ -12,7 +12,6 @@ tags:
   - shinyjs
 banner: "img/banners/soothsayer.png"
 ---
-
 
 ## Overview 
 
