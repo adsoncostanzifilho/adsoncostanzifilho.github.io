@@ -32,5 +32,18 @@ The tool is online on shinyapps’ repository at the address https://adsoncostan
  How does this interface work? The interface is divided into 5 tabs presented in the menu on the left: Home , Search , Word Cloud , Sentiment Analysis and, Topic Modeling .</description>
     </item>
     
+    <item>
+      <title>soothsayeR</title>
+      <link>https://adsoncostanzifilho.github.io/blog/2020/11/23/soothsayer/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/blog/2020/11/23/soothsayer/</guid>
+      <description>Overview  
+SoothsayeR is an interface based on the old prank called ‘Peter answers’..
+The game’s idea is to play with your friends making questions that you know the answer, and make them believe that R is who is answering…
+The app demonstrates how easy it is to integrate Shiny with Javascript through the shinyjs library.
+The tool is online on shinyapps’ repository at the address https://adsoncostanzi.shinyapps.io/soothsayeR/.</description>
+    </item>
+    
   </channel>
 </rss>
