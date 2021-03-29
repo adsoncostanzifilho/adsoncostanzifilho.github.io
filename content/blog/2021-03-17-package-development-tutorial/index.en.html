@@ -197,8 +197,34 @@ usethis::use_data(mydf)</code></pre>
 <p>The first thing to do is be in accordance with the <a href="%22https://cran.r-project.org/web/packages/policies.html%22">CRAN Repository Policy</a>. Here you will find the rules and guidelines to follow to have your package hosted by CRAN. The next step is to fill the <a href="%22https://cran.r-project.org/%22">web form</a>.</p>
 <p><strong>Spoiler Alert</strong>: The web form will request you to provide your package in a <em>.tar.gz</em> file, and also they will run some automatic routines to verify if your package is in a good shape to be review by someone on CRAN. Before we “build” your package in a <em>.tar.gz</em> format let’s take a look if our package will pass the CRAN’s automatic tests. To simulate the CRAN’s check procedure you can run the <code>devtools::check()</code>, it should provide you a good idea if your package is ready to be hosted by CRAN.</p>
 <p>Now that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build the package in the <em>.tar.gz</em>. The simple way to do that is by running the <code>devtools::build()</code> and that’s it! Your package now is ready to be submitted on CRAN! Follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).</p>
+<blockquote>
+<p>For the next version of your pacakge you can use the <code>devtools::release()</code>!</p>
+</blockquote>
 </div>
 <div id="pkgdown" class="section level2">
 <h2><code>pkgdown</code></h2>
-<p>TBD</p>
+<p>Now that our package is available on Github and on CRAN we can easily create its own page, like a pro! Thanks to <code>pkgdown</code> it is very simple to make a very beautiful page to spreading your package for the whole R community.</p>
+<blockquote>
+<p>I will not gona cover the whole functionality of <code>pkgdown</code> for that you can see the <a href="https://pkgdown.r-lib.org/">pkgdown page</a>!</p>
+</blockquote>
+<p>Since we already have the package structure the only thing to do to create your packages’ page is:</p>
+<pre class="r"><code># Run to configure package to use pkgdown (once)
+usethis::use_pkgdown()
+
+# Run to build the website (every time you change it)
+pkgdown::build_site()</code></pre>
+<p>I told you that this is the easier part! Now let’s host the page on Github Pages!</p>
+<p>To do that you should enter your package Github repository and go to <em>Settings &gt; GitHub Pages</em>:</p>
+<p><img src="/img/packagedev_tutorial/settings.png" style="width:100.0%" /></p>
+<p><img src="/img/packagedev_tutorial/githubpages.png" style="width:100.0%" /></p>
+<p>Now you only need to change the <em>Source</em> where will be the page structure (for me it is in the <em>master branch</em> and inside the <em>docs folder</em>).</p>
+<blockquote>
+<p>The <code>pkgdown</code> by default will create the <strong>docs</strong> folder for you when you run <code>pkgdown::build_site()</code>!</p>
+</blockquote>
+<p><img src="/img/packagedev_tutorial/master_docs.png" style="width:100.0%" /></p>
+<p>Done! Just <strong>add</strong>, <strong>commit</strong>, <strong>push</strong> and your packages page will be online at: <em>your_github_user.github.io/repository_name</em>.</p>
+</div>
+<div id="that-is-all" class="section level2">
+<h2>That is all</h2>
+<p>I hope someone finds this tutorial useful. As always your feedback is much appreciated, feel free to get in touch with me over social media! :smile:</p>
 </div>
