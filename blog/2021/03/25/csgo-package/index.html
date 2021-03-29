@@ -217,7 +217,7 @@
 <p><a href="https://github.com/adsoncostanzifilho/CSGo">
 <i class="fab fa-github-square my_social"></i>
 </a></p>
-<p>The <strong>CSGo</strong> package is an R client for accessing Steam’s REST API specifically for the Counter-Strike Global Offensive Game (CS Go) data. Check out the <a href="https://developer.valvesoftware.com/wiki/Steam_Web_API">Steam documentation website</a> for more information.</p>
+<p>The <strong>CSGo</strong> package is an R client for accessing Steam’s REST API specifically for the Counter-Strike Global Offensive Game (CS Go) data. Check out the <a href="https://developer.valvesoftware.com/wiki/Steam_Web_API">Steam documentation website</a> and the <a href="https://adsoncostanzifilho.github.io/CSGo/">Package Page</a> for more information.</p>
 </div>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
@@ -247,7 +247,7 @@ rodrigo_weapon_kill &lt;- rodrigo_stats %&gt;%
   ) %&gt;%
   arrange(desc(value))</code></pre>
 <p>Now let’s take a look at the graphic!</p>
-<p><em>PS</em>: The <code>theme_csgo</code>, <code>scale_fill_csgo</code>, and <code>scale_color_csgo</code> are only available on the development version of the CSGo package!</p>
+<p><em>PS</em>: To make the graphic even more beautiful I recommend getting the “Quantico” font from Google fonts using the <code>showtext</code> package!</p>
 <pre class="r"><code>library(ggplot2)
 library(showtext)
 
