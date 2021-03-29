@@ -231,9 +231,47 @@ The first thing to do is be in accordance with the [CRAN Repository Policy]("htt
 
 Now that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build the package in the *.tar.gz*. The simple way to do that is by running the `devtools::build()` and that's it! Your package now is ready to be submitted on CRAN! Follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).
 
+> For the next version of your pacakge you can use the `devtools::release()`!
+
 ## `pkgdown`
 
-TBD
+Now that our package is available on Github and on CRAN we can easily create its own page, like a pro! Thanks to `pkgdown` it is very simple to make a very beautiful page to spreading your package for the whole R community.
+
+> I will not gona cover the whole functionality of `pkgdown` for that you can see the [pkgdown page](https://pkgdown.r-lib.org/)!
+
+Since we already have the package structure the only thing to do to create your packages' page is:
+
+```{r, eval = FALSE}
+# Run to configure package to use pkgdown (once)
+usethis::use_pkgdown()
+
+# Run to build the website (every time you change it)
+pkgdown::build_site()
+```
+
+I told you that this is the easier part! Now let's host the page on Github Pages!
+
+To do that you should enter your package Github repository and go to *Settings > GitHub Pages*:
+
+![](/img/packagedev_tutorial/settings.png){width="100%"}
+
+![](/img/packagedev_tutorial/githubpages.png){width="100%"}
+
+Now you only need to change the *Source* where will be the page structure (for me it is in the *master branch* and inside the *docs folder*). 
+
+> The `pkgdown` by default will create the **docs** folder for you when you run `pkgdown::build_site()`!
+
+![](/img/packagedev_tutorial/master_docs.png){width="100%"}
+
+Done! Just **add**, **commit**, **push** and your packages page will be online at: *your_github_user.github.io/repository_name*.
+
+
+## That is all
+
+I hope someone finds this tutorial useful. As always your feedback is much appreciated, feel free to get in touch with me over social media! :smile:
+
+
+
 
 
 
