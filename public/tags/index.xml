@@ -6,7 +6,34 @@
     <description>Recent content in Tags on Adson Costanzi Filho</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSGo</title>
+      <link>https://adsoncostanzifilho.github.io/tags/csgo/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/tags/csgo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>httr</title>
+      <link>https://adsoncostanzifilho.github.io/tags/httr/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/tags/httr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jsonlite</title>
+      <link>https://adsoncostanzifilho.github.io/tags/jsonlite/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/tags/jsonlite/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>devtools</title>
       <link>https://adsoncostanzifilho.github.io/tags/devtools/</link>
