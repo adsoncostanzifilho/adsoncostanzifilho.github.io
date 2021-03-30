@@ -263,7 +263,7 @@ Now you only need to change the *Source* where will be the page structure (for m
 
 ![](/img/packagedev_tutorial/master_docs.png){width="100%"}
 
-Done! Just **add**, **commit**, **push** and your packages page will be online at: *your_github_user.github.io/repository_name*.
+Done! Just **add**, **commit**, **push** and your package's page will be online at: *your_github_user.github.io/repository_name*.
 
 
 ## That is all

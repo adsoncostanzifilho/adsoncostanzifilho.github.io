@@ -126,7 +126,7 @@ paginate = 5
     title = "Statistician/Data Scientist"
     subtitle = "Hi! Nice to meet you, my name is Adson."
     link_url = "/files/cv.pdf"
-    link_text = "Resumé"
+    link_text = "Résumé"
 
 [params.clients]
     enable = true
