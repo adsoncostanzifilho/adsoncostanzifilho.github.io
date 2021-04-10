@@ -73,7 +73,7 @@ myfunction &lt;- function(a,b)
 }</code></pre>
 <p>Now it is only a matter of fill the presented options with clear explanations regarding the use of the function and parameters. In addition, you must provide at least one example of how to use it and explain what the user should expect in return.</p>
 <blockquote>
-<p>Sometimes the example we provided will only work in very specific conditions. For these cases you should create your functions inside the <code>\dontrun{}</code>, it will prevent the execution of it while compile and check your package.</p>
+<p>Sometimes the example we provided will only work in very specific conditions. For these cases you should create your examples inside the <code>\dontrun{}</code>, it will prevent the execution of it while compile and check your package.</p>
 </blockquote>
 <p>Note that the default skeleton <code>roxigen2</code> provides us considers the <code>#' @export</code>. It only means that this function will be exposed to the end user, in other words the user should be able to run <code>mypackage::myfunction()</code>. If for some reason you don’t want to export this function you can only remove this line from your script.</p>
 <blockquote>
