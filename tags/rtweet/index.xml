@@ -6,13 +6,13 @@
     <description>Recent content in rtweet on Adson Costanzi Filho</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/tags/rtweet/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/tags/rtweet/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Text Mining Tool</title>
-      <link>https://adsoncostanzifilho.github.io/blog/2020/11/24/text-mining-tool/</link>
-      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <link>https://adsoncostanzifilho.github.io/blog/2021/04/02/text-mining-tool/</link>
+      <pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://adsoncostanzifilho.github.io/blog/2020/11/24/text-mining-tool/</guid>
+      <guid>https://adsoncostanzifilho.github.io/blog/2021/04/02/text-mining-tool/</guid>
       <description>Overview  
 Text Mining Tool is an interface developed in R using mainly the shiny, tidytext and rtweet packages. The idea of this interface is to allow to you make your own text analysis using live Twitter data.
 The tool is online on shinyapps’ repository at the address https://adsoncostanzi.shinyapps.io/TextMining/.

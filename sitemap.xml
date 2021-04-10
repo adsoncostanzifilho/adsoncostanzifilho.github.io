@@ -4,17 +4,77 @@
   
   <url>
     <loc>https://adsoncostanzifilho.github.io/</loc>
-    <lastmod>2021-03-25T00:00:00+00:00</lastmod>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://adsoncostanzifilho.github.io/blog/</loc>
-    <lastmod>2021-03-25T00:00:00+00:00</lastmod>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://adsoncostanzifilho.github.io/categories/</loc>
-    <lastmod>2021-03-25T00:00:00+00:00</lastmod>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/categories/project/</loc>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/categories/r/</loc>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/tags/rtweet/</loc>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/tags/shiny/</loc>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/categories/shiny/</loc>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/tags/</loc>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/blog/2021/04/02/text-mining-tool/</loc>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/tags/tidytext/</loc>
+    <lastmod>2021-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/tags/github/</loc>
+    <lastmod>2021-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/blog/2021/04/01/github-actions-for-r-users/</loc>
+    <lastmod>2021-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/tags/github-actions/</loc>
+    <lastmod>2021-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://adsoncostanzifilho.github.io/categories/tutorial/</loc>
+    <lastmod>2021-04-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -34,21 +94,6 @@
   
   <url>
     <loc>https://adsoncostanzifilho.github.io/tags/jsonlite/</loc>
-    <lastmod>2021-03-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://adsoncostanzifilho.github.io/categories/project/</loc>
-    <lastmod>2021-03-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://adsoncostanzifilho.github.io/categories/r/</loc>
-    <lastmod>2021-03-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://adsoncostanzifilho.github.io/tags/</loc>
     <lastmod>2021-03-25T00:00:00+00:00</lastmod>
   </url>
   
@@ -73,11 +118,6 @@
   </url>
   
   <url>
-    <loc>https://adsoncostanzifilho.github.io/categories/tutorial/</loc>
-    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://adsoncostanzifilho.github.io/tags/usethis/</loc>
     <lastmod>2021-03-17T00:00:00+00:00</lastmod>
   </url>
@@ -95,31 +135,6 @@
   <url>
     <loc>https://adsoncostanzifilho.github.io/tags/rmarkdown/</loc>
     <lastmod>2020-11-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://adsoncostanzifilho.github.io/tags/rtweet/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://adsoncostanzifilho.github.io/tags/shiny/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://adsoncostanzifilho.github.io/categories/shiny/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://adsoncostanzifilho.github.io/blog/2020/11/24/text-mining-tool/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://adsoncostanzifilho.github.io/tags/tidytext/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GitHub on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/tags/github/</link>
+    <description>Recent content in GitHub on Adson Costanzi Filho</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub Actions for R Users</title>
+      <link>https://adsoncostanzifilho.github.io/blog/2021/04/01/github-actions-for-r-users/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/blog/2021/04/01/github-actions-for-r-users/</guid>
+      <description>Motivation Recently I was introduced by some friends to the GitHub Actions and how it could help me execute tasks like: deploy my Shiny Apps, deploy this Blogdown, perform automated tests in packages, refresh data, and more. So, I decided to give it a try, and it was so simple and saved me so many work hours that I decided to write this post explaining how R developers can make good use of this amazing tool.</description>
+    </item>
+    
+  </channel>
+</rss>

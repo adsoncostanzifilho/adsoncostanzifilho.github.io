@@ -85,7 +85,7 @@ myfunction <- function(a,b)
 
 Now it is only a matter of fill the presented options with clear explanations regarding the use of the function and parameters. In addition, you must provide at least one example of how to use it and explain what the user should expect in return.
 
-> Sometimes the example we provided will only work in very specific conditions. For these cases you should create your functions inside the `\dontrun{}`, it will prevent the execution of it while compile and check your package. 
+> Sometimes the example we provided will only work in very specific conditions. For these cases you should create your examples inside the `\dontrun{}`, it will prevent the execution of it while compile and check your package. 
 
 Note that the default skeleton `roxigen2` provides us considers the `#' @export`. It only means that this function will be exposed to the end user, in other words the user should be able to run `mypackage::myfunction()`. If for some reason you don't want to export this function you can only remove this line from your script.
 

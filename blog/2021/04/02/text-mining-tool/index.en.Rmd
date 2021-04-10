@@ -1,0 +1,39 @@
+---
+title: Text Mining Tool
+author: Adson Costanzi Filho
+date: '2021-04-02'
+slug: text-mining-tool
+categories:
+  - Project
+  - R
+  - shiny
+tags:
+  - shiny
+  - rtweet
+  - tidytext
+banner: "img/banners/textminingtool.png"
+---
+
+## Overview 
+
+<a href="https://github.com/adsoncostanzifilho/TextMining">
+  <i class="fab fa-github-square my_social"></i>
+</a>
+
+**Text Mining Tool** is an interface developed in R using mainly the shiny, tidytext and rtweet packages. The idea of this interface is to allow to you make your own text analysis using live Twitter data.
+
+The tool is online on shinyapps' repository at the address <https://adsoncostanzi.shinyapps.io/TextMining/>.
+
+## How does this interface work?
+
+The interface is divided into 5 tabs presented in the menu on the left: Home , Search , Word Cloud , Sentiment Analysis and, Topic Modeling .
+
+The first thing you need to do to use the entire page is to collect some data from Twitter. To do that you just need to jump into the Search tab and follow the steps presented there!
+
+Once you have finished the "data collection" step on the Search tab, you will be able to use the other tabs available on the left menu.
+
+PS: You will find over the interface some **?** signs, once you click in one of those a pop-up with explanations will open to guide you on how to use that option properly.
+
+
+
+
