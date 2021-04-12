@@ -15,7 +15,7 @@ publishDir = "public/"
 enableEmoji = true
 
 # Enable Google Analytics by entering your tracking code
-googleAnalytics = "G-42PYM8915S"
+googleAnalytics = "G-WG9ZSKV7WR"
 # Define the number of posts per page
 paginate = 5
 
