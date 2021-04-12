@@ -27,10 +27,10 @@ banner: "img/banners/gha_tutorial.png"
 </div>
 <div id="start-with-usethis" class="section level2">
 <h2>Start with <code>usethis</code></h2>
-<p>The easier and faster way to get started with the GitHub Actions is, for sure, using the <code>usethis</code> package! So, let’s first install it.</p>
+<p>The easier and faster way to get started with the GitHub Actions in R is, for sure, using the <code>usethis</code> package! So, let’s first install it.</p>
 <pre class="r"><code>install.packages(&quot;usethis&quot;)</code></pre>
-<p>The first very interesting function about the GitHub Action in the <code>usethis</code> package is the <code>usethis::browse_github_actions()</code> with this function you can see the active actions running in the most diverse R packages. This is a very good start to see what are the Actions used in big R packages like “shiny”, “dplyr”, etc.</p>
-<p>The <code>usethis</code> also have the <code>usethis::use_github_action()</code> function, which in my opinion is the easier way to start. It will create for you the necessary files/folders structure necessary for GitHub understands and runs your <em>Actions</em>, in other words, it will create the <em>.github folder &gt; workflows folder &gt; file.yaml</em> inside your current project path. This function also needs as argument a specific workflow name (you can check the available options <a href="https://github.com/r-lib/actions/tree/master/examples">here</a>), depending on what option you choose it can give you a very good start point (some times you don’t need to change anything). For example if you run <code>usethis::use_github_action("pkgdown")</code> it will create for you the default folder structure (<em>.github folder &gt; workflows folder &gt; file.yaml</em>) and it will start the <em>.yaml</em> file like this:</p>
+<p>The first very interesting function about the GitHub Action in the <code>usethis</code> package is the <code>usethis::browse_github_actions()</code> with this function you can see the active actions running in the most diverse R packages. This is a very good start to give you an idea of what are the Actions used in big R packages like “shiny”, “dplyr”, etc.</p>
+<p>The <code>usethis</code> also have the <code>usethis::use_github_action()</code> function, which in my opinion is the easier way to start. It will create for you the necessary files/folders structure necessary for GitHub understands and runs your <em>Actions</em>, in other words, it will create the <em>.github folder &gt; workflows folder &gt; .yaml file</em> inside your current project path. This function also needs as argument a specific workflow name (you can check the available options <a href="https://github.com/r-lib/actions/tree/master/examples">here</a>), depending on what option you choose it can give you a very good start point (sometimes you don’t need to change a thing). For example if you run <code>usethis::use_github_action("pkgdown")</code> it will create for you the default folder structure (<em>.github folder &gt; workflows folder &gt; file.yaml</em>) and it will start a <em>.yaml</em> file like this:</p>
 <pre class="r"><code>on:
   push:
     branches:
@@ -99,9 +99,9 @@ jobs:
 on:
   push:
     branches: [ master ]</code></pre>
-<p>The second step is to define the <strong>name of the workflow</strong> and the operational system you want. GitHub actions has several OS options to choose including the 3 most popular ones ubuntu, macos and windows. I am going to name our procedure as “Shiny-Deploy” and we are going to use the macos-10.15.</p>
+<p>The second step is to define the <strong>name of the workflow</strong> and the <strong>operational system</strong> you want. GitHub actions has several OS options to choose including the 3 most popular ones ubuntu, macos and windows. I am going to name our procedure as “Shiny-Deploy” and we are going to use the macos-10.15.</p>
 <blockquote>
-<p>You can associate your actions to badges with the <code>usethis</code> package. For example, if the name of your workflow is “Shiny-Deploy” you can add this badge runing <code>usethis::use_github_actions_badge("Shiny-Deploy")</code>.</p>
+<p>You can associate your actions to badges with the <code>usethis</code> package. For example, if the name of your workflow is “Shiny-Deploy” you can add this badge in your README file runing <code>usethis::use_github_actions_badge("Shiny-Deploy")</code>.</p>
 </blockquote>
 <pre class="r"><code># Name of the workflow - usethis::use_github_actions_badge(&quot;Shiny-Deploy&quot;)
 name: Shiny-Deploy
@@ -121,7 +121,6 @@ jobs:
 <p>Nice! We already made a copy of our files, now we need to set-up the R installation in our GitHub Actions machine to be able to run our R scripts. We will also set-up the <code>pandoc</code> to compile our shiny or Rmarkdown scripts.</p>
 <pre class="r"><code>        # set-up an R installation in our GHA machine to run our scripts
       - name: Set up R ${{ matrix.r-version }}
-        # uses: r-lib/actions/setup-r@master # for ubuntu
         uses: r-lib/actions/setup-R@v1 # for macos
         with:
           r-version: ${{ matrix.r-version }}
@@ -156,22 +155,22 @@ jobs:
         shell: Rscript {0}</code></pre>
 <p>Now comes the tricky part! In order to make the connection between your GitHub Actions machine and your shiny apps account we need to set your <strong>shiny apps token and key</strong>. Evidently, for security reasons you don’t want to publish you shinyapps credentials for everyone accessing your GitHub repository. However, we also need your token and keys to be able to deploy your app automatically, that is why we are going to use the <strong>GitHub Secrets</strong> feature!</p>
 <p>First you need to go to your <a href="https://www.shinyapps.io/admin/">shiny apps account</a> click in your profile name and enter in the tokes option.</p>
-<p><img src="/img/githubact_tutorial/shinyapps_token1.png" style="width:100.0%" /></p>
+<p><img src="/img/githubact_tutorial/shinyapps_token1.png" style="width:70.0%" /></p>
 <p>If you don’t have created your shinyapps tokens yet, or if you want to use a new one, you can click on the <strong>+ Add Token</strong> button. Once you did that a new line will appear and you should be able to see your Token but not your Secret. You need to press the <strong>Show</strong> button followed by the <strong>Show Secret</strong> to be bale to copy your Secret credential.</p>
 <p>Now we need to include this credentials on <strong>GitHub Secrets</strong>! To do that you need to enter in your GitHub repository page and go to <em>Settings</em>.</p>
 <p><img src="/img/githubact_tutorial/settings.png" style="width:100.0%" /></p>
 <p>On the left menu you should be able to see the <strong>Secrets</strong> option. Once you enter in the Secrets tab you will see the title “Actions secrets”, and just on its side you will see the “New repository secret” button. You need to click this button to create your encrypted environment variables (in this case your shinyapps credentials).</p>
 <p><img src="/img/githubact_tutorial/secrets1.png" style="width:100.0%" /></p>
 <p>We are going to create 2 different environment variables, the first named “SHINYAPP_TOKEN” and the second named “SHINYAPP_SECRET” (of course you can set any name you want). Once you clicked on the “New repository secret” button you will need to provide the name of your variable and the value of it and press “Add Secret”, as you can see below.</p>
-<p><img src="/img/githubact_tutorial/shiny_token.png" style="width:50.0%" /></p>
+<p><img src="/img/githubact_tutorial/shiny_token.png" style="width:100.0%" /></p>
 <blockquote>
 <p>Your Secret and Token don’t need to be in quotes (“my token”)!</p>
 </blockquote>
-<p>Ok, now we can use these two variables inside our <em>.yaml</em> file, and we should be able to deploy our app on the shinyapps server! You also must provide your shinyapps account name, your app name, and the directory of your app scripts. Sure you can set all this using the GitHub Secrets if you want.</p>
-<pre class="r"><code># Connect in shinyapps server
+<p>Ok, now we can use these two variables inside our <em>.yaml</em> file, and we should be able to deploy our app on the <em>shinyapps</em> server! You also must provide your <strong>shinyapps account name</strong>, <strong>your app name</strong>, and the <strong>directory of your app scripts</strong>. Sure you can set all this using the GitHub Secrets if you want.</p>
+<pre class="r"><code>        # Connect on shinyapps server
       - name: Connect to ShinyApps
         env:
-        # set the shinyapps keys as environment variables
+          # set the shinyapps keys as environment variables
           SHINY_TOKEN: ${{ secrets.SHINYAPP_TOKEN }}
           SHINY_SECRET: ${{ secrets.SHINYAPP_SECRET }}
         run: |
@@ -258,17 +257,18 @@ jobs:
 </div>
 <div id="automatic-blogdown-deploy" class="section level2">
 <h2>Automatic Blogdown Deploy</h2>
-<p>What about make your blogdown deploy automatic on GitHub Pages? Every time you write a new post you will only need to “push” and the GitHub Actions will take care of the rest! This procedure works very similar to the shiny one, so let’s start or <em>.yaml</em> file!</p>
+<p>What about make your blogdown deploy automatic on GitHub Pages? Every time you write a new post you will only need to “push” and the GitHub Actions will take care of the rest! This procedure works very similar to the shiny one, so let’s start our <em>.yaml</em> file!</p>
 <p>For the blogdwon deploy purpose we are going to use two different branches: The first one named <strong>“source”</strong> that will contain the <strong>development side</strong> of our blogdown. And the <strong>“master”</strong> branch that will expose the <strong>built page</strong> (the master branch will receive the result of <code>blogdown::build_site(local = FALSE)</code>).</p>
 <blockquote>
 <p>The master branch MUST be the one with the <code>build_site()</code> content!</p>
 </blockquote>
 <p>This way we will set our trigger as a “push” on the “source” branch:</p>
-<pre class="r"><code># Triggered on push branch master
+<pre class="r"><code># Triggered on push branch source
 on:
   push:
-    branches: [ master ]</code></pre>
-<p>In the next step, we will define the workflow name and the OS we want to use. For this example, we are going to name our workflow as deploy and the OS will be an Ubuntu 18.04.</p>
+     branches:
+       - source</code></pre>
+<p>In the next step, we will define the workflow name and the OS we want to use. For this example, we are going to name our workflow as “deployblog” and the OS will be an Ubuntu 18.04.</p>
 <pre class="r"><code># Name of the workflow - usethis::use_github_actions_badge(&quot;deployblog&quot;)
 name: deployblog
 
@@ -361,8 +361,8 @@ jobs:
 </div>
 <div id="automatic-tests" class="section level2">
 <h2>Automatic Tests</h2>
-<p>I would say that execute tests manually can be the most time-consuming job presented in this post, and that is why performing automatic tests can save you lots of work hours! I know that automatic tests are very specific, in other words, it will depend on what kind of tests you want to perform. However, we can have a very good start with the <code>usethis</code> package!</p>
-<p>For example, by running the <code>usethis::use_github_action_check_full()</code> function it will create the default R-CMD-check procedure for you in a GitHub Actions structure. It will stimulate the usage of your codes on the most diverse environments, such as on windows, ubuntu macos running different R versions as well. My advise is use as a start point the <em>.yaml</em> provided by the <code>usethis::use_github_action_check_full()</code> function to perform your own automatic tests.</p>
+<p>I would say that execute tests manually can be the most time-consuming job presented in this post, and that is why performing automatic tests can save you lots of work hours! I know that automatic tests are very specific, in other words, it will depend on what kind of tests you want to perform. However, we can have a very good start point with the <code>usethis</code> package!</p>
+<p>For example, by running the <code>usethis::use_github_action_check_full()</code> function it will create the default R-CMD-check procedure for you in a GitHub Actions structure. The R-CMD-check will stimulate the usage of your codes on the most diverse environments, such as on windows, ubuntu and, macos, all the three running different R versions as well. My advise is use as a start point the <em>.yaml</em> provided by the <code>usethis::use_github_action_check_full()</code> function to perform your own automatic tests.</p>
 <p>You can find below the <em>.yaml</em> file generated by the <code>usethis::use_github_action_check_full()</code> function:</p>
 <pre class="r"><code>on:
   push:
@@ -468,7 +468,7 @@ jobs:
 </div>
 <div id="scheduled-routines" class="section level2">
 <h2>Scheduled Routines</h2>
-<p>GitHub Actions also provides the option of schedule routines, in other words, you can define as triggers any specific time you want. To do that GitHub Actions uses the <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07">cron syntax</a>, that is the hard part (at least for me who had never used it). First, let’s understand the syntax GitHub Actions uses to run the scheduled routines!</p>
+<p>GitHub Actions also provides the option of schedule routines, in other words, <strong>you can define as triggers any specific time you want</strong>. To do that GitHub Actions uses the <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07">cron syntax</a>, that is the hard part (at least for me who had never used it). First, let’s understand the syntax GitHub Actions uses to run the scheduled routines!</p>
 <p>The <em>cron syntax</em> is divided in <strong>5 pieces</strong> (*****):</p>
 <ul>
 <li><p>The first peace is to define the minute <strong>(0 - 59)</strong></p></li>
@@ -477,7 +477,10 @@ jobs:
 <li><p>The fourth peace is to define month <strong>(1 - 12)</strong></p></li>
 <li><p>The fifth peace is to define the day of the week <strong>(0 - 6)</strong></p></li>
 </ul>
-<p>Obviously, you don’t want to run your routine just once! So, you need some way to abstract some of the pieces, and in the con syntax, is by using an <strong>asterisk</strong> (*). For example, the <code>*****</code> means run the routine every minute every day!</p>
+<p>Obviously, you don’t want to run your routine just once! So, you need some way to abstract some of the pieces, in the con syntax, it is by using an <strong>asterisk</strong> (*). For example, the <code>*****</code> means run the routine every minute every day!</p>
+<blockquote>
+<p>Kip in mind that the GitHub times are based on <strong>UTC</strong>!</p>
+</blockquote>
 <p>Here there are some helpful examples I took from <a href="https://jasonet.co/posts/scheduled-actions/">this post</a>:</p>
 <pre class="r"><code># Every Monday at 1PM UTC (9AM EST)
 0 13 * * 1
