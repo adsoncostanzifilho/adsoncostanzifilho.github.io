@@ -27,16 +27,16 @@ First the references I used to start on *GitHub Actions*:
 
 ## Start with `usethis`
 
-The easier and faster way to get started with the GitHub Actions is, for sure, using the `usethis` package! So, let's first install it.
+The easier and faster way to get started with the GitHub Actions in R is, for sure, using the `usethis` package! So, let's first install it.
 
 ```{r, eval = FALSE}
 install.packages("usethis")
 
 ```
 
-The first very interesting function about the GitHub Action in the `usethis` package is the `usethis::browse_github_actions()` with this function you can see the active actions running in the most diverse R packages. This is a very good start to see what are the Actions used in big R packages like "shiny", "dplyr", etc.
+The first very interesting function about the GitHub Action in the `usethis` package is the `usethis::browse_github_actions()` with this function you can see the active actions running in the most diverse R packages. This is a very good start to give you an idea of what are the Actions used in big R packages like "shiny", "dplyr", etc.
 
-The `usethis` also have the `usethis::use_github_action()` function, which in my opinion is the easier way to start. It will create for you the necessary files/folders structure necessary for GitHub understands and runs your *Actions*, in other words, it will create the *.github folder > workflows folder > file.yaml* inside your current project path. This function also needs as argument a specific workflow name (you can check the available options [here](https://github.com/r-lib/actions/tree/master/examples)), depending on what option you choose it can give you a very good start point (some times you don't need to change anything). For example if you run `usethis::use_github_action("pkgdown")` it will create for you the default folder structure (*.github folder > workflows folder > file.yaml*) and it will start the *.yaml* file like this:
+The `usethis` also have the `usethis::use_github_action()` function, which in my opinion is the easier way to start. It will create for you the necessary files/folders structure necessary for GitHub understands and runs your *Actions*, in other words, it will create the *.github folder > workflows folder > .yaml file* inside your current project path. This function also needs as argument a specific workflow name (you can check the available options [here](https://github.com/r-lib/actions/tree/master/examples)), depending on what option you choose it can give you a very good start point (sometimes you don't need to change a thing). For example if you run `usethis::use_github_action("pkgdown")` it will create for you the default folder structure (*.github folder > workflows folder > file.yaml*) and it will start a *.yaml* file like this:
 
 ```{r, eval = FALSE}
 on:
@@ -118,9 +118,9 @@ on:
     branches: [ master ]
 ```
 
-The second step is to define the **name of the workflow** and the operational system you want. GitHub actions has several OS options to choose including the 3 most popular ones ubuntu, macos and windows. I am going to name our procedure as "Shiny-Deploy" and we are going to use the macos-10.15.
+The second step is to define the **name of the workflow** and the **operational system** you want. GitHub actions has several OS options to choose including the 3 most popular ones ubuntu, macos and windows. I am going to name our procedure as "Shiny-Deploy" and we are going to use the macos-10.15.
 
-> You can associate your actions to badges with the `usethis` package. For example, if the name of your workflow is "Shiny-Deploy" you can add this badge runing `usethis::use_github_actions_badge("Shiny-Deploy")`.
+> You can associate your actions to badges with the `usethis` package. For example, if the name of your workflow is "Shiny-Deploy" you can add this badge in your README file runing `usethis::use_github_actions_badge("Shiny-Deploy")`.
 
 ```{r, eval = FALSE}
 # Name of the workflow - usethis::use_github_actions_badge("Shiny-Deploy")
@@ -150,7 +150,6 @@ Nice! We already made a copy of our files, now we need to set-up the R installat
 ```{r, eval = FALSE}
         # set-up an R installation in our GHA machine to run our scripts
       - name: Set up R ${{ matrix.r-version }}
-        # uses: r-lib/actions/setup-r@master # for ubuntu
         uses: r-lib/actions/setup-R@v1 # for macos
         with:
           r-version: ${{ matrix.r-version }}
@@ -192,7 +191,7 @@ Now comes the tricky part! In order to make the connection between your GitHub A
 
 First you need to go to your [shiny apps account](https://www.shinyapps.io/admin/) click in your profile name and enter in the tokes option. 
 
-![](/img/githubact_tutorial/shinyapps_token1.png){width="100%"}
+![](/img/githubact_tutorial/shinyapps_token1.png){width="70%"}
 
 If you don't have created your shinyapps tokens yet, or if you want to use a new one, you can click on the **+ Add Token** button. Once you did that a new line will appear and you should be able to see your Token but not your Secret. You need to press the **Show** button followed by the **Show Secret** to be bale to copy your Secret credential.
 
@@ -206,17 +205,17 @@ On the left menu you should be able to see the **Secrets** option. Once you ente
 
 We are going to create 2 different environment variables, the first named "SHINYAPP_TOKEN" and the second named "SHINYAPP_SECRET" (of course you can set any name you want). Once you clicked on the "New repository secret" button you will need to provide the name of your variable and the value of it and press "Add Secret", as you can see below.
 
-![](/img/githubact_tutorial/shiny_token.png){width="50%"}
+![](/img/githubact_tutorial/shiny_token.png){width="100%"}
 
 > Your Secret and Token don't need to be in quotes ("my token")!
 
-Ok, now we can use these two variables inside our *.yaml* file, and we should be able to deploy our app on the shinyapps server! You also must provide your shinyapps account name, your app name, and the directory of your app scripts. Sure you can set all this using the GitHub Secrets if you want.
+Ok, now we can use these two variables inside our *.yaml* file, and we should be able to deploy our app on the *shinyapps* server! You also must provide your **shinyapps account name**, **your app name**, and the **directory of your app scripts**. Sure you can set all this using the GitHub Secrets if you want.
 
 ```{r, eval = FALSE}
-# Connect in shinyapps server
+        # Connect on shinyapps server
       - name: Connect to ShinyApps
         env:
-        # set the shinyapps keys as environment variables
+          # set the shinyapps keys as environment variables
           SHINY_TOKEN: ${{ secrets.SHINYAPP_TOKEN }}
           SHINY_SECRET: ${{ secrets.SHINYAPP_SECRET }}
         run: |
@@ -308,7 +307,7 @@ jobs:
 
 ## Automatic Blogdown Deploy
 
-What about make your blogdown deploy automatic on GitHub Pages? Every time you write a new post you will only need to "push" and the GitHub Actions will take care of the rest! This procedure works very similar to the shiny one, so let's start or *.yaml* file!
+What about make your blogdown deploy automatic on GitHub Pages? Every time you write a new post you will only need to "push" and the GitHub Actions will take care of the rest! This procedure works very similar to the shiny one, so let's start our *.yaml* file!
 
 For the blogdwon deploy purpose we are going to use two different branches: The first one named **"source"** that will contain the **development side** of our blogdown. And the **"master"** branch that will expose the **built page** (the master branch will receive the result of `blogdown::build_site(local = FALSE)`).
 
@@ -317,13 +316,14 @@ For the blogdwon deploy purpose we are going to use two different branches: The 
 This way we will set our trigger as a "push" on the "source" branch:
 
 ```{r, eval = FALSE}
-# Triggered on push branch master
+# Triggered on push branch source
 on:
   push:
-    branches: [ master ]
+     branches:
+       - source
 ```
 
-In the next step, we will define the workflow name and the OS we want to use. For this example, we are going to name our workflow as deploy and the OS will be an Ubuntu 18.04.
+In the next step, we will define the workflow name and the OS we want to use. For this example, we are going to name our workflow as "deployblog" and the OS will be an Ubuntu 18.04.
 
 ```{r, eval = FALSE}
 # Name of the workflow - usethis::use_github_actions_badge("deployblog")
@@ -436,9 +436,9 @@ jobs:
 
 ## Automatic Tests
 
-I would say that execute tests manually can be the most time-consuming job presented in this post, and that is why performing automatic tests can save you lots of work hours! I know that automatic tests are very specific, in other words, it will depend on what kind of tests you want to perform. However, we can have a very good start with the `usethis` package! 
+I would say that execute tests manually can be the most time-consuming job presented in this post, and that is why performing automatic tests can save you lots of work hours! I know that automatic tests are very specific, in other words, it will depend on what kind of tests you want to perform. However, we can have a very good start point with the `usethis` package! 
 
-For example, by running the `usethis::use_github_action_check_full()` function it will create the default R-CMD-check procedure for you in a GitHub Actions structure. It will stimulate the usage of your codes on the most diverse environments, such as on windows, ubuntu macos running different R versions as well. My advise is use as a start point the *.yaml* provided by the `usethis::use_github_action_check_full()` function to perform your own automatic tests.
+For example, by running the `usethis::use_github_action_check_full()` function it will create the default R-CMD-check procedure for you in a GitHub Actions structure. The R-CMD-check will stimulate the usage of your codes on the most diverse environments, such as on windows, ubuntu and, macos, all the three running different R versions as well. My advise is use as a start point the *.yaml* provided by the `usethis::use_github_action_check_full()` function to perform your own automatic tests.
 
 You can find below the *.yaml* file generated by the `usethis::use_github_action_check_full()` function:
 
@@ -550,7 +550,7 @@ jobs:
 
 ## Scheduled Routines
 
-GitHub Actions also provides the option of schedule routines, in other words, you can define as triggers any specific time you want. To do that GitHub Actions uses the [cron syntax](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07), that is the hard part (at least for me who had never used it). First, let's understand the syntax GitHub Actions uses to run the scheduled routines!
+GitHub Actions also provides the option of schedule routines, in other words, **you can define as triggers any specific time you want**. To do that GitHub Actions uses the [cron syntax](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07), that is the hard part (at least for me who had never used it). First, let's understand the syntax GitHub Actions uses to run the scheduled routines!
 
 The *cron syntax* is divided in **5 pieces** (*****):
 
@@ -564,7 +564,9 @@ The *cron syntax* is divided in **5 pieces** (*****):
 
 * The fifth peace is to define the day of the week **(0 - 6)**
 
-Obviously, you don't want to run your routine just once! So, you need some way to abstract some of the pieces, and in the con syntax, is by using an **asterisk** (*). For example, the `*****` means run the routine every minute every day!
+Obviously, you don't want to run your routine just once! So, you need some way to abstract some of the pieces, in the con syntax, it is by using an **asterisk** (*). For example, the `*****` means run the routine every minute every day!
+
+> Kip in mind that the GitHub times are based on **UTC**!
 
 Here there are some helpful examples I took from [this post](https://jasonet.co/posts/scheduled-actions/):
 
