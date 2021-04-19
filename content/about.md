@@ -16,6 +16,7 @@ Sure I am not only made of statistics and data science, I also love to get out t
 
 Feel free to get in touch with me over social media, I always willing to discuss statistics, data science and R!
 
+![](/img/about/eu_fun2.jpg){width="50%"}
 ---
 
 ## About this Page
