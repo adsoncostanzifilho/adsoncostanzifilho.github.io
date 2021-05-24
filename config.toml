@@ -130,8 +130,8 @@ paginate = 5
 
 [params.clients]
     enable = true
-    title = "OTHER BLOGS"
-    subtitle = "These are some of my friends` pages (which I used as an inspiration for the development of this one). I strongly recommend taking a look at it all..."
+    title = "Projects"
+    subtitle = "These are some projects I have been working on. As always your feedback is much appreciated!"
 
 [params.recent_posts]
     enable = true
