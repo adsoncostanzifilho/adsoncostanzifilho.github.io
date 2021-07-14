@@ -6,11 +6,20 @@
     <description>Recent content in Categories on Adson Costanzi Filho</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python</title>
+      <link>https://adsoncostanzifilho.github.io/categories/python/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>R</title>
       <link>https://adsoncostanzifilho.github.io/categories/r/</link>
-      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://adsoncostanzifilho.github.io/categories/r/</guid>
       <description></description>
@@ -19,7 +28,7 @@
     <item>
       <title>Tutorial</title>
       <link>https://adsoncostanzifilho.github.io/categories/tutorial/</link>
-      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://adsoncostanzifilho.github.io/categories/tutorial/</guid>
       <description></description>

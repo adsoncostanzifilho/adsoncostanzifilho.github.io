@@ -6,7 +6,16 @@
     <description>Recent content in Tutorial on Adson Costanzi Filho</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why not both?</title>
+      <link>https://adsoncostanzifilho.github.io/blog/2021/07/13/why-not-both/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/blog/2021/07/13/why-not-both/</guid>
+      <description>Motivation I believe the most common discussion on data science teams is the R vs Python. I saw myself in some of these discussions a couple of times and my position is always “Why not use both?”. The idea of this post is not to compare R vs Python but to show how easy it is to integrate both languages using APIs (LIKE A PRO), this way we can use the best of each.</description>
+    </item>
+    
     <item>
       <title>GitHub Actions for R Users</title>
       <link>https://adsoncostanzifilho.github.io/blog/2021/04/01/github-actions-for-r-users/</link>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/categories/python/</link>
+    <description>Recent content in Python on Adson Costanzi Filho</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why not both?</title>
+      <link>https://adsoncostanzifilho.github.io/blog/2021/07/13/why-not-both/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://adsoncostanzifilho.github.io/blog/2021/07/13/why-not-both/</guid>
+      <description>Motivation I believe the most common discussion on data science teams is the R vs Python. I saw myself in some of these discussions a couple of times and my position is always “Why not use both?”. The idea of this post is not to compare R vs Python but to show how easy it is to integrate both languages using APIs (LIKE A PRO), this way we can use the best of each.</description>
+    </item>
+    
+  </channel>
+</rss>

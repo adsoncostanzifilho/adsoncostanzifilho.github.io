@@ -217,13 +217,13 @@
 <p>If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “<em>I heard it from someone, but I don’t remember who..</em>”</p>
 </blockquote>
 <p>Recently I experienced the whole flow to create a new R package with the help of amazing packages like <code>devtools</code>, <code>usethis</code>, <code>pkgdown</code>, and <code>roxygen2</code>. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).</p>
-<p>The material I followed to guide me through this process was the <a href="%22https://r-pkgs.org/%22">R Packages Book</a> by Hadley Wickham. Of course, there is MUCH MORE content in his book than the one presented here, but maybe this post can also help someone in some way.</p>
+<p>The material I followed to guide me through this process was the <a href="https://r-pkgs.org/">R Packages Book</a> by Hadley Wickham. Of course, there is MUCH MORE content in his book than the one presented here, but maybe this post can also help someone in some way.</p>
 </div>
 <div id="functions" class="section level2">
 <h2>Functions</h2>
 <p>A package is nothing more than a bunch of functions together in the same place (sharing the same scope), so the main key to having a good package is also to have good functions.</p>
 <blockquote>
-<p>This post will not cover the guidelines to create useful functions. For that I recommend you to take a look on the <em>Functions section</em> of the <a href="%22https://adv-r.hadley.nz/functions.html%22">Advanced R Book</a>.</p>
+<p>This post will not cover the guidelines to create useful functions. For that I recommend you to take a look on the <em>Functions section</em> of the <a href="https://adv-r.hadley.nz/functions.html">Advanced R Book</a>.</p>
 </blockquote>
 <p>In order to make the next steps easier for you to pack your functions, it is important to keep in mind two things:</p>
 <ul>
@@ -369,7 +369,7 @@ usethis::use_data(mydf)</code></pre>
 <p>The Vignettes are an important part of the package development process because it is the space for you to actually make a “walking through” your package capabilities. It is important to highlight that you can create as many vignettes as you like!</p>
 <p>Starting a new Vignette is really simple, you just need to run <code>devtools::use_vignette("intro")</code>. It will create a new folder called “vignettes” and inside this folder, you can see a file named “intro.Rmd”. The “intro.Rmd” is at the end a standard Rmarkdown file, now you can create the content of it the way you like.</p>
 <blockquote>
-<p>If you need some help with the <code>rmarkdown</code> package my advice is to take a look at the <a href="%22https://bookdown.org/yihui/rmarkdown/%22">Rmarkdown Book</a>!</p>
+<p>If you need some help with the <code>rmarkdown</code> package my advice is to take a look at the <a href="https://bookdown.org/yihui/rmarkdown/">Rmarkdown Book</a>!</p>
 </blockquote>
 </div>
 <div id="creating-readme" class="section level2">
@@ -388,7 +388,7 @@ usethis::use_data(mydf)</code></pre>
 <div id="cran-submission" class="section level2">
 <h2>CRAN Submission</h2>
 <p>Now it is time to update your package on the main R repository the <strong>Comprehensive R Archive Network</strong>, CRAN. All the work we have done so far is essential to have your package accepted on CRAN repository.</p>
-<p>The first thing to do is be in accordance with the <a href="%22https://cran.r-project.org/web/packages/policies.html%22">CRAN Repository Policy</a>. Here you will find the rules and guidelines to follow to have your package hosted by CRAN. The next step is to fill the <a href="%22https://cran.r-project.org/%22">web form</a>.</p>
+<p>The first thing to do is be in accordance with the <a href="https://cran.r-project.org/web/packages/policies.html">CRAN Repository Policy</a>. Here you will find the rules and guidelines to follow to have your package hosted by CRAN. The next step is to fill the <a href="https://cran.r-project.org/">web form</a>.</p>
 <p><strong>Spoiler Alert</strong>: The web form will request you to provide your package in a <em>.tar.gz</em> file, and also they will run some automatic routines to verify if your package is in a good shape to be review by someone on CRAN. Before we “build” your package in a <em>.tar.gz</em> format let’s take a look if our package will pass the CRAN’s automatic tests. To simulate the CRAN’s check procedure you can run the <code>devtools::check()</code>, it should provide you a good idea if your package is ready to be hosted by CRAN.</p>
 <p>Now that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build the package in the <em>.tar.gz</em>. The simple way to do that is by running the <code>devtools::build()</code> and that’s it! Your package now is ready to be submitted on CRAN! Follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).</p>
 <blockquote>
@@ -480,7 +480,11 @@ pkgdown::build_site()</code></pre>
             </li>
             
             <li>
-                <a href="/categories/r">r (6)</a>
+                <a href="/categories/python">python (1)</a>
+            </li>
+            
+            <li>
+                <a href="/categories/r">r (7)</a>
             </li>
             
             <li>
@@ -488,7 +492,7 @@ pkgdown::build_site()</code></pre>
             </li>
             
             <li>
-                <a href="/categories/tutorial">tutorial (3)</a>
+                <a href="/categories/tutorial">tutorial (4)</a>
             </li>
             
         </ul>
@@ -526,6 +530,10 @@ pkgdown::build_site()</code></pre>
             </li>
             
             <li>
+                <a href="/tags/fastapi"><i class="fas fa-tags"></i> fastapi</a>
+            </li>
+            
+            <li>
                 <a href="/tags/github"><i class="fas fa-tags"></i> github</a>
             </li>
             
@@ -543,6 +551,10 @@ pkgdown::build_site()</code></pre>
             
             <li>
                 <a href="/tags/pkgdown"><i class="fas fa-tags"></i> pkgdown</a>
+            </li>
+            
+            <li>
+                <a href="/tags/plumber"><i class="fas fa-tags"></i> plumber</a>
             </li>
             
             <li>
