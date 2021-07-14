@@ -121,6 +121,7 @@ On the Terminal tab go inside the *USERNAME.github.io* folder using `cd`. Once i
 The blogdown package has **MUCH MORE** features than those presented in this post. To learn more about it I recommend you to read the [blogdown book](https://bookdown.org/yihui/blogdown/).
 
 I hope someone finds this tutorial useful. As always your feedback is much appreciated, feel free to get in touch with me over social media! :smile:
+ 
 
-![](/like/like_btn.html)
+<!-- ![](/like/like_btn.html) --> 
 

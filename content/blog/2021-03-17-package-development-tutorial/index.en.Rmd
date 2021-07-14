@@ -20,13 +20,13 @@ banner: "img/banners/packagedev_tutorial.png"
 
 Recently I experienced the whole flow to create a new R package with the help of amazing packages like `devtools`, `usethis`, `pkgdown`, and `roxygen2`. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github). 
 
-The material I followed to guide me through this process was the [R Packages Book]("https://r-pkgs.org/") by Hadley Wickham. Of course, there is MUCH MORE content in his book than the one presented here, but maybe this post can also help someone in some way. 
+The material I followed to guide me through this process was the [R Packages Book](https://r-pkgs.org/) by Hadley Wickham. Of course, there is MUCH MORE content in his book than the one presented here, but maybe this post can also help someone in some way. 
 
 ## Functions
 
 A package is nothing more than a bunch of functions together in the same place (sharing the same scope), so the main key to having a good package is also to have good functions.
 
->This post will not cover the guidelines to create useful functions. For that I recommend you to take a look on the *Functions section* of the [Advanced R Book]("https://adv-r.hadley.nz/functions.html").
+>This post will not cover the guidelines to create useful functions. For that I recommend you to take a look on the *Functions section* of the [Advanced R Book](https://adv-r.hadley.nz/functions.html).
 
 In order to make the next steps easier for you to pack your functions, it is important to keep in mind two things: 
 
@@ -209,7 +209,7 @@ The Vignettes are an important part of the package development process because i
 
 Starting a new Vignette is really simple, you just need to run `devtools::use_vignette("intro")`. It will create a new folder called "vignettes" and inside this folder, you can see a file named "intro.Rmd". The "intro.Rmd" is at the end a standard Rmarkdown file, now you can create the content of it the way you like. 
 
-> If you need some help with the `rmarkdown` package my advice is to take a look at the [Rmarkdown Book]("https://bookdown.org/yihui/rmarkdown/")!
+> If you need some help with the `rmarkdown` package my advice is to take a look at the [Rmarkdown Book](https://bookdown.org/yihui/rmarkdown/)!
 
 ## Creating README
 
@@ -225,7 +225,7 @@ As the idea is also to make the package available on Github it is almost mandato
 
 Now it is time to update your package on the main R repository the **Comprehensive R Archive Network**, CRAN. All the work we have done so far is essential to have your package accepted on CRAN repository. 
 
-The first thing to do is be in accordance with the [CRAN Repository Policy]("https://cran.r-project.org/web/packages/policies.html"). Here you will find the rules and guidelines to follow to have your package hosted by CRAN. The next step is to fill the [web form]("https://cran.r-project.org/"). 
+The first thing to do is be in accordance with the [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html). Here you will find the rules and guidelines to follow to have your package hosted by CRAN. The next step is to fill the [web form](https://cran.r-project.org/). 
 
 **Spoiler Alert**: The web form will request you to provide your package in a *.tar.gz* file, and also they will run some automatic routines to verify if your package is in a good shape to be review by someone on CRAN. Before we "build" your package in a *.tar.gz* format let's take a look if our package will pass the CRAN's automatic tests. To simulate the CRAN's check procedure you can run the `devtools::check()`, it should provide you a good idea if your package is ready to be hosted by CRAN.
 
