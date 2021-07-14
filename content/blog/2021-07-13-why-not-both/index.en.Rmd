@@ -67,7 +67,7 @@ sum_two_python(x = 1, y = 1)
 
 ## Creating an API
 
-The problem is almost solved, but we still need to find the best way to **share our solution with the rest of the team**. Well, the part of the team that works in R can use the function we wrote in R, but that function is simply not available to the part of the team that uses Python, the same happens with the code written in Python which is simply not available to anyone using R. So, it is necessary to create a solution independent of the language to make the it reachable for everyone on the team.
+The problem is almost solved, but we still need to find the best way to **share our solution with the rest of the team**. Well, the part of the team that works in R can use the function we wrote in R, but that function is simply not available to the part of the team that uses Python, the same happens with the code written in Python which is simply not available to anyone using R. So, it is necessary to create a solution independent of the language to make it reachable for everyone on the team.
 
 > I know the [reticulate](https://rstudio.github.io/reticulate/) package can help, but it's a one-way solution, and we are interested in a more generic form of integration that can be extended not just to Python, but to any programming language.
 
