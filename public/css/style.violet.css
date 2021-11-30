@@ -3630,3 +3630,37 @@ img.bmc {
   vertical-align: top !important;
 }
 
+p.lead {
+  text-align: center !important;
+}
+
+.like_btn {
+  color: #fff;
+  padding-right: 0;
+  background-color: #c0392b;
+  -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 70%, 90% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 75% 100%, 0 100%);
+
+}
+
+.like_btn:hover { 
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);  
+}
+
+.like_btn:after {
+  content: "\f004";
+  color: #e74c3c;
+  font-family: FontAwesome;
+  display: inline-block;
+  position: relative;
+  right: -55px;
+  transition: all 0.2s ease;
+}
+
+.like_btn:hover:after {
+  margin: -5px 15px;
+  right: 0px;
+}
+
+

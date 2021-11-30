@@ -8,9 +8,9 @@ description: About me and about this page
 
 
 ## Adson Costanzi Filho
-#### Senior Data Scientist at [Evalueserve](https://www.evalueserve.com/)
+#### Data Scientist at [Laboratoria](https://www.laboratoria.la/)
 
-I am a statistician majored at UFRGS and currently I am working as a Data Scientist at Evalueserve, Chile.I really love everything related to the **data world**, indeed I spend a good part of my free time reading the news about it. I am also lucky to have near me a lot of other crazy guys who enjoy discussing with me about data science, statistics, and R. (It makes everything even more fun!)
+I am a statistician majored at UFRGS and currently I am working as a Data Scientist at Laboratoria. I really love everything related to the **data world**, indeed I spend a good part of my free time reading the news about it. I am also lucky to have near me a lot of other crazy guys who enjoy discussing with me about data science, statistics, and R. (It makes everything even more fun!)
 
 Sure I am not only made of statistics and data science, I also love to get out to drink some beers with my wife and friends, play my acoustic guitar, play football, drink some beers (wait a minute.. I think I already mentioned that.. :beer:) 
 
