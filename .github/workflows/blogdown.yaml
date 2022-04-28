@@ -12,6 +12,8 @@ jobs:
   deployblog:
     name: Render and deploy blogdown
     runs-on: ubuntu-18.04
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       # This action clones your repository from the respective branch that has triggered it
       - uses: actions/checkout@v2
