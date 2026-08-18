@@ -1,15 +1,15 @@
 ---
 title: "Acerca"
-description: "Científico de Datos Senior — estadística, machine learning y R."
+description: "Científico de Datos — estadística, machine learning y R."
 ---
 
 ## Adson Costanzi Filho
 
-#### Científico de Datos Senior en [Evalueserve](https://www.evalueserve.com/)
+#### Científico de Datos en [Laboratoria](https://www.laboratoria.la/)
 
-Soy estadístico graduado en la Universidad Federal de Rio Grande do Sul (UFRGS), Brasil, con cerca de 6 años de experiencia en entornos de ciencia de datos. Mi trabajo se centra principalmente en el **desarrollo de modelos**, la **minería de texto**, el **análisis de sentimientos**, la **visualización de datos** y la **creación de informes**.
+Soy estadístico graduado en la Universidad Federal de Rio Grande do Sul (UFRGS), Brasil, con cerca de 7 años de experiencia en entornos de ciencia de datos. Mi trabajo se centra principalmente en el **desarrollo de modelos**, la **minería de texto**, el **análisis de sentimientos**, la **visualización de datos** y la **creación de informes**.
 
-Actualmente soy Científico de Datos Senior en Evalueserve, en Viña del Mar, Chile, trabajando como consultor para uno de los cinco grandes bancos de EE. UU. Mis responsabilidades incluyen la medición de campañas y eventos, la automatización de procesos y el desarrollo de modelos y soluciones de machine learning aplicadas a marketing. También actúo como líder técnico en proyectos internos de ciencia de datos como NLP, AutoML, formaciones de R y monitoreo automatizado de modelos.
+Actualmente soy Científico de Datos en [Laboratoria](https://www.laboratoria.la/), donde soy responsable de la gestión del pipeline de datos, aprovechando la automatización para agilizar los informes de gestión y la generación de dashboards. Mi rol gira en torno al diseño de experimentos y la implementación de modelos estadísticos y algoritmos de machine learning para mejorar la experiencia de las estudiantes e impulsar iniciativas de mejora del negocio. Trabajo a diario con **R**, **Python**, **SQL**, **Docker** y **Google Cloud**.
 
 Soy un miembro activo de la comunidad de R y el desarrollador/mantenedor del paquete [CSGo](https://cran.r-project.org/web/packages/CSGo/index.html), alojado en CRAN, que extrae datos de la API de Steam para Counter-Strike: Global Offensive. Puedes encontrar más proyectos en los que participo en mi [GitHub](https://github.com/adsoncostanzifilho).
 
@@ -17,7 +17,8 @@ Soy un miembro activo de la comunidad de R y el desarrollador/mantenedor del paq
 
 ## Experiencia
 
-- **Científico de Datos Senior** — [Evalueserve](https://www.evalueserve.com/), Viña del Mar, Chile (ene. 2021 – actualidad)
+- **Científico de Datos** — [Laboratoria](https://www.laboratoria.la/), Remoto (oct. 2021 – actualidad)
+- **Científico de Datos Senior** — [Evalueserve](https://www.evalueserve.com/), Viña del Mar, Chile (ene. 2021 – oct. 2021)
 - **Científico de Datos** — Evalueserve, Viña del Mar, Chile (sep. 2019 – ene. 2021)
 - **Especialista en Modelado de Crédito** — [Renner S.A.](https://www.lojasrenner.com.br/), Porto Alegre, Brasil (jun. 2019 – ago. 2019)
 - **Analista de Ciencia de Datos II** — [Agibank](https://www.agibank.com.br/), Porto Alegre, Brasil (dic. 2018 – jun. 2019)
@@ -33,7 +34,7 @@ Soy un miembro activo de la comunidad de R y el desarrollador/mantenedor del paq
 
 ## Habilidades técnicas
 
-R · Python · SQL · SAS · Git · VBA · JavaScript (principiante)
+R · Python · SQL · Git · CSS · SAS · Office · VBA · JavaScript (principiante)
 
 ## Idiomas
 

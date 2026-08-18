@@ -1,15 +1,15 @@
 ---
 title: "About"
-description: "Senior Data Scientist — statistics, machine learning and R."
+description: "Data Scientist — statistics, machine learning and R."
 ---
 
 ## Adson Costanzi Filho
 
-#### Senior Data Scientist at [Evalueserve](https://www.evalueserve.com/)
+#### Data Scientist at [Laboratoria](https://www.laboratoria.la/)
 
-I am a statistician graduated from the Federal University of Rio Grande do Sul (UFRGS), Brazil, with about 6 years of experience working in data science environments. My work focuses mainly on **model development**, **text mining**, **sentiment analysis**, **data visualization**, and **report creation**.
+I am a statistician graduated from the Federal University of Rio Grande do Sul (UFRGS), Brazil, with about 7 years of experience working in data science environments. My work focuses mainly on **model development**, **text mining**, **sentiment analysis**, **data visualization**, and **report creation**.
 
-I am currently a Senior Data Scientist at Evalueserve, in Viña del Mar, Chile, working as a consultant for one of the five major US banks. My responsibilities include measuring campaigns and events, automating processes, and developing models and machine learning solutions applied to marketing. I also act as a technical leader in in-house data science projects such as NLP, AutoML, R trainings, and automated model monitoring.
+I am currently a Data Scientist at [Laboratoria](https://www.laboratoria.la/), where I am responsible for the data pipeline management, leveraging automation to streamline management reports and dashboard generation. My role revolves around designing experiments and implementing statistical models and machine learning algorithms to enhance the student experience and drive business improvement initiatives. I work daily with **R**, **Python**, **SQL**, **Docker** and **Google Cloud**.
 
 I am an active member of the R community and the developer/maintainer of [CSGo](https://cran.r-project.org/web/packages/CSGo/index.html), an R package hosted on CRAN that pulls data from Steam's API for Counter-Strike: Global Offensive. You can find more projects I am involved in on my [GitHub](https://github.com/adsoncostanzifilho).
 
@@ -17,7 +17,8 @@ I am an active member of the R community and the developer/maintainer of [CSGo](
 
 ## Experience
 
-- **Senior Data Scientist** — [Evalueserve](https://www.evalueserve.com/), Viña del Mar, Chile (Jan 2021 – present)
+- **Data Scientist** — [Laboratoria](https://www.laboratoria.la/), Remote (Oct 2021 – present)
+- **Senior Data Scientist** — [Evalueserve](https://www.evalueserve.com/), Viña del Mar, Chile (Jan 2021 – Oct 2021)
 - **Data Scientist** — Evalueserve, Viña del Mar, Chile (Sep 2019 – Jan 2021)
 - **Credit Modeling Specialist** — [Renner S.A.](https://www.lojasrenner.com.br/), Porto Alegre, Brazil (Jun 2019 – Aug 2019)
 - **Data Scientist Analyst II** — [Agibank](https://www.agibank.com.br/), Porto Alegre, Brazil (Dec 2018 – Jun 2019)
@@ -33,7 +34,7 @@ I am an active member of the R community and the developer/maintainer of [CSGo](
 
 ## Technical skills
 
-R · Python · SQL · SAS · Git · VBA · JavaScript (beginner)
+R · Python · SQL · Git · CSS · SAS · Office · VBA · JavaScript (beginner)
 
 ## Languages
 
