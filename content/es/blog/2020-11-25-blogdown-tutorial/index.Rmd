@@ -1,0 +1,121 @@
+---
+title: Tutorial de Blogdown
+author: Adson Costanzi Filho
+date: '2020-11-25'
+slug: blogdown-tutorial
+categories:
+  - Tutorial
+  - R
+tags:
+  - blogdown
+  - rmarkdown
+cover:
+  image: "img/banners/blogdown_tutorial.png"
+  alt: "tutorial de blogdown"
+---
+
+## Motivación
+
+Se me ocurrió escribir una "guía paso a paso" sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el [libro de blogdown](https://bookdown.org/yihui/blogdown/) por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera...
+
+Este post está dividido en 3 secciones: **Cómo empezar**, **Cómo personalizar y usar**, **Cómo publicar**. En la primera sección encontrarás algunos consejos sobre cómo empezar el desarrollo de tu propia página usando RStudio y blogdown; la segunda sección trata sobre las funcionalidades que blogdown tiene para hacernos la vida más fácil; y la última son los pasos necesarios para publicar tu página.
+
+## Cómo empezar
+
+Lo primero que hay que hacer es `install.packages("blogdown")` para instalar el paquete blogdown. Una vez hecho esto, necesitarás instalar Hugo con `blogdown::install_hugo(force = TRUE)`, que es el generador de sitios estáticos que usa blogdown (el parámetro `force = TRUE` actualizará la versión de Hugo que tengas instalada).
+
+Ahora que todo está instalado podemos empezar el desarrollo de nuestra página. Hay dos formas de empezar: usando los Addins de RStudio o mediante líneas de comando en la consola. ¡Probemos ambas!
+
+Para iniciar un nuevo proyecto de blogdown en RStudio es muy fácil: solo tienes que ir al menú *File > New Project > New Directory* y hacer clic en la opción **Website using blogdown**.
+
+![](/img/blogdown_tutorial/project.png){width="70%"}
+
+En la segunda pantalla tendrás que elegir un nombre para la carpeta del proyecto, el subdirectorio del proyecto y la **plantilla de Hugo** (aquí viene la parte divertida). Hugo tiene MUCHAS plantillas disponibles [aquí](https://themes.gohugo.io/). Te recomiendo encarecidamente que pruebes algunas de ellas y elijas la que mejor se adapte a tus expectativas.
+
+Después de elegir la plantilla de Hugo, solo necesitas hacer clic en el botón "Download" y serás redirigido al **repositorio de la plantilla** en Github.
+
+Ahora solo tienes que completar el repositorio en la opción **Hugo theme** y hacer clic en Create Project.
+
+![](/img/blogdown_tutorial/project2.png){width="70%"}
+
+Si prefieres usar la consola (*estilo de los de antes*), solo necesitas ejecutar la función `blogdown::new_site(theme = "devcows/hugo-universal-theme")` y completar el parámetro theme.
+
+> Esta página fue desarrollada usando el [Universal Theme](https://themes.gohugo.io/hugo-universal-theme/)
+
+## Cómo personalizar y usar
+
+Si todo salió bien, RStudio debería mostrarte una vista previa de tu sitio en la pestaña **Viewer**, y debería abrir un script **config.toml**. Dentro de la carpeta de tu proyecto, blogdown creará MUCHAS carpetas; hablaremos de eso más adelante.
+
+El script **config.toml** te da la opción de personalizar tu sitio sin cambiar nada en el CSS, HTML o JavaScript (por supuesto, si quieres cambiar profundamente tu sitio necesitarás al menos algo de conocimiento de CSS). En este archivo encontrarás opciones para cambiar el nombre de tu sitio, imágenes, algunos colores, etc. Te animo a modificar esas opciones y ver los resultados: una vez que guardes el archivo, la pestaña **Viewer** actualizará tu sitio automáticamente, así podrás ver tus cambios.
+
+> Casi todas las plantillas tienen un archivo README con algunas explicaciones sobre las funcionalidades de la plantilla; te ayudará a usar el tema correctamente (puedes encontrarlo dentro de la carpeta themes).
+
+### Las carpetas 😖
+
+Sé que esta estructura de carpetas puede ser muy confusa al principio; esa es una de las razones por las que decidí crear este post (porque no sé si lo recordaré todo la próxima semana).
+
+1. carpeta content
+
+La carpeta ***content*** es donde deben almacenarse todas tus publicaciones y pestañas; cada vez que escribas una nueva publicación, esta carpeta se actualizará con el contenido de tu post. Hablaremos más sobre las nuevas publicaciones más adelante.
+
+2. carpeta static
+
+La carpeta ***static*** es donde actualizarás todas las imágenes que quieras usar en tu página. Debes reemplazar las imágenes existentes en esta carpeta con tus propias imágenes.
+
+> A veces es necesario limpiar la caché de tu navegador para ver la nueva imagen que acabas de cambiar, y reiniciar R desde el menú de RStudio *Session > Restart R* para verla en la pestaña Viewer.
+
+3. carpeta themes
+
+La carpeta ***themes*** es la carpeta principal de tu plantilla; aquí puedes encontrar el archivo README, CSS, JS, HTML, y en algunos temas quizás una carpeta Example. Este es el lugar al que debes ir si quieres cambiar algunas estructuras de tu página.
+
+### Nuevas publicaciones
+
+Probablemente quieras crear nuevas publicaciones en tu página sin dolor. Con eso en mente, Yihui Xie, el responsable del paquete blogdown, creó la función `blogdown::new_post()` (o mediante *Addins > New Post* de RStudio).
+
+Antes de empezar a usarla, hay otra cosa que podemos hacer para que el proceso de creación de "nuevo post" sea aún más fácil. ¡Cambiemos algunas *Global options*! Para ello necesitamos modificar y guardar el archivo `.Rprofile`, un script que se ejecuta cada vez que se inicia tu sesión de R. Este es el comando para abrir este script: `file.edit('.Rprofile')`. Ahora podemos establecer algunas opciones predeterminadas para nuestras nuevas publicaciones (echa un vistazo [aquí](https://bookdown.org/yihui/blogdown/global-options.html) para ver las otras opciones posibles).
+
+```{r, eval = FALSE}
+# default extension and default author
+
+options(blogdown.ext = '.Rmd', blogdown.author = 'Your Name')
+
+```
+
+En mi caso elegí la extensión *.Rmd* porque me siento más cómodo escribiendo con ella, pero puedes, por ejemplo, elegir *.md* si lo prefieres. Ahora que tenemos todo configurado como queremos, empecemos con la parte de escribir el post 😰. Una vez que inicias un New Post, se creará un archivo .Rmd estándar; ahora solo se trata de escribir tu contenido.
+
+> No es necesario *Knit* el archivo; blogdown renderizará el post automáticamente cuando guardes el archivo, y podrás seguir las actualizaciones en la pestaña Viewer de RStudio.
+
+## Cómo publicar
+
+Ahora que todo está hecho en nuestra página, es hora de publicarla. Te mostraré cómo hacerlo usando [Github Pages](https://pages.github.com/), pero por supuesto hay muchas otras opciones (solo creo que esta es la más fácil...). Para publicar nuestra página solo necesitamos estos 6 pasos:
+
+1. Crear una cuenta de [Github](https://github.com/)
+
+2. Crear un nuevo repositorio
+
+El nombre de tu repositorio **DEBE SER** tu nombre de usuario de Github + .github.io (USERNAME.github.io)
+
+3. Clonar este repositorio **DENTRO** de tu carpeta de proyecto
+
+4. Ejecutar la función `blogdown::build_site()`
+
+Antes de ejecutar esta función debes cambiar la opción `publishDir` dentro del `config.toml` a la carpeta USERNAME.github.io (que es tu repositorio de Github).
+
+```{r, eval = FALSE}
+publishDir = "USERNAME.github.io"
+```
+
+**PD**: Si tu `config.toml` no tiene esta opción, puedes crearla tú mismo.
+
+5. Subir los cambios a tu repositorio de Github
+
+En la pestaña Terminal, entra en la carpeta *USERNAME.github.io* usando `cd`. Una vez dentro de esa carpeta solo necesitas: `git add`, `git commit -m "first deploy my blog"`, `git push`.
+
+6. Tu página estará en línea en USERNAME.github.io
+
+## Eso es todo
+
+El paquete blogdown tiene **MUCHAS MÁS** funcionalidades que las presentadas en este post. Para aprender más al respecto te recomiendo leer el [libro de blogdown](https://bookdown.org/yihui/blogdown/).
+
+Espero que alguien encuentre útil este tutorial. Como siempre, tus comentarios son muy apreciados; ¡no dudes en ponerte en contacto conmigo a través de las redes sociales! 😄
+

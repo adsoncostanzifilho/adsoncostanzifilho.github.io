@@ -1,0 +1,271 @@
+---
+title: Tutorial de Desarrollo de Paquetes
+author: Adson Costanzi Filho
+date: '2021-03-17'
+slug: package-development-tutorial
+categories:
+  - Tutorial
+  - R
+tags:
+  - devtools
+  - usethis
+  - pkgdown
+  - roxygen2
+cover:
+  image: "img/banners/packagedev_tutorial.png"
+  alt: "tutorial de desarrollo de paquetes"
+---
+
+## Motivación
+
+> Si estás usando un script más de 3 veces, es hora de crear una función, y si estás usando una función en 3 proyectos diferentes, es hora de crear un paquete. "*Lo escuché de alguien, pero no recuerdo de quién..*"
+
+Recientemente experimenté todo el flujo para crear un nuevo paquete de R con la ayuda de paquetes increíbles como `devtools`, `usethis`, `pkgdown` y `roxygen2`. Por eso decidí escribir sobre ello mientras todavía recuerdo todos los pasos necesarios para hacer que tus funciones locales estén disponibles para la comunidad de R (CRAN y Github).
+
+El material que seguí para guiarme en este proceso fue el [R Packages Book](https://r-pkgs.org/) de Hadley Wickham. Por supuesto, hay MUCHO MÁS contenido en su libro que el presentado aquí, pero tal vez este post también pueda ayudar a alguien de alguna manera.
+
+## Funciones
+
+Un paquete no es más que un montón de funciones juntas en el mismo lugar (compartiendo el mismo alcance), así que la clave principal para tener un buen paquete es también tener buenas funciones.
+
+>Este post no cubrirá las pautas para crear funciones útiles. Para eso te recomiendo echar un vistazo a la *sección Functions* del [Advanced R Book](https://adv-r.hadley.nz/functions.html).
+
+Para facilitarte los próximos pasos a la hora de empaquetar tus funciones, es importante tener en cuenta dos cosas:
+
+* Primero, desarrolla tus funciones lo más genéricas posible y **siempre incluye comentarios** explicando las *entradas*, *salidas* y al menos un *ejemplo* de cómo usarla.
+
+* Segundo, recuerda **todos los paquetes que usaste** y, si es posible, usa siempre la estructura `package::function` cuando uses funciones externas dentro de la tuya.
+
+*PD*: Ten cuidado con esos paquetes que siempre usamos pero que solemos olvidar porque "siempre estuvieron ahí", como `stats` y `utils`.
+
+> ¡El R base es el único que no necesita ser mencionado!
+
+Ahora que tenemos nuestras funciones en buena forma, pasemos al desarrollo del paquete en sí.
+
+## Cómo empezar
+
+Lo primero que hay que hacer es instalar los paquetes que nos harán la vida más fácil.
+
+```{r, eval = FALSE}
+install.packages(c("devtools", "usethis", "pkgdown", "roxygen2"))
+
+```
+
+Si también quieres compartir tu paquete en Github, ahora es un buen momento para crear un nuevo repositorio de Github con el nombre que quieras darle a tu paquete, por ejemplo 'mypackage'. Clona este repositorio vacío dentro de alguna carpeta que quieras.
+
+Ahora debería ser posible ejecutar el comando `devtools::create("~/path/mypackage")` (dándole la ruta del repositorio de Github que acabas de clonar). Esta línea de código creará la estructura de carpetas y archivos que seguiremos de ahora en adelante. En cuanto lo ejecutes, se abrirá una nueva sesión de RStudio con estructura de proyecto R y te ubicará dentro de la carpeta "~/path/mypackage". Si todo salió bien, deberías poder ver una carpeta llamada "R" y los archivos "DESCRIPTION" y "NAMESPACE".
+
+
+* **Carpeta R**: La carpeta R será el lugar donde debes poner tus scripts (los que contienen tus funciones, los archivos .R). No hay una regla sobre cómo debes organizar tus scripts dentro de esta carpeta; sin embargo, a mí me gusta seguir la regla de una función por script. Para mí, tener una función por script hace que el proceso de *debugging* y documentación sea más fácil. Pero al final, ¡depende de ti!
+
+* **DESCRIPTION**: Este archivo expondrá información importante sobre tu paquete. No es tan difícil completar las opciones principales de este archivo; de hecho, el archivo tiene muy buenas explicaciones sobre cómo completarlo correctamente. También tenemos funciones como `usethis::use_package("packagename")` para ayudarnos a completar las otras secciones de este archivo. Hablaremos más sobre esto más adelante.
+
+* **NAMESPACE**: Este archivo contiene todas las funciones que el usuario de tu paquete podrá usar (todas esas funciones definidas con un `@export`; también cubriremos más sobre esto más adelante). No debes editar este archivo; en su lugar, puedes ejecutar `devtools::document()` para actualizarlo.
+
+```{r, eval = FALSE}
+#' Title
+#'
+#' @param a 
+#' @param b 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+myfunction <- function(a,b)
+{
+  return(a+b)
+}
+
+```
+
+Ahora solo es cuestión de completar las opciones presentadas con explicaciones claras sobre el uso de la función y los parámetros. Además, debes proporcionar al menos un ejemplo de cómo usarla y explicar qué debe esperar el usuario a cambio.
+
+> A veces el ejemplo que proporcionamos solo funcionará en condiciones muy específicas. Para esos casos debes crear tus ejemplos dentro de `\dontrun{}`; esto evitará que se ejecute mientras compilas y verificas tu paquete.
+
+Ten en cuenta que el esqueleto predeterminado que nos proporciona `roxygen2` considera el `#' @export`. Eso solo significa que esta función quedará expuesta al usuario final; en otras palabras, el usuario debería poder ejecutar `mypackage::myfunction()`. Si por alguna razón no quieres exportar esta función, solo puedes eliminar esta línea de tu script.
+
+> Las funciones definidas sin el `#' @export` funcionarán internamente sin problemas, pero el usuario final solo podrá acceder a ellas con la estructura `:::`, como `mypackage:::myfunction()`.
+
+Al final de este proceso, tu script de función debería ser algo como esto:
+
+```{r, eval = FALSE}
+#' My Function
+#'
+#' This function provides the sum of two values (the worst example ever, I know!).
+#' 
+#' @param a the first numeric value
+#' @param b the second numeric value
+#'
+#' @return a numeric value with the sum of a + b
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' ## the parameters must be numeric
+#'
+#' myfunction(a = 1, b = 1)
+#' }
+myfunction <- function(a,b)
+{
+  return(a+b)
+}
+
+```
+
+Una vez que tengas tu función documentada, debes ejecutar `devtools::document()`; esto creará/actualizará la carpeta llamada "man". Esta carpeta almacenará toda la documentación de tus funciones. ¡No olvides ejecutar `devtools::document()` cada vez que actualices las descripciones de tus funciones!
+
+También puedes ejecutar `devtools::load_all()` para cargar tu paquete en tu sesión actual de R; luego deberías poder ver cómo se ve tu documentación ejecutando `help('mypackage::myfunction')` o `?mypackage::myfunction`.
+
+## Paquetes externos
+
+Es muy poco probable que crees tus funciones sin usar NINGUNA dependencia (paquetes externos), y eso no es un problema en absoluto. Sin embargo, debes proporcionar esta información al usuario final de alguna manera; de lo contrario, los usuarios no podrán ejecutar tus códigos como se espera.
+
+El lugar correcto para esta información es dentro del archivo DESCRIPTION, en la sección **"Imports"**. Es posible completarla a mano abriendo el archivo DESCRIPTION e incluyendo todos los paquetes que usaste en tus funciones (separados por ",") O puedes usar la función `usethis::use_package("ggplot2")` y ella se encargará de completarla por ti.
+
+> La función `use_package` también ofrece opciones como la versión mínima del paquete y el tipo de dependencia.
+
+> **NO USES library() O require() EN TUS SCRIPTS DE R!!!**
+
+Otra posibilidad es incluir solo una función de un paquete externo. Esto es muy común porque a veces usamos solo una función de un paquete específico y no queremos "importar" todo el paquete, sino solo esa función que estamos usando. Para eso puedes incluir `@importFrom package_name function_name` en la documentación de tu función; de esta manera podrás usar la función sin declarar el paquete del que proviene. De ahora en adelante estará disponible como tus propias funciones: `mypackage::function_name()`.
+
+Digamos que queremos incluir la función `beep()` del paquete `beepr`, pero no queremos todo `beepr`. El script debería ser algo así:
+
+```{r, eval = FALSE}
+#' My Function
+#'
+#' This function provides the sum of two values (the worst example ever, I know!).
+#'
+#' @param a the first numeric value
+#' @param b the second numeric value
+#'
+#' @return a numeric value with the sum of a + b
+#' @export
+#'
+#' @importFrom beepr beep
+#'
+#' @examples
+#' \dontrun{
+#' ## the parameters must be numeric
+#'
+#' myfunction(a = 1, b = 1)
+#' }
+myfunction <- function(a,b)
+{
+  beep()
+  return(a+b)
+}
+
+```
+
+De ahora en adelante, la función `beep()` debería ser parte de `mypackage`. Si ejecutas `devtools::document()` y `devtools::load_all()`, verás que `mypackage::beep()` va a funcionar.
+
+También es muy común usar el operador `%>%` dentro de tus funciones. Como sabemos, el operador pipe proviene del paquete `magrittr`, pero no es necesario importar todo el paquete `magrittr` solo para usar el `%>%`. Para esto puedes ejecutar `usethis::use_pipe()` y ¡eso es todo!
+
+## Incluir datos
+
+¿Qué pasa si mi paquete usa datos externos? Esa es otra posibilidad muy común y es muy fácil incluir fuentes de datos externas en tu paquete. ¡Gracias de nuevo al paquete `usethis` por proporcionarnos la función `use_data()`! Entonces, para hacer que tus datos externos estén disponibles dentro del entorno de tus funciones, solo necesitas ejecutar `usethis::use_data(mydf)`, así:
+
+```{r, eval = FALSE}
+mydf <- data.frame(
+  x = rnorm(10,0,1),
+  y = runif(10)
+)
+
+usethis::use_data(mydf)
+```
+
+De ahora en adelante deberías poder usar el data frame "mydf" dentro de tus funciones sin problemas.
+
+Al igual que las funciones, los objetos de datos también deben documentarse, y la idea es casi la misma que documentar tus funciones. Primero, abre un nuevo script de R y guárdalo dentro de la carpeta R con el nombre que quieras (mi consejo es seguir el nombre de tus datos). Luego puedes seguir la estructura presentada a continuación.
+
+```{r, eval = FALSE}
+#' Random values
+#'
+#' A completely useless data set.
+#'
+#'
+#' @format A data frame with 10 rows and 2 variables:
+#' \describe{
+#'   \item{x}{10 values from a normal distribution with mean = 0 and sd = 1}
+#'   \item{y}{10 values from a uniform distribution}
+#'   ...
+#' }
+#' @source Created by the author.
+"mydf"
+```
+
+Una vez que termines este proceso, puedes ejecutar `devtools::document()` y se creará un nuevo archivo con el nombre de tus datos dentro de la carpeta "man". Para ver realmente el resultado de tu documentación, solo ejecuta `devtools::load_all()` y luego deberías poder ejecutar `help(mypackage::mydf)`.
+
+> ¡Nunca `@export` un conjunto de datos!
+
+## Crear Vignettes
+
+Los Vignettes son una parte importante del proceso de desarrollo de paquetes porque es el espacio para hacer una "guía paso a paso" de las capacidades de tu paquete. ¡Es importante destacar que puedes crear tantos vignettes como quieras!
+
+Comenzar un nuevo Vignette es realmente simple: solo necesitas ejecutar `devtools::use_vignette("intro")`. Esto creará una nueva carpeta llamada "vignettes" y, dentro de esta carpeta, podrás ver un archivo llamado "intro.Rmd". El "intro.Rmd" es al final un archivo Rmarkdown estándar; ahora puedes crear su contenido como quieras.
+
+> Si necesitas ayuda con el paquete `rmarkdown`, mi consejo es que eches un vistazo al [Rmarkdown Book](https://bookdown.org/yihui/rmarkdown/)!
+
+## Crear README
+
+Como la idea también es hacer que el paquete esté disponible en Github, es casi obligatorio tener una buena sección README. Pensando en eso (OTRA VEZ), el paquete `usethis` tiene la función `usethis::use_readme_rmd()` para ayudarnos a organizar nuestro archivo README. Ahora solo es cuestión de abrir el archivo creado por `usethis::use_readme_rmd()`, seguir la estructura e incluir lo que quieras.
+
+> ¡Recuerda *Knit* cada vez que cambies algo en el archivo README!
+
+> Es buena idea mirar los repositorios de otros paquetes en Github para inspirarte.
+
+> Para incluir las **badges** puedes usar el paquete `usethis` (ej.: `usethis::use_badge()`, `usethis::use_cran_badge()`, etc.).
+
+## Envío a CRAN
+
+Ahora es el momento de actualizar tu paquete en el repositorio principal de R, la **Comprehensive R Archive Network**, CRAN. Todo el trabajo que hemos hecho hasta ahora es esencial para que tu paquete sea aceptado en el repositorio de CRAN.
+
+Lo primero que hay que hacer es estar en concordancia con la [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html). Aquí encontrarás las reglas y pautas a seguir para que tu paquete sea alojado por CRAN. El siguiente paso es completar el [formulario web](https://cran.r-project.org/).
+
+**Alerta de Spoiler**: El formulario web te pedirá que proporciones tu paquete en un archivo *.tar.gz*, y también ejecutarán algunas rutinas automáticas para verificar si tu paquete está en buena forma para ser revisado por alguien en CRAN. Antes de "compilar" tu paquete en formato *.tar.gz*, veamos si nuestro paquete pasará las pruebas automáticas de CRAN. Para simular el procedimiento de verificación de CRAN puedes ejecutar `devtools::check()`; debería darte una buena idea de si tu paquete está listo para ser alojado por CRAN.
+
+Ahora que tienes un paquete con 0 errores, 0 advertencias y 0 notas, es hora de compilar el paquete en *.tar.gz*. La forma sencilla de hacerlo es ejecutando `devtools::build()` y ¡eso es todo! Tu paquete ahora está listo para ser enviado a CRAN. Sigue los pasos presentados en el formulario web y estate atento a tu correo electrónico (todas las comunicaciones sobre el estado de tu paquete serán por correo electrónico).
+
+> ¡Para la siguiente versión de tu paquete puedes usar `devtools::release()`!
+
+## `pkgdown`
+
+Ahora que nuestro paquete está disponible en Github y en CRAN, podemos crear fácilmente su propia página, ¡como un profesional! Gracias a `pkgdown`, es muy simple hacer una página muy bonita para difundir tu paquete a toda la comunidad de R.
+
+> No voy a cubrir toda la funcionalidad de `pkgdown`; para eso puedes ver la [página de pkgdown](https://pkgdown.r-lib.org/)!
+
+Como ya tenemos la estructura del paquete, lo único que hay que hacer para crear la página de tu paquete es:
+
+```{r, eval = FALSE}
+# Run to configure package to use pkgdown (once)
+usethis::use_pkgdown()
+
+# Run to build the website (every time you change it)
+pkgdown::build_site()
+```
+
+¡Te dije que esta era la parte más fácil! Ahora alojemos la página en Github Pages.
+
+Para ello debes entrar en el repositorio de Github de tu paquete e ir a *Settings > GitHub Pages*:
+
+![](/img/packagedev_tutorial/settings.png){width="100%"}
+
+![](/img/packagedev_tutorial/githubpages.png){width="100%"}
+
+Ahora solo necesitas cambiar la *Source* donde estará la estructura de la página (para mí está en la *rama master* y dentro de la *carpeta docs*).
+
+> ¡`pkgdown` creará la carpeta **docs** por ti cuando ejecutes `pkgdown::build_site()`!
+
+![](/img/packagedev_tutorial/master_docs.png){width="100%"}
+
+¡Listo! Solo **add**, **commit**, **push** y la página de tu paquete estará en línea en: *your_github_user.github.io/repository_name*.
+
+
+## Eso es todo
+
+Espero que alguien encuentre útil este tutorial. Como siempre, tus comentarios son muy apreciados; ¡no dudes en ponerte en contacto conmigo a través de las redes sociales! 😄
+
+
+
+

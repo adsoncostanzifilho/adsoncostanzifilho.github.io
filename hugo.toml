@@ -1,0 +1,188 @@
+# =============================================================
+# Site configuration — Hugo PaperMod + blogdown
+# Docs: https://github.com/adityatelange/hugo-PaperMod/wiki
+# =============================================================
+
+baseURL = "https://adsoncostanzifilho.github.io/"
+title = "Adson Costanzi Filho"
+theme = "PaperMod"
+
+# Language: English is the default (served at the site root, without prefix).
+# Portuguese and Spanish are served under /pt/ and /es/.
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+enableRobotsTXT = true
+enableEmoji = true
+paginate = 5
+summaryLength = 70
+publishDir = "public"
+
+# Home page outputs: HTML, RSS and JSON (JSON is used by the search feature)
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+
+# blogdown's HTML method stores posts as .html content files, which newer Hugo
+# versions deny by default. Whitelist the content types this site uses.
+[security]
+  allowContent = ["text/html", "text/markdown", "text/plain"]
+
+# ------------------------------------------------------------------
+# Global parameters (shared by every language)
+# ------------------------------------------------------------------
+[params]
+  env = "production"
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  displayFullLangName = true
+  mainSections = ["blog"]
+  ShowReadingTime = true
+  ShowWordCount = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowPageNums = true
+  ShowToc = true
+
+  [params.assets]
+    favicon = "favicon.ico"
+    favicon16x16 = "favicon.ico"
+    favicon32x32 = "favicon.ico"
+    apple_touch_icon = "apple-touch-icon.png"
+
+  [params.cover]
+    linkFullImages = true
+
+  # Client-side search (Fuse.js)
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/adsoncostanzifilho"
+
+# ------------------------------------------------------------------
+# English — default language, served at the site root
+# ------------------------------------------------------------------
+[languages.en]
+  locale = "en"
+  label = "English"
+  weight = 1
+  contentDir = "content/en"
+  title = "Adson Costanzi Filho"
+
+  [languages.en.params]
+    description = "Personal blog about statistics, data science and R by Adson Costanzi Filho."
+
+    [languages.en.params.homeInfoParams]
+      title = "Adson Costanzi Filho"
+      Content = """
+Hi! Welcome to my blog about **statistics**, **data science** and **R**.
+Here I share my ideas, tutorials and projects. Feel free to get in touch!
+"""
+
+  [[languages.en.menu.main]]
+    name = "Blog"
+    pageRef = "/blog"
+    weight = 1
+  [[languages.en.menu.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 2
+  [[languages.en.menu.main]]
+    name = "Résumé"
+    url = "/files/cv.pdf"
+    weight = 3
+  [[languages.en.menu.main]]
+    name = "Search"
+    pageRef = "/search"
+    weight = 4
+
+# ------------------------------------------------------------------
+# Portuguese
+# ------------------------------------------------------------------
+[languages.pt]
+  locale = "pt-br"
+  label = "Português"
+  weight = 2
+  contentDir = "content/pt"
+  title = "Adson Costanzi Filho"
+
+  [languages.pt.params]
+    description = "Blog pessoal sobre estatística, ciência de dados e R por Adson Costanzi Filho."
+
+    [languages.pt.params.homeInfoParams]
+      title = "Adson Costanzi Filho"
+      Content = """
+Olá! Bem-vindo(a) ao meu blog sobre **estatística**, **ciência de dados** e **R**.
+Aqui eu compartilho minhas ideias, tutoriais e projetos. Fique à vontade para entrar em contato!
+"""
+
+  [[languages.pt.menu.main]]
+    name = "Blog"
+    pageRef = "/blog"
+    weight = 1
+  [[languages.pt.menu.main]]
+    name = "Sobre"
+    pageRef = "/about"
+    weight = 2
+  [[languages.pt.menu.main]]
+    name = "Currículo"
+    url = "/files/cv.pdf"
+    weight = 3
+  [[languages.pt.menu.main]]
+    name = "Busca"
+    pageRef = "/search"
+    weight = 4
+
+# ------------------------------------------------------------------
+# Spanish
+# ------------------------------------------------------------------
+[languages.es]
+  locale = "es"
+  label = "Español"
+  weight = 3
+  contentDir = "content/es"
+  title = "Adson Costanzi Filho"
+
+  [languages.es.params]
+    description = "Blog personal sobre estadística, ciencia de datos y R por Adson Costanzi Filho."
+
+    [languages.es.params.homeInfoParams]
+      title = "Adson Costanzi Filho"
+      Content = """
+¡Hola! Bienvenido a mi blog sobre **estadística**, **ciencia de datos** y **R**.
+Aquí comparto mis ideas, tutoriales y proyectos. ¡No dudes en ponerte en contacto!
+"""
+
+  [[languages.es.menu.main]]
+    name = "Blog"
+    pageRef = "/blog"
+    weight = 1
+  [[languages.es.menu.main]]
+    name = "Acerca"
+    pageRef = "/about"
+    weight = 2
+  [[languages.es.menu.main]]
+    name = "Currículum"
+    url = "/files/cv.pdf"
+    weight = 3
+  [[languages.es.menu.main]]
+    name = "Búsqueda"
+    pageRef = "/search"
+    weight = 4

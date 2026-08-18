@@ -1,0 +1,128 @@
+---
+title: Tutorial de Blogdown
+author: Adson Costanzi Filho
+date: '2020-11-25'
+slug: blogdown-tutorial
+categories:
+  - Tutorial
+  - R
+tags:
+  - blogdown
+  - rmarkdown
+cover:
+  image: "img/banners/blogdown_tutorial.png"
+  alt: "tutorial de blogdown"
+---
+
+## Motivação
+
+Tive a ideia de escrever um "passo a passo" sobre o blogdown, primeiro porque foi a minha primeira vez usando o pacote e ainda tenho todos os passos necessários frescos na memória, e segundo porque provavelmente vou precisar ter tudo documentado se um dia decidir renovar este blog. É claro que existem muitos tutoriais ótimos sobre blogdown pela internet (o [livro do blogdown](https://bookdown.org/yihui/blogdown/), por exemplo), mas talvez alguém possa achar este mais fácil de alguma forma...
+
+Este post está dividido em 3 seções: **Como começar**, **Como personalizar e usar**, **Como publicar**. Na primeira seção, você encontrará algumas dicas de como começar o desenvolvimento da sua própria página usando RStudio e blogdown; a segunda seção é sobre as funcionalidades que o blogdown tem para tornar nossa vida mais fácil; e a última é sobre os passos necessários para publicar sua página.
+
+## Como começar
+
+A primeira coisa a fazer é `install.packages("blogdown")` para instalar o pacote blogdown. Feito isso, você precisará instalar o Hugo com `blogdown::install_hugo(force = TRUE)`, que é o gerador de sites estáticos que o blogdown usa (o parâmetro `force =TRUE` atualizará a versão do Hugo que você possa ter instalada).
+
+Agora que está tudo instalado, podemos começar o desenvolvimento da nossa página. Existem duas formas de começar: usando os Addins do RStudio ou por linhas de comando no console; vamos tentar fazer das duas formas!
+
+Começar um novo projeto blogdown pelo RStudio é muito fácil; você só precisa ir no menu *File > New Project > New Directory* e clicar na opção **Website using blogdown**.
+
+![](/img/blogdown_tutorial/project.png){width="70%"}
+
+Na segunda tela, você precisará escolher um nome para a pasta do projeto, o subdiretório do projeto e o **template Hugo** (aqui está a parte divertida). O Hugo tem MUITOS templates disponíveis [aqui](https://themes.gohugo.io/); recomendo fortemente que você experimente alguns deles e escolha aquele que melhor se adequa às suas expectativas. 
+
+Depois de escolher o template Hugo, você só precisa clicar no botão "Download" e será redirecionado para o **repositório do template** no Github.   
+
+Agora você só precisa preencher o repositório na opção **Hugo theme** e clicar em Create Project.
+
+
+![](/img/blogdown_tutorial/project2.png){width="70%"}
+
+Se você preferir usar o console (*estilo old school*), basta executar a função `blogdown::new_site(theme = "devcows/hugo-universal-theme")` e preencher o parâmetro theme. 
+
+
+> Esta página foi desenvolvida usando o [Universal Theme](https://themes.gohugo.io/hugo-universal-theme/)
+
+
+## Como personalizar e usar
+
+Se tudo deu certo, o RStudio deve mostrar uma prévia do seu site na aba **Viewer** e deve abrir um script **config.toml**. Dentro da pasta do seu projeto, o blogdown criará MUITAS pastas; falaremos sobre isso mais adiante.
+
+O script **config.toml** te dá a opção de personalizar seu site sem alterar nada no CSS, HTML ou JavaScript (é claro que, se você quiser mudar seu site profundamente, você precisa ter pelo menos algum conhecimento de CSS). Neste arquivo, você encontrará opções para mudar o nome do seu site, imagens, algumas cores, etc. Eu encorajo você a modificar essas opções e ver os resultados: quando você salva o arquivo, a aba **Viewer** atualiza seu site automaticamente, então você poderá ver suas mudanças.
+
+> Quase todos os templates têm um arquivo README com algumas explicações sobre as funcionalidades que o template possui; isso ajudará você a usar o tema corretamente (você pode encontrá-lo dentro da pasta themes).
+
+### As pastas 😖
+
+Eu sei que essa estrutura de pastas pode ser muito confusa no começo; esse é um dos motivos pelos quais decidi criar este post (porque não sei se vou lembrar de tudo isso na semana que vem).
+
+1. pasta content
+
+A pasta ***content*** é onde todos os seus posts e abas devem ser armazenados; toda vez que você escreve um novo post, essa pasta é atualizada com o conteúdo dele. Falaremos mais sobre novos posts mais adiante.
+
+2. pasta static
+
+A pasta ***static*** é onde você atualizará todas as imagens que quiser usar na sua página. Você deve substituir as imagens existentes nessa pasta pelas suas próprias imagens.
+
+> Às vezes, é necessário limpar o cache do seu navegador para ver a nova imagem que você acabou de mudar e reiniciar o R pelo menu do RStudio *Session > Restart R* para vê-la na aba Viewer.
+
+3. pasta themes
+
+A pasta ***themes*** é a pasta principal do seu template; aqui você pode encontrar o arquivo README, CSS, JS, HTML e, em alguns temas, uma pasta Example. É para lá que você deve ir se quiser mudar algumas estruturas da sua página.
+
+
+### Novos posts
+
+Você provavelmente quer criar novos posts na sua página sem dor de cabeça. Pensando nisso, Yihui Xie, o responsável pelo pacote blogdown, criou a função `blogdown::new_post()` (ou pelo RStudio em *Addins > New Post*). 
+
+Antes de começar a usar, há outra coisa que podemos fazer para tornar o processo de criação de "novo post" ainda mais fácil. Vamos mudar algumas *opções globais*! Para isso, precisamos modificar e salvar o arquivo `.Rprofile`, que é um script executado toda vez que sua sessão do R é iniciada. Aqui está o comando para abrir esse script: `file.edit('.Rprofile')`. Agora podemos definir algumas opções padrão para nossos novos posts (dê uma olhada [aqui](https://bookdown.org/yihui/blogdown/global-options.html) para ver as outras opções possíveis).
+
+```{r, eval = FALSE}
+# default extension and default author
+
+options(blogdown.ext = '.Rmd', blogdown.author = 'Your Name')
+
+```
+
+No meu caso, escolhi a extensão *.Rmd* porque me sinto mais confortável escrevendo com ela, mas você pode, por exemplo, escolher *.md*, se preferir. Agora que configuramos tudo do jeito que queremos, vamos começar a parte de escrever o post 😰. Quando você inicia um New Post, um arquivo .Rmd padrão é criado; agora é só escrever o seu conteúdo!
+
+>Não é necessário *Knit* no arquivo; o blogdown renderiza o post automaticamente quando você salva o arquivo, e você pode acompanhar as atualizações na aba Viewer do RStudio.
+
+
+## Como publicar
+
+Agora que está tudo pronto na nossa página, é hora de publicá-la. Vou mostrar como fazer isso usando o [Github Pages](https://pages.github.com/), mas é claro que existem muitas outras opções (eu só acho que essa é a mais fácil...). Para publicar nossa página, precisamos apenas destes 6 passos:
+
+1. Criar uma [conta no Github](https://github.com/)
+
+2. Criar um novo repositório
+
+O nome do seu repositório **DEVE SER** seu usuário do Github + .github.io (USERNAME.github.io)
+
+3. Clonar este repositório **DENTRO** da pasta do seu projeto
+
+4. Executar a função `blogdown::build_site()`
+
+Antes de executar essa função, você deve mudar a opção `publishDir` dentro do `config.toml` para a pasta USERNAME.github.io (que é o seu repositório do Github).
+
+```{r, eval = FALSE}
+publishDir = "USERNAME.github.io"
+```
+
+**PS**: Se o seu `config.toml` não tiver essa opção, você pode criá-la por conta própria.
+
+5. Enviar as mudanças para o seu repositório do Github
+
+Na aba Terminal, entre na pasta *USERNAME.github.io* usando `cd`. Dentro dessa pasta, você só precisa fazer: `git add`, `git commit -m "first deploy my blog"`, `git push`.
+
+6. Sua página estará online em USERNAME.github.io
+
+## Isso é tudo
+
+O pacote blogdown tem **MUITO MAIS** funcionalidades do que as apresentadas neste post. Para aprender mais sobre ele, recomendo que você leia o [livro do blogdown](https://bookdown.org/yihui/blogdown/).
+
+Espero que alguém ache este tutorial útil. Como sempre, seu feedback é muito bem-vindo; fique à vontade para entrar em contato comigo pelas redes sociais! 😄
+ 
+
+ 

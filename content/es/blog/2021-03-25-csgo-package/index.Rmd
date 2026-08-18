@@ -1,0 +1,173 @@
+---
+title: Paquete CSGo
+author: Adson Costanzi Filho
+date: '2021-03-25'
+slug: csgo-package
+categories:
+  - Project
+  - R
+tags:
+  - CSGo
+  - httr
+  - jsonlite
+cover:
+  image: "img/banners/csgo_package.png"
+  alt: "paquete CSGo"
+---
+
+## Resumen 
+
+**GitHub:** [adsoncostanzifilho/CSGo](https://github.com/adsoncostanzifilho/CSGo)
+
+El paquete **CSGo** es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el [sitio web de documentación de Steam](https://developer.valvesoftware.com/wiki/Steam_Web_API) y la [Página del Paquete](https://adsoncostanzifilho.github.io/CSGo/) para más información.
+
+## Instalación
+
+Para obtener la versión actual publicada desde [CRAN](https://cran.r-project.org/web/packages/CSGo/index.html):
+
+``` r
+install.packages("CSGo")
+```
+
+Para obtener la versión de desarrollo actual desde [GitHub](https://github.com/adsoncostanzifilho/CSGo):
+
+``` r
+# install.packages("devtools")
+devtools::install_github("adsoncostanzifilho/CSGo")
+```
+
+## Ejemplo
+
+El primer paso para usar el paquete `CSGo` es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R `vignette("auth", package = "CSGo")`, o haz clic [aquí](https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html).
+
+Ahora que ya tienes tu *API Key*, deberías poder recolectar tus propios datos de CSGo, así como los datos de tus amigos. ¡Espero que a mi amigo [Rodrigo](https://github.com/Rodrigo-Fontoura) no le importe que juguemos con sus datos (él es el '76561198263364899')!
+
+Primero recolectemos sus estadísticas de CSGo:
+
+```{r eval = FALSE}
+library(CSGo)
+
+# to get the statistics of the user 76561198263364899
+rodrigo_stats <- get_stats_user(api_key = 'your_key', user_id = '76561198263364899')
+
+```
+
+Filtremos el data frame obtenido por "kills" y "weapon" para crear un análisis de muertes por tipo de arma.
+
+```{r eval = FALSE}
+library(dplyr)
+library(stringr)
+
+rodrigo_weapon_kill <- rodrigo_stats %>%
+  filter(
+    str_detect(name, 'kill'),
+    type == ' weapon info'
+  ) %>%
+  arrange(desc(value))
+
+```
+
+¡Ahora echemos un vistazo al gráfico!
+
+*PD*: Para hacer el gráfico aún más bonito, recomiendo obtener la fuente "Quantico" de Google fonts usando el paquete `showtext`! 
+
+```{r eval = FALSE}
+library(ggplot2)
+library(showtext)
+
+## Loading Google fonts (https://fonts.google.com/)
+font_add_google("Quantico", "quantico")
+
+rodrigo_weapon_kill %>%
+  top_n(n = 10, wt = value) %>%
+  ggplot(aes(x = name_match, y = value, fill = name_match)) +
+  geom_col() +
+  ggtitle("KILLS BY WEAPON") +
+  ylab("Number of Kills") +
+  xlab("") +
+  labs(fill = "Weapon Name") +
+  theme_csgo(text = element_text(family = "quantico")) +
+  scale_fill_csgo()
+
+```
+ 
+![](/img/csgo_package/kills_weapon.png){width="100%"}
+
+Entonces, estas son las 10 mejores armas por muertes, pero... ¿Qué pasa con la eficiencia? ¿Es la **ak47** el arma más eficiente de Rodrigo? Primero, definamos "eficiencia":
+
+* **kills_efficiency** significa cuántos disparos hizo para matar (ej.: el 32% de los disparos matarán) 
+
+* **hits_efficiency** significa cuántos disparos para dar en el blanco; esto está más relacionado con la habilidad de Rodrigo con cada arma (ej.: el 35% de los disparos darán en el blanco).
+
+* **hits_to_kill** significa cuántos impactos son necesarios para matar; esto está más relacionado con el poder/eficiencia del arma (ej.: el 91% de los impactos matarán).
+
+```{r eval = TRUE, message = FALSE, echo = FALSE}
+library(tidyr)
+library(dplyr)
+library(stringr)
+library(knitr)
+library(kableExtra)
+rodrigo_efficiency <- readRDS('rodrigo_efficiency.RDS')
+```
+
+```{r eval = FALSE, message = FALSE, results='asis'}
+
+rodrigo_efficiency <- rodrigo_stats %>%
+  filter(
+    name_match %in% c("ak47", "aug", "awp", "fiveseven",
+                      "hkp2000", "m4a1", "mp7", "p90",
+                      "sg556", "xm1014")
+  ) %>%
+  mutate(
+    stat_type = case_when(
+      str_detect(name, "shots") ~ "shots",
+      str_detect(name, "hits") ~ "hits",
+      str_detect(name, "kills") ~ "kills"
+    )
+  ) %>% 
+  pivot_wider(
+    names_from = stat_type, 
+    id_cols = name_match, 
+    values_from = value
+  ) %>%
+  mutate(
+    kills_efficiency = kills/shots*100,
+    hits_efficiency = hits/shots*100,
+    hits_to_kill = kills/hits*100
+  )
+
+kbl(rodrigo_efficiency) %>%
+  kable_styling()
+```
+
+```{r eval = TRUE, message = FALSE, echo = FALSE}
+kbl(rodrigo_efficiency) %>%
+  kable_styling()
+```
+
+```{r eval = FALSE}
+rodrigo_efficiency %>%
+  top_n(n = 10, wt = kills) %>%
+  ggplot(aes(x = name_match, size = shots)) +
+  geom_point(aes(y = kills_efficiency, color = "Kills Efficiency")) +
+  geom_point(aes(y = hits_efficiency, color = "Hits Efficiency")) +
+  geom_point(aes(y = hits_to_kill, color = "Hits to Kill")) +
+  ggtitle("WEAPON EFFICIENCY") +
+  ylab("Efficiency (%)") +
+  xlab("") +
+  labs(color = "Efficiency Type", size = "Shots") +
+  theme_csgo(
+    text = element_text(family = "quantico"),
+    panel.grid.major.x = element_line(size = .1, color = "black",linetype = 2)
+  ) +
+  scale_color_csgo()
+
+```
+
+![](/img/csgo_package/weapon_effic.png){width="100%"}
+En conclusión, le aconsejaría a Rodrigo usar la **awp** en sus próximas partidas, porque esta arma presentó la mejor eficiencia en términos de **disparos para matar**, **disparos para dar en el blanco** e **impactos para matar**. Pero definitivamente necesitamos más disparos con esta arma para ver si esta eficiencia se mantiene.. jajajaja
+
+
+
+
+

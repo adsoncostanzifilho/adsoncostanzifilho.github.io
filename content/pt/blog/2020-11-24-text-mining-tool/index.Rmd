@@ -1,0 +1,38 @@
+---
+title: Ferramenta de Mineração de Texto
+author: Adson Costanzi Filho
+date: '2020-11-24'
+slug: text-mining-tool
+categories:
+  - Project
+  - R
+  - shiny
+tags:
+  - shiny
+  - rtweet
+  - tidytext
+cover:
+  image: "img/banners/textminingtool.png"
+  alt: "ferramenta de mineração de texto"
+---
+
+## Visão Geral 
+
+**GitHub:** [adsoncostanzifilho/TextMining](https://github.com/adsoncostanzifilho/TextMining)
+
+A **Ferramenta de Mineração de Texto** é uma interface desenvolvida em R usando principalmente os pacotes shiny, tidytext e rtweet. A ideia dessa interface é permitir que você faça suas próprias análises de texto usando dados ao vivo do Twitter.
+
+A ferramenta está online no repositório shinyapps no endereço <https://adsoncostanzi.shinyapps.io/TextMining/>.
+
+## Como essa interface funciona?
+
+A interface é dividida em 5 abas apresentadas no menu à esquerda: Home , Search , Word Cloud , Sentiment Analysis e Topic Modeling .
+
+A primeira coisa que você precisa fazer para usar a página inteira é coletar alguns dados do Twitter. Para isso, basta ir até a aba Search e seguir os passos apresentados lá!
+
+Depois de concluir a etapa de "coleta de dados" na aba Search, você poderá usar as outras abas disponíveis no menu à esquerda.
+
+PS: Você encontrará pela interface alguns sinais de **?**; ao clicar em um deles, uma janela pop-up com explicações será aberta para te guiar sobre como usar aquela opção corretamente.
+
+
+

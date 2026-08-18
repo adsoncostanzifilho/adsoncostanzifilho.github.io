@@ -1,0 +1,49 @@
+---
+title: soothsayeR
+author: Adson Costanzi Filho
+date: '2020-11-23'
+slug: soothsayer
+categories:
+  - Project
+  - R
+  - shiny
+tags:
+  - shiny
+  - shinyjs
+cover:
+  image: "img/banners/soothsayer.png"
+  alt: "vidente"
+---
+
+## Visão Geral 
+
+**GitHub:** [adsoncostanzifilho/soothsayeR](https://github.com/adsoncostanzifilho/soothsayeR)
+
+O **SoothsayeR** é uma interface baseada na velha brincadeira chamada 'Pedro responde'..
+
+A ideia do jogo é brincar com seus amigos fazendo perguntas cujas respostas você já sabe, e fazê-los acreditar que é o R quem está respondendo…
+
+O aplicativo demonstra como é fácil integrar o **Shiny** com **Javascript** por meio da biblioteca **shinyjs**.
+
+A ferramenta está online no repositório shinyapps no endereço <https://adsoncostanzi.shinyapps.io/soothsayeR/>.
+ 
+
+## Como jogar com o soothsayeR?
+
+Você só precisa pressionar o ponto (.) no teclado na sessão de perguntas e então escrever a resposta secretamente. Quando você pressiona o ponto no campo de texto da pergunta, tudo o que você digitar será mascarado, para que você possa colocar a resposta sem que ninguém perceba.
+
+Então, quando terminar de digitar a resposta, você só precisa pressionar o ponto novamente e completar a frase da pergunta da maneira que quiser.
+
+![](/img/soothsayeR/request2.png){width="80%"}
+
+### Exemplo
+
+Você conta para um amigo ao seu lado que o R pode responder qualquer pergunta. Para provar, você diz que vai perguntar ao R a cor da camisa que ele está usando. 
+
+Na sessão de perguntas você vai escrever '.**red**.ase answer', mas apenas 'R please answer' será exibido na tela. No próximo passo, você vai escrever a seguinte pergunta: 'Qual é a cor da camiseta da pessoa ao meu lado?'. 
+
+Feito isso, basta pressionar o botão 'Guess' e a resposta **red** aparecerá! 
+
+![](/img/soothsayeR/ex.gif){width="80%"}
+
+

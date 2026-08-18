@@ -1,47 +1,59 @@
-# Triggered on push branch source
-on:
-  push:
-     branches:
-       - source
-
-# Name of the workflow - usethis::use_github_actions_badge("deployblog")
+# Render the blogdown site and deploy it to the master branch (GitHub Pages)
+# Source of truth: branch "source" — the deployed site lives on "master".
 name: deployblog
 
-# Set the job, the machine
+on:
+  push:
+    branches:
+      - source
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
 jobs:
   deployblog:
     name: Render and deploy blogdown
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-24.04
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      # Required so the knitr "python" chunks (why-not-both post) can run
+      RETICULATE_PYTHON: /usr/bin/python3
     steps:
-      # This action clones your repository from the respective branch that has triggered it
-      - uses: actions/checkout@v2
+      # Clone the repository (including the PaperMod theme submodule)
+      - uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: recursive
           fetch-depth: 0
-        # set-up an R installation in our GHA machine to run our scripts
-      - uses: r-lib/actions/setup-r@v1
-        # We will also need pandoc to compile our Shiny or RMarkdown report
-      - uses: r-lib/actions/setup-pandoc@v1
-        # Install R packages
-      - name: Install r packages
-        run: |
-          Rscript -e 'install.packages(c("remotes", "rmarkdown"))' \
-                  -e 'remotes::install_github("rstudio/blogdown")'
-      - name: install hugo
-        # Install Hugo
-        run: Rscript -e 'blogdown::install_hugo(extended = TRUE, version = "0.82.0")'
-      - name: Get themes
-        run: git submodule update --remote
-      - name: Look at files
-        run: ls ./public
+
+      # Set up an R installation to run our scripts
+      - uses: r-lib/actions/setup-r@v2
+
+      # Pandoc is needed to compile the R Markdown posts
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Install R packages
+        # blogdown: site builder; reticulate: runs the python chunks;
+        # dplyr/tidyr/stringr/kableExtra: used by executed chunks in the posts
+        run: Rscript -e 'install.packages(c("blogdown", "reticulate", "dplyr", "tidyr", "stringr", "kableExtra"), repos = "https://cloud.r-project.org")'
+
+      - name: Install Hugo
+        # Version matches options(blogdown.hugo.version) in .Rprofile
+        run: Rscript -e 'blogdown::install_hugo(extended = TRUE, version = "0.165.0")'
+
       - name: Render blog
-        run: Rscript -e 'blogdown::build_site(local = FALSE)'
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        # build_rmd = TRUE is required so the .Rmd posts are knitted to HTML
+        run: Rscript -e 'blogdown::build_site(local = FALSE, build_rmd = TRUE)'
+
+      - name: Clean build artifacts from public/
+        # Remove the .Rmd/.RDS source files that Hugo copies verbatim to public/
+        run: |
+          find ./public -name "*.Rmd" -delete
+          find ./public -name "*.RDS" -delete
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: master
           publish_dir: ./public
-          

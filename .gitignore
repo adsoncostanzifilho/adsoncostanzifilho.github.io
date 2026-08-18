@@ -2,3 +2,10 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rlibs
+public/
+.hugo/
+*.Rproj.user
+content/**/index.html
+content/**/index_files/
+.hugo_build.lock

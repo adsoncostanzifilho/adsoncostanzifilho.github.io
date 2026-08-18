@@ -1,0 +1,236 @@
+---
+title: Por que não os dois?
+author: Adson Costanzi Filho
+date: '2021-07-13'
+slug: why-not-both
+categories:
+  - R
+  - Tutorial
+  - Python
+tags:
+  - plumber
+  - FastAPI
+cover:
+  image: "img/banners/plumber_fast_tutorial.png"
+  alt: "por que não os dois"
+---
+
+## Motivação
+
+Acredito que a discussão mais comum nos times de ciência de dados seja R vs Python. Eu me vi em algumas dessas discussões algumas vezes e minha posição é sempre "*Por que não usar os dois?*". A ideia deste post não é comparar R vs Python, mas mostrar como é fácil **integrar as duas linguagens usando APIs** (COMO UM PROFISSIONAL); dessa forma, podemos usar o melhor de cada uma. Além disso, o post não vai focar na publicação e na estrutura necessárias para colocar as APIs online; em vez disso, vou demonstrar localmente (para simplificar). 
+
+Este post está dividido em 3 seções: **Criando uma função**, **Criando uma API** e **Chamando uma API**. Na primeira seção, você encontrará uma função simples criada em R e Python; a segunda seção é sobre como transformar essas funções em APIs; a última é sobre como podemos chamar/usar as APIs.
+
+
+## Criando uma função
+
+Imagine que você está trabalhando em um time de ciência de dados e alguém precisa de um pedaço de código que retorne a soma de dois valores (desculpe pelo exemplo bobo). Veja, a solicitação não é sobre R, Python, Julia, Java ou qualquer outra coisa, mas sim **resolver o problema**! Então, vamos resolver o problema da melhor forma que pudermos e escrever uma função para resolvê-lo em R e Python.
+
+> Este post não vai cobrir as diretrizes para criar funções úteis. Para isso, recomendo que você dê uma olhada na *seção Functions* do [Advanced R Book](https://adv-r.hadley.nz/functions.html).
+ 
+### Função em R
+
+Uma função simples para retornar a soma de dois valores em R seria assim:
+
+```{r, eval = TRUE}
+sum_two_r <- function(x, y)
+{
+  result <- x + y
+  return(result)
+}
+
+```
+
+Pronto; agora podemos chamá-la **dentro do R** assim:
+
+```{r, eval = TRUE}
+sum_two_r(x = 1, y = 1)
+
+```
+
+### Função em Python
+
+Uma função simples para retornar a soma de dois valores em Python seria assim:
+
+```{python, eval = TRUE}
+def sum_two_python(x, y):
+  result = x + y
+  return result
+
+```
+
+Pronto; agora podemos chamá-la **dentro do Python** assim:
+
+```{python, eval = TRUE}
+sum_two_python(x = 1, y = 1)
+
+```
+
+
+## Criando uma API
+
+O problema está quase resolvido, mas ainda precisamos encontrar a melhor forma de **compartilhar nossa solução com o resto do time**. Bem, a parte do time que trabalha em R pode usar a função que escrevemos em R, mas essa função simplesmente não está disponível para a parte do time que usa Python; o mesmo acontece com o código escrito em Python, que simplesmente não está disponível para quem usa R. Então, é necessário criar uma solução independente da linguagem para torná-la acessível a todos do time.
+
+> Eu sei que o pacote [reticulate](https://rstudio.github.io/reticulate/) pode ajudar, mas é uma solução de mão única, e estamos interessados em uma forma mais genérica de integração que possa ser estendida não apenas ao Python, mas a qualquer linguagem de programação.
+
+Uma boa solução seria **criar e publicar uma API** com nosso pedaço de código; dessa forma, o resto do time pode interagir com ela de forma independente; em outras palavras, não importa mais qual foi a linguagem que você usou para resolver o problema. Para isso, vamos usar o pacote [plumber](https://www.rplumber.io/) para R e o pacote [FastAPI](https://fastapi.tiangolo.com/) para Python.
+
+> Este post não vai cobrir como publicar as APIs. No entanto, se você tiver interesse em aprender como colocar suas APIs online, pode usar este [link](https://www.rplumber.io/articles/hosting.html) para **plumber** e este [link](https://fastapi.tiangolo.com/deployment/) para **FastAPI**. 
+
+### API em R
+
+O primeiro passo para criar uma API em R é instalar o pacote `plumber`:
+
+```{r, eval = FALSE}
+install.packages("plumber")
+
+```
+
+Feito isso, vamos voltar ao nosso arquivo de função e adicionar algumas coisas a ele.
+
+```{r, eval = FALSE}
+#* @param x first number 
+#* @param y second number
+#* @get /sum_r
+
+sum_two_r <- function(x, y)
+{
+  result <- as.numeric(x) + as.numeric(y)
+  return(result)
+}
+
+```
+
+Note que adicionamos alguns "comentários" no início do código, muito parecidos com os usados no pacote `roxygen2`. Esses comentários são a chave que o plumber usa para transformar suas funções em endpoints de APIs. Além disso, neste exemplo definimos uma solicitação *GET*; o mesmo poderia ser feito, por exemplo, com solicitações *POST*, mudando o comentário para `#* @post /sum_r`. 
+
+> Se você não está familiarizado com solicitações HTTP, pode dar uma olhada neste [link](https://www.rplumber.io/articles/routing-and-input.html). 
+
+> Você pode ver que foi incluída a transformação `as.numeric()`, que é necessária porque os parâmetros "entram" no R como strings, e para aplicar operações matemáticas é necessário transformar os numéricos em números. 
+
+O próximo passo é publicá-la! Para colocá-la online, você só precisa informar o **caminho do arquivo** e a **porta** em que quer expor a API. Vamos disponibilizá-la localmente (localhost) na porta 8000 executando:
+
+```{r, eval = FALSE}
+library(magrittr)
+library(plumber)
+
+pr('functions/sum_r.R') %>%
+  pr_run(port = 8000)
+
+```
+
+Pronto! Agora nossa API está exposta e você pode acessar a documentação Swagger em http://localhost:8000/__docs__/ e interagir com ela pressionando **GET**, seguido do botão **Try it out**, **preenchendo os parâmetros** e pressionando **Execute**. 
+
+![](/img/plumber_fast_tutorial/swagger_plumber.gif){width="100%"}
+
+> Se quiser aprender mais sobre o *Swagger UI*, aqui está o [link](https://swagger.io/) para você.
+
+
+### API em Python
+
+O primeiro passo para criar uma API em Python é instalar o pacote `FastAPI`. No terminal, execute:
+
+```{bash, eval = FALSE}
+$ pip install fastapi[all]
+
+```
+ 
+Feito isso, vamos voltar ao nosso arquivo de função e adicionar algumas coisas a ele.
+
+```{python, eval = FALSE}
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/sum_py")
+def sum_two_python(x:float, y:float):
+  result = x + y
+  return result
+
+```
+
+Note que importamos o pacote fastapi e criamos um objeto chamado app, que é uma instância do FastAPI. Depois, definimos isso como uma solicitação *GET*; o mesmo poderia ser feito, por exemplo, com solicitações *POST*, mudando para `@app.post("/sum_py")`.
+
+> Você pode ver que foi incluído o `:float` para forçar o tipo da variável a ser numérico; isso é necessário porque, por padrão, as chamadas de API "entram" no Python como strings, e para aplicar operações matemáticas é necessário transformar os numéricos em números. 
+
+O próximo passo é publicá-la! Para colocá-la online, você só precisa abrir o terminal e entrar **na pasta onde salvou o script da sua API Python**. Nomeei meu arquivo como *"sum_py"* e vou disponibilizá-lo localmente (localhost) na porta 8080 executando:
+
+```{bash, eval = FALSE}
+$ uvicorn sum_py:app --port 8080 --reload
+
+```
+
+> A opção *reload* recarregará sua API toda vez que você salvar o arquivo. É um recurso muito bom para desenvolvimento!
+
+Pronto! Agora nossa API está exposta e você pode acessar a documentação Swagger em http://localhost:8080/docs#/ e interagir com ela pressionando **GET**, seguido do botão **Try it out**, **preenchendo os parâmetros** e pressionando **Execute**. 
+
+![](/img/plumber_fast_tutorial/swagger_fastapi.gif){width="100%"}
+
+É claro que, no mundo real, a publicação das suas APIs não deveria ser local, mas a lógica será (quase) a mesma. Além disso, há **MUITOS MAIS RECURSOS** no desenvolvimento de APIs, então meu conselho seria ler a documentação do [plumber](https://www.rplumber.io/) e do [FastAPI](https://fastapi.tiangolo.com/) para aprender mais sobre isso.
+
+
+## Chamando uma API
+
+A partir de agora, a solução deve estar disponível para **TODOS** no time, usem eles Python, R, etc. Agora as coisas vão ficar malucas, porque vamos chamar a API Python no R e a API R no Python!!! 😵
+
+**PS**: Mantenha as duas APIs rodando localmente!
+
+### Chamando uma API em R
+
+É muito simples chamar APIs usando R; para isso, vamos usar o pacote `httr`. Vamos instalá-lo:
+
+```{r, eval = FALSE}
+install.packages("httr")
+
+```
+
+Você se lembra que nossa API Python está rodando localmente (localhost) na porta 8080? Bem, isso e o tipo de solicitação (*GET*, neste caso) são as únicas informações de que precisamos para chamá-la pelo R.
+
+
+```{r, eval = FALSE}
+library(httr)
+
+python_request <- GET('http://localhost:8080/sum_py?x=1&y=1')
+
+python_result <- content(python_request)
+
+python_result
+
+```
+
+```{r, eval = TRUE, echo = FALSE}
+2
+
+```
+
+### Chamando uma API em Python
+
+Vamos fazer o mesmo, mas desta vez vamos chamar a API R pelo Python! Para isso, será necessário instalar o pacote `requests`.
+
+```{bash, eval = FALSE}
+$ pip install requests
+
+```
+
+Nossa API R também está rodando em localhost, mas na porta 8000. Novamente, isso e o tipo de solicitação (*GET*, neste caso) são as únicas informações de que precisamos para chamá-la pelo Python. 
+
+```{python, eval = FALSE}
+import requests
+
+r_request = requests.get("http://localhost:8000/sum_r?x=1&y=1")
+
+print(r_request.json())
+
+```
+
+```{python, eval = TRUE, echo = FALSE}
+[2]
+```
+
+
+## Isso é tudo
+
+Há **MUITO MAIS** a discutir quando falamos de APIs/publicação/chamadas/solicitações, mas a ideia era simplificar, demonstrar as possibilidades e **ACABAR COM A BRIGA** entre R e Python 😆. Acredito que este post seja um bom exemplo de como integrar as duas linguagens (COMO UM PROFISSIONAL), porque, no fim, queremos **RESOLVER O PROBLEMA**!!! Realmente importa se você resolveu em Python ou R?
+
+Espero que alguém ache isso útil. Como sempre, seu feedback é muito bem-vindo; fique à vontade para entrar em contato comigo pelas redes sociais! 😄
+
+
