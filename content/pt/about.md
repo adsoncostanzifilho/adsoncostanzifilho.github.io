@@ -1,24 +1,44 @@
 ---
 title: "Sobre"
-description: "Sobre mim e sobre esta página"
+description: "Cientista de Dados Sênior — estatística, machine learning e R."
 ---
 
 ## Adson Costanzi Filho
 
-#### Cientista de Dados na [Laboratoria](https://www.laboratoria.la/)
+#### Cientista de Dados Sênior na [Evalueserve](https://www.evalueserve.com/)
 
-Sou estatístico formado pela UFRGS e atualmente trabalho como Cientista de Dados na Laboratoria. Amo tudo o que envolve o **mundo dos dados**; inclusive, passo boa parte do meu tempo livre lendo notícias sobre o assunto. Também tenho a sorte de ter ao meu lado vários outros malucos que adoram discutir comigo sobre ciência de dados, estatística e R. (Isso deixa tudo ainda mais divertido!)
+Sou estatístico formado pela Universidade Federal do Rio Grande do Sul (UFRGS), Brasil, com cerca de 6 anos de experiência em ambientes de ciência de dados. Meu trabalho é focado principalmente em **desenvolvimento de modelos**, **mineração de texto**, **análise de sentimentos**, **visualização de dados** e **criação de relatórios**.
 
-Claro que não sou feito apenas de estatística e ciência de dados: também adoro sair para tomar umas cervejas com minha esposa e amigos, tocar violão, jogar futebol e tomar cervejas (espera aí… acho que já mencionei isso… 🍺)
+Atualmente sou Cientista de Dados Sênior na Evalueserve, em Viña del Mar, Chile, atuando como consultor para um dos cinco maiores bancos dos EUA. Minhas responsabilidades incluem a medição de campanhas e eventos, a automação de processos e o desenvolvimento de modelos e soluções de machine learning aplicadas a marketing. Também atuo como líder técnico em projetos internos de ciência de dados, como NLP, AutoML, treinamentos de R e monitoramento automatizado de modelos.
 
-Sinta-se à vontade para entrar em contato comigo pelas redes sociais, estou sempre disposto a discutir estatística, ciência de dados e R!
+Sou um membro ativo da comunidade R e o desenvolvedor/mantenedor do pacote [CSGo](https://cran.r-project.org/web/packages/CSGo/index.html), hospedado no CRAN, que extrai dados da API da Steam para o Counter-Strike: Global Offensive. Você pode encontrar mais projetos dos quais participo na minha página pessoal e no meu [GitHub](https://github.com/adsoncostanzifilho).
 
 <img src="/img/about/eu_fun2.jpg" alt="Adson Costanzi Filho" style="width: 50%; height: auto; display: block; margin: 0 auto;">
 
----
+## Experiência
 
-## Sobre esta página
+- **Cientista de Dados Sênior** — [Evalueserve](https://www.evalueserve.com/), Viña del Mar, Chile (jan. 2021 – atual)
+- **Cientista de Dados** — Evalueserve, Viña del Mar, Chile (set. 2019 – jan. 2021)
+- **Especialista em Modelagem de Crédito** — [Renner S.A.](https://www.lojasrenner.com.br/), Porto Alegre, Brasil (jun. 2019 – ago. 2019)
+- **Analista de Ciência de Dados II** — [Agibank](https://www.agibank.com.br/), Porto Alegre, Brasil (dez. 2018 – jun. 2019)
+- **Analista de Ciência de Dados I** — Agibank, Porto Alegre, Brasil (jul. 2018 – dez. 2018)
+- **Analista de Prevenção a Fraudes** — Agibank, Porto Alegre, Brasil (ago. 2017 – jul. 2018)
+- **Assistente de Ciência de Dados** — [British American Tobacco](https://www.bat.com/), Porto Alegre, Brasil (ago. 2016 – ago. 2017)
+- **Estagiário de Ciência de Dados** — British American Tobacco, Porto Alegre, Brasil (nov. 2015 – ago. 2016)
 
-Criei esta página como um repositório de algumas das minhas ideias e projetos relacionados a **estatística**, **ciência de dados** e, claro, **R**!
+## Formação
 
-> Espero que você encontre coisas úteis por aqui..
+- **Bacharelado em Estatística** — Universidade Federal do Rio Grande do Sul (UFRGS), Porto Alegre, Brasil (2012 – 2017)
+- **Intercâmbio em Estatística** — Universidad de Valladolid, Valladolid, Espanha (2014 – 2015)
+
+## Habilidades técnicas
+
+R · Python · SQL · SAS · Git · VBA · JavaScript (iniciante)
+
+## Idiomas
+
+Português (nativo) · Inglês (avançado) · Espanhol (avançado)
+
+## Contato
+
+Sinta-se à vontade para entrar em contato pelo e-mail **adsoncostanzi32@gmail.com** ou pelas minhas redes sociais. Você também pode baixar meu [currículo completo (PDF)](/files/cv.pdf).

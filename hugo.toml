@@ -75,6 +75,9 @@ publishDir = "public"
   [[params.socialIcons]]
     name = "github"
     url = "https://github.com/adsoncostanzifilho"
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/adsoncostanzifilho/"
 
 # ------------------------------------------------------------------
 # English — default language, served at the site root

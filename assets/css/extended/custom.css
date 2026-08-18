@@ -3,6 +3,21 @@
    Loaded via PaperMod's assets/css/extended/ mechanism.
    ============================================================= */
 
+/* Brand/site title font — Roboto, like the previous (Universal) theme */
+.logo a,
+.home-info h1,
+.post-title,
+.page-header h1 {
+    font-family: "Roboto", system-ui, -apple-system, sans-serif;
+}
+
+/* Smaller cover images on list pages (home page and /blog/) */
+.post-entry .entry-cover,
+.first-entry .entry-cover {
+    max-width: 300px;
+    margin: 1rem auto;
+}
+
 /* Code blocks produced by knitr / blogdown (HTML method):
    <pre class="r"><code>...</code></pre> */
 .post-content pre,

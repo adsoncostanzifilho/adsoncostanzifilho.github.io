@@ -1,24 +1,44 @@
 ---
 title: "About"
-description: "About me and about this page"
+description: "Senior Data Scientist — statistics, machine learning and R."
 ---
 
 ## Adson Costanzi Filho
 
-#### Data Scientist at [Laboratoria](https://www.laboratoria.la/)
+#### Senior Data Scientist at [Evalueserve](https://www.evalueserve.com/)
 
-I am a statistician majored at UFRGS and currently I am working as a Data Scientist at Laboratoria. I really love everything related to the **data world**, indeed I spend a good part of my free time reading the news about it. I am also lucky to have near me a lot of other crazy guys who enjoy discussing with me about data science, statistics, and R. (It makes everything even more fun!)
+I am a statistician graduated from the Federal University of Rio Grande do Sul (UFRGS), Brazil, with about 6 years of experience working in data science environments. My work focuses mainly on **model development**, **text mining**, **sentiment analysis**, **data visualization**, and **report creation**.
 
-Sure I am not only made of statistics and data science, I also love to get out to drink some beers with my wife and friends, play my acoustic guitar, play football, drink some beers (wait a minute.. I think I already mentioned that.. 🍺)
+I am currently a Senior Data Scientist at Evalueserve, in Viña del Mar, Chile, working as a consultant for one of the five major US banks. My responsibilities include measuring campaigns and events, automating processes, and developing models and machine learning solutions applied to marketing. I also act as a technical leader in in-house data science projects such as NLP, AutoML, R trainings, and automated model monitoring.
 
-Feel free to get in touch with me over social media, I am always willing to discuss statistics, data science and R!
+I am an active member of the R community and the developer/maintainer of [CSGo](https://cran.r-project.org/web/packages/CSGo/index.html), an R package hosted on CRAN that pulls data from Steam's API for Counter-Strike: Global Offensive. You can find more projects I am involved in on my [GitHub](https://github.com/adsoncostanzifilho).
 
 <img src="/img/about/eu_fun2.jpg" alt="Adson Costanzi Filho" style="width: 50%; height: auto; display: block; margin: 0 auto;">
 
----
+## Experience
 
-## About this Page
+- **Senior Data Scientist** — [Evalueserve](https://www.evalueserve.com/), Viña del Mar, Chile (Jan 2021 – present)
+- **Data Scientist** — Evalueserve, Viña del Mar, Chile (Sep 2019 – Jan 2021)
+- **Credit Modeling Specialist** — [Renner S.A.](https://www.lojasrenner.com.br/), Porto Alegre, Brazil (Jun 2019 – Aug 2019)
+- **Data Scientist Analyst II** — [Agibank](https://www.agibank.com.br/), Porto Alegre, Brazil (Dec 2018 – Jun 2019)
+- **Data Scientist Analyst I** — Agibank, Porto Alegre, Brazil (Jul 2018 – Dec 2018)
+- **Fraud Prevention Analyst** — Agibank, Porto Alegre, Brazil (Aug 2017 – Jul 2018)
+- **Data Scientist Assistant** — [British American Tobacco](https://www.bat.com/), Porto Alegre, Brazil (Aug 2016 – Aug 2017)
+- **Data Scientist Intern** — British American Tobacco, Porto Alegre, Brazil (Nov 2015 – Aug 2016)
 
-I created this page as a repository of some of my ideas and projects related to **statistics**, **data science**, and, of course, **R**!
+## Education
 
-> I hope you find some things useful here..
+- **B.Sc. in Statistics** — Federal University of Rio Grande do Sul (UFRGS), Porto Alegre, Brazil (2012 – 2017)
+- **Exchange program in Statistics** — Universidad de Valladolid, Valladolid, Spain (2014 – 2015)
+
+## Technical skills
+
+R · Python · SQL · SAS · Git · VBA · JavaScript (beginner)
+
+## Languages
+
+Portuguese (native) · English (advanced) · Spanish (advanced)
+
+## Contact
+
+Feel free to reach out at **adsoncostanzi32@gmail.com** or through my social links. You can also download my [full CV (PDF)](/files/cv.pdf).

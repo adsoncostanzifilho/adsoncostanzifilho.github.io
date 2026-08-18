@@ -1,24 +1,44 @@
 ---
 title: "Acerca"
-description: "Acerca de mí y de esta página"
+description: "Científico de Datos Senior — estadística, machine learning y R."
 ---
 
 ## Adson Costanzi Filho
 
-#### Científico de Datos en [Laboratoria](https://www.laboratoria.la/)
+#### Científico de Datos Senior en [Evalueserve](https://www.evalueserve.com/)
 
-Soy estadístico graduado en la UFRGS y actualmente trabajo como Científico de Datos en Laboratoria. Amo todo lo relacionado con el **mundo de los datos**; de hecho, paso buena parte de mi tiempo libre leyendo noticias sobre el tema. También tengo la suerte de tener cerca a muchos otros locos que disfrutan discutiendo conmigo sobre ciencia de datos, estadística y R. (¡Eso lo hace todo aún más divertido!)
+Soy estadístico graduado en la Universidad Federal de Rio Grande do Sul (UFRGS), Brasil, con cerca de 6 años de experiencia en entornos de ciencia de datos. Mi trabajo se centra principalmente en el **desarrollo de modelos**, la **minería de texto**, el **análisis de sentimientos**, la **visualización de datos** y la **creación de informes**.
 
-Claro que no estoy hecho solo de estadística y ciencia de datos: también me encanta salir a tomar unas cervezas con mi esposa y amigos, tocar la guitarra acústica, jugar al fútbol y tomar cervezas (un momento… creo que ya lo mencioné… 🍺)
+Actualmente soy Científico de Datos Senior en Evalueserve, en Viña del Mar, Chile, trabajando como consultor para uno de los cinco grandes bancos de EE. UU. Mis responsabilidades incluyen la medición de campañas y eventos, la automatización de procesos y el desarrollo de modelos y soluciones de machine learning aplicadas a marketing. También actúo como líder técnico en proyectos internos de ciencia de datos como NLP, AutoML, formaciones de R y monitoreo automatizado de modelos.
 
-No dudes en ponerte en contacto conmigo a través de las redes sociales, siempre estoy dispuesto a discutir sobre estadística, ciencia de datos y R.
+Soy un miembro activo de la comunidad de R y el desarrollador/mantenedor del paquete [CSGo](https://cran.r-project.org/web/packages/CSGo/index.html), alojado en CRAN, que extrae datos de la API de Steam para Counter-Strike: Global Offensive. Puedes encontrar más proyectos en los que participo en mi [GitHub](https://github.com/adsoncostanzifilho).
 
 <img src="/img/about/eu_fun2.jpg" alt="Adson Costanzi Filho" style="width: 50%; height: auto; display: block; margin: 0 auto;">
 
----
+## Experiencia
 
-## Acerca de esta página
+- **Científico de Datos Senior** — [Evalueserve](https://www.evalueserve.com/), Viña del Mar, Chile (ene. 2021 – actualidad)
+- **Científico de Datos** — Evalueserve, Viña del Mar, Chile (sep. 2019 – ene. 2021)
+- **Especialista en Modelado de Crédito** — [Renner S.A.](https://www.lojasrenner.com.br/), Porto Alegre, Brasil (jun. 2019 – ago. 2019)
+- **Analista de Ciencia de Datos II** — [Agibank](https://www.agibank.com.br/), Porto Alegre, Brasil (dic. 2018 – jun. 2019)
+- **Analista de Ciencia de Datos I** — Agibank, Porto Alegre, Brasil (jul. 2018 – dic. 2018)
+- **Analista de Prevención de Fraudes** — Agibank, Porto Alegre, Brasil (ago. 2017 – jul. 2018)
+- **Asistente de Ciencia de Datos** — [British American Tobacco](https://www.bat.com/), Porto Alegre, Brasil (ago. 2016 – ago. 2017)
+- **Practicante de Ciencia de Datos** — British American Tobacco, Porto Alegre, Brasil (nov. 2015 – ago. 2016)
 
-Creé esta página como un repositorio de algunas de mis ideas y proyectos relacionados con la **estadística**, la **ciencia de datos** y, por supuesto, **R**.
+## Educación
 
-> Espero que encuentres cosas útiles aquí..
+- **Licenciatura en Estadística** — Universidad Federal de Rio Grande do Sul (UFRGS), Porto Alegre, Brasil (2012 – 2017)
+- **Intercambio en Estadística** — Universidad de Valladolid, Valladolid, España (2014 – 2015)
+
+## Habilidades técnicas
+
+R · Python · SQL · SAS · Git · VBA · JavaScript (principiante)
+
+## Idiomas
+
+Portugués (nativo) · Inglés (avanzado) · Español (avanzado)
+
+## Contacto
+
+No dudes en ponerte en contacto por correo a **adsoncostanzi32@gmail.com** o a través de mis redes sociales. También puedes descargar mi [currículum completo (PDF)](/files/cv.pdf).
