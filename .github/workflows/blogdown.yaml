@@ -34,8 +34,10 @@ jobs:
 
       - name: Install R packages
         # blogdown: site builder; reticulate: runs the python chunks;
-        # dplyr/tidyr/stringr/kableExtra: used by executed chunks in the posts
-        run: Rscript -e 'install.packages(c("blogdown", "reticulate", "dplyr", "tidyr", "stringr", "kableExtra"), repos = "https://cloud.r-project.org")'
+        # dplyr/tidyr/stringr/kableExtra: used by executed chunks in the posts.
+        # RSPM (ubuntu-24.04/noble) provides prebuilt binaries, so this step
+        # takes ~1 minute instead of compiling everything from source.
+        run: Rscript -e 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"), pkgType = "binary"); install.packages(c("blogdown", "reticulate", "dplyr", "tidyr", "stringr", "kableExtra"))'
 
       - name: Install Hugo
         # Version matches options(blogdown.hugo.version) in .Rprofile
