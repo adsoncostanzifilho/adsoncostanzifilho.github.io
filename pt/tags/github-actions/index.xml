@@ -13,8 +13,7 @@
       <link>https://adsoncostanzifilho.github.io/pt/blog/github-actions-for-r-users/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/pt/blog/github-actions-for-r-users/</guid>
-      <description>&lt;div id=&#34;motivação&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivação&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;motivação&#34;&gt;Motivação&lt;/h2&gt;
 &lt;p&gt;Recentemente, alguns amigos me apresentaram ao &lt;strong&gt;GitHub Actions&lt;/strong&gt; e ao quanto ele poderia me ajudar a executar tarefas como: publicar meus &lt;em&gt;Shiny Apps&lt;/em&gt;, publicar este &lt;em&gt;Blogdown&lt;/em&gt;, realizar testes automatizados em pacotes, atualizar dados e muito mais. Então, decidi experimentar, e foi tão simples e me poupou tantas horas de trabalho que decidi escrever este post explicando como desenvolvedores R podem fazer bom uso dessa ferramenta incrível.&lt;/p&gt;
 &lt;p&gt;Primeiro, as referências que usei para começar no &lt;em&gt;GitHub Actions&lt;/em&gt;:&lt;/p&gt;</description>
     </item>

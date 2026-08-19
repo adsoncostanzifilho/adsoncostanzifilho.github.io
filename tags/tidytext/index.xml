@@ -13,14 +13,11 @@
       <link>https://adsoncostanzifilho.github.io/blog/text-mining-tool/</link>
       <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/blog/text-mining-tool/</guid>
-      <description>&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Overview&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/TextMining&#34;&gt;adsoncostanzifilho/TextMining&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Text Mining Tool&lt;/strong&gt; is an interface developed in R using mainly the shiny, tidytext and rtweet packages. The idea of this interface is to allow to you make your own text analysis using live Twitter data.&lt;/p&gt;
-&lt;p&gt;The tool is online on shinyapps’ repository at the address &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/TextMining/&#34; class=&#34;uri&#34;&gt;https://adsoncostanzi.shinyapps.io/TextMining/&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-does-this-interface-work&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;How does this interface work?&lt;/h2&gt;
+&lt;p&gt;The tool is online on shinyapps&amp;rsquo; repository at the address &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/TextMining/&#34;&gt;https://adsoncostanzi.shinyapps.io/TextMining/&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;how-does-this-interface-work&#34;&gt;How does this interface work?&lt;/h2&gt;
 &lt;p&gt;The interface is divided into 5 tabs presented in the menu on the left: Home , Search , Word Cloud , Sentiment Analysis and, Topic Modeling .&lt;/p&gt;</description>
     </item>
   </channel>

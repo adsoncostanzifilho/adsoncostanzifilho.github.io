@@ -13,10 +13,9 @@
       <link>https://adsoncostanzifilho.github.io/blog/package-development-tutorial/</link>
       <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/blog/package-development-tutorial/</guid>
-      <description>&lt;div id=&#34;motivation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivation&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “&lt;em&gt;I heard it from someone, but I don’t remember who..&lt;/em&gt;”&lt;/p&gt;
+&lt;p&gt;If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. &amp;ldquo;&lt;em&gt;I heard it from someone, but I don&amp;rsquo;t remember who..&lt;/em&gt;&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Recently I experienced the whole flow to create a new R package with the help of amazing packages like &lt;code&gt;devtools&lt;/code&gt;, &lt;code&gt;usethis&lt;/code&gt;, &lt;code&gt;pkgdown&lt;/code&gt;, and &lt;code&gt;roxygen2&lt;/code&gt;. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).&lt;/p&gt;</description>
     </item>

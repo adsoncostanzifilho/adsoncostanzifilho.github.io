@@ -13,10 +13,9 @@
       <link>https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/</link>
       <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/</guid>
-      <description>&lt;div id=&#34;motivación&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivación&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;motivación&#34;&gt;Motivación&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Si estás usando un script más de 3 veces, es hora de crear una función, y si estás usando una función en 3 proyectos diferentes, es hora de crear un paquete. “&lt;em&gt;Lo escuché de alguien, pero no recuerdo de quién..&lt;/em&gt;”&lt;/p&gt;
+&lt;p&gt;Si estás usando un script más de 3 veces, es hora de crear una función, y si estás usando una función en 3 proyectos diferentes, es hora de crear un paquete. &amp;ldquo;&lt;em&gt;Lo escuché de alguien, pero no recuerdo de quién..&lt;/em&gt;&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Recientemente experimenté todo el flujo para crear un nuevo paquete de R con la ayuda de paquetes increíbles como &lt;code&gt;devtools&lt;/code&gt;, &lt;code&gt;usethis&lt;/code&gt;, &lt;code&gt;pkgdown&lt;/code&gt; y &lt;code&gt;roxygen2&lt;/code&gt;. Por eso decidí escribir sobre ello mientras todavía recuerdo todos los pasos necesarios para hacer que tus funciones locales estén disponibles para la comunidad de R (CRAN y Github).&lt;/p&gt;</description>
     </item>

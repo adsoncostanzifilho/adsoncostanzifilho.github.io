@@ -13,17 +13,15 @@
       <link>https://adsoncostanzifilho.github.io/es/blog/why-not-both/</link>
       <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/es/blog/why-not-both/</guid>
-      <description>&lt;div id=&#34;motivación&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivación&lt;/h2&gt;
-&lt;p&gt;Creo que la discusión más común en los equipos de ciencia de datos es R vs Python. Me he visto en algunas de estas discusiones un par de veces y mi posición es siempre “&lt;em&gt;¿Por qué no usar ambos?&lt;/em&gt;”. La idea de este post no es comparar R vs Python, sino mostrar lo fácil que es &lt;strong&gt;integrar ambos lenguajes usando APIs&lt;/strong&gt; (COMO UN PROFESIONAL); de esta manera podemos usar lo mejor de cada uno. Además, el post no se centrará en la publicación y la estructura necesarias para poner las APIs en línea; en su lugar, lo demostraré localmente (para que sea simple).&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;motivación&#34;&gt;Motivación&lt;/h2&gt;
+&lt;p&gt;Creo que la discusión más común en los equipos de ciencia de datos es R vs Python. Me he visto en algunas de estas discusiones un par de veces y mi posición es siempre &amp;ldquo;&lt;em&gt;¿Por qué no usar ambos?&lt;/em&gt;&amp;rdquo;. La idea de este post no es comparar R vs Python, sino mostrar lo fácil que es &lt;strong&gt;integrar ambos lenguajes usando APIs&lt;/strong&gt; (COMO UN PROFESIONAL); de esta manera podemos usar lo mejor de cada uno. Además, el post no se centrará en la publicación y la estructura necesarias para poner las APIs en línea; en su lugar, lo demostraré localmente (para que sea simple).&lt;/p&gt;</description>
     </item>
     <item>
       <title>GitHub Actions para Usuarios de R</title>
       <link>https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/</guid>
-      <description>&lt;div id=&#34;motivación&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivación&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;motivación&#34;&gt;Motivación&lt;/h2&gt;
 &lt;p&gt;Recientemente algunos amigos me presentaron &lt;strong&gt;GitHub Actions&lt;/strong&gt; y cómo podría ayudarme a ejecutar tareas como: publicar mis &lt;em&gt;Shiny Apps&lt;/em&gt;, publicar este &lt;em&gt;Blogdown&lt;/em&gt;, realizar pruebas automáticas en paquetes, actualizar datos y más. Así que decidí probarlo, y fue tan simple y me ahorró tantas horas de trabajo que decidí escribir este post explicando cómo los desarrolladores de R pueden hacer buen uso de esta increíble herramienta.&lt;/p&gt;
 &lt;p&gt;Primero, las referencias que usé para empezar con &lt;em&gt;GitHub Actions&lt;/em&gt;:&lt;/p&gt;</description>
     </item>
@@ -32,10 +30,9 @@
       <link>https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/</link>
       <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/</guid>
-      <description>&lt;div id=&#34;motivación&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivación&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;motivación&#34;&gt;Motivación&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Si estás usando un script más de 3 veces, es hora de crear una función, y si estás usando una función en 3 proyectos diferentes, es hora de crear un paquete. “&lt;em&gt;Lo escuché de alguien, pero no recuerdo de quién..&lt;/em&gt;”&lt;/p&gt;
+&lt;p&gt;Si estás usando un script más de 3 veces, es hora de crear una función, y si estás usando una función en 3 proyectos diferentes, es hora de crear un paquete. &amp;ldquo;&lt;em&gt;Lo escuché de alguien, pero no recuerdo de quién..&lt;/em&gt;&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Recientemente experimenté todo el flujo para crear un nuevo paquete de R con la ayuda de paquetes increíbles como &lt;code&gt;devtools&lt;/code&gt;, &lt;code&gt;usethis&lt;/code&gt;, &lt;code&gt;pkgdown&lt;/code&gt; y &lt;code&gt;roxygen2&lt;/code&gt;. Por eso decidí escribir sobre ello mientras todavía recuerdo todos los pasos necesarios para hacer que tus funciones locales estén disponibles para la comunidad de R (CRAN y Github).&lt;/p&gt;</description>
     </item>
@@ -44,9 +41,8 @@
       <link>https://adsoncostanzifilho.github.io/es/blog/blogdown-tutorial/</link>
       <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/es/blog/blogdown-tutorial/</guid>
-      <description>&lt;div id=&#34;motivación&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivación&lt;/h2&gt;
-&lt;p&gt;Se me ocurrió escribir una “guía paso a paso” sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;libro de blogdown&lt;/a&gt; por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera…&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;motivación&#34;&gt;Motivación&lt;/h2&gt;
+&lt;p&gt;Se me ocurrió escribir una &amp;ldquo;guía paso a paso&amp;rdquo; sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;libro de blogdown&lt;/a&gt; por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera&amp;hellip;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

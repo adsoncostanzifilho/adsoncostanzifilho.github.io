@@ -13,9 +13,8 @@
       <link>https://adsoncostanzifilho.github.io/blog/why-not-both/</link>
       <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/blog/why-not-both/</guid>
-      <description>&lt;div id=&#34;motivation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivation&lt;/h2&gt;
-&lt;p&gt;I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always “&lt;em&gt;Why not use both?&lt;/em&gt;”. The idea of this post is not to compare R vs Python but to show how easy it is to &lt;strong&gt;integrate both languages using APIs&lt;/strong&gt; (LIKE A PRO), this way we can use the best of each. Also, the post won’t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always &amp;ldquo;&lt;em&gt;Why not use both?&lt;/em&gt;&amp;rdquo;. The idea of this post is not to compare R vs Python but to show how easy it is to &lt;strong&gt;integrate both languages using APIs&lt;/strong&gt; (LIKE A PRO), this way we can use the best of each. Also, the post won&amp;rsquo;t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

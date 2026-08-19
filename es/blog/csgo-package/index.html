@@ -9,27 +9,20 @@
 <meta name="keywords" content="CSGo, httr, jsonlite">
 <meta name="description" content="
 
-
-
-
 Resumen
 GitHub: adsoncostanzifilho/CSGo
 El paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.
-
-
 Instalación
 Para obtener la versión actual publicada desde CRAN:
-install.packages(&quot;CSGo&quot;)
+install.packages(&#34;CSGo&#34;)
 Para obtener la versión de desarrollo actual desde GitHub:
-# install.packages(&quot;devtools&quot;)
-devtools::install_github(&quot;adsoncostanzifilho/CSGo&quot;)
-
-
+# install.packages(&#34;devtools&#34;)
+devtools::install_github(&#34;adsoncostanzifilho/CSGo&#34;)
 Ejemplo
-El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(&#34;auth&#34;, package = &#34;CSGo&#34;), o haz clic aquí.">
+El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(&quot;auth&quot;, package = &quot;CSGo&quot;), o haz clic aquí.">
 <meta name="author" content="Adson Costanzi Filho">
 <link rel="canonical" href="https://adsoncostanzifilho.github.io/es/blog/csgo-package/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.b9e2a4b151eacdcb2ffce6b326e52319ad287d3b68b8e5acc871cd05b7ba535b.css" integrity="sha256-ueKksVHqzcsv/OazJuUjGa0ofTtouOWsyHHNBbe6U1s=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.5bd05bdc72f0fac6316730b0ef7adc8a1c6241f54b5f389801d48a08f9907cff.css" integrity="sha256-W9Bb3HLw&#43;sYxZzCw73rcihxiQfVLXziYAdSKCPmQfP8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://adsoncostanzifilho.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://adsoncostanzifilho.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="https://adsoncostanzifilho.github.io/favicon.ico">
@@ -141,11 +134,11 @@ install.packages(&#34;CSGo&#34;) Para obtener la versión de desarrollo actual d
   "@type": "BlogPosting",
   "headline": "Paquete CSGo",
   "name": "Paquete CSGo",
-  "description": " Resumen GitHub: adsoncostanzifilho/CSGo\nEl paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.\nInstalación Para obtener la versión actual publicada desde CRAN:\ninstall.packages(\u0026quot;CSGo\u0026quot;) Para obtener la versión de desarrollo actual desde GitHub:\n# install.packages(\u0026quot;devtools\u0026quot;) devtools::install_github(\u0026quot;adsoncostanzifilho/CSGo\u0026quot;) Ejemplo El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(\"auth\", package = \"CSGo\"), o haz clic aquí.\n",
+  "description": " Resumen GitHub: adsoncostanzifilho/CSGo\nEl paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.\nInstalación Para obtener la versión actual publicada desde CRAN:\ninstall.packages(\u0026#34;CSGo\u0026#34;) Para obtener la versión de desarrollo actual desde GitHub:\n# install.packages(\u0026#34;devtools\u0026#34;) devtools::install_github(\u0026#34;adsoncostanzifilho/CSGo\u0026#34;) Ejemplo El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(\u0026quot;auth\u0026quot;, package = \u0026quot;CSGo\u0026quot;), o haz clic aquí.\n",
   "keywords": [
     "CSGo", "httr", "jsonlite"
   ],
-  "articleBody": " Resumen GitHub: adsoncostanzifilho/CSGo\nEl paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.\nInstalación Para obtener la versión actual publicada desde CRAN:\ninstall.packages(\"CSGo\") Para obtener la versión de desarrollo actual desde GitHub:\n# install.packages(\"devtools\") devtools::install_github(\"adsoncostanzifilho/CSGo\") Ejemplo El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(\"auth\", package = \"CSGo\"), o haz clic aquí.\nAhora que ya tienes tu API Key, deberías poder recolectar tus propios datos de CSGo, así como los datos de tus amigos. ¡Espero que a mi amigo Rodrigo no le importe que juguemos con sus datos (él es el ‘76561198263364899’)!\nPrimero recolectemos sus estadísticas de CSGo:\nlibrary(CSGo) # to get the statistics of the user 76561198263364899 rodrigo_stats \u003c- get_stats_user(api_key = 'your_key', user_id = '76561198263364899') Filtremos el data frame obtenido por “kills” y “weapon” para crear un análisis de muertes por tipo de arma.\nlibrary(dplyr) library(stringr) rodrigo_weapon_kill \u003c- rodrigo_stats %\u003e% filter( str_detect(name, 'kill'), type == ' weapon info' ) %\u003e% arrange(desc(value)) ¡Ahora echemos un vistazo al gráfico!\nPD: Para hacer el gráfico aún más bonito, recomiendo obtener la fuente “Quantico” de Google fonts usando el paquete showtext!\nlibrary(ggplot2) library(showtext) ## Loading Google fonts (https://fonts.google.com/) font_add_google(\"Quantico\", \"quantico\") rodrigo_weapon_kill %\u003e% top_n(n = 10, wt = value) %\u003e% ggplot(aes(x = name_match, y = value, fill = name_match)) + geom_col() + ggtitle(\"KILLS BY WEAPON\") + ylab(\"Number of Kills\") + xlab(\"\") + labs(fill = \"Weapon Name\") + theme_csgo(text = element_text(family = \"quantico\")) + scale_fill_csgo() Entonces, estas son las 10 mejores armas por muertes, pero… ¿Qué pasa con la eficiencia? ¿Es la ak47 el arma más eficiente de Rodrigo? Primero, definamos “eficiencia”:\nkills_efficiency significa cuántos disparos hizo para matar (ej.: el 32% de los disparos matarán)\nhits_efficiency significa cuántos disparos para dar en el blanco; esto está más relacionado con la habilidad de Rodrigo con cada arma (ej.: el 35% de los disparos darán en el blanco).\nhits_to_kill significa cuántos impactos son necesarios para matar; esto está más relacionado con el poder/eficiencia del arma (ej.: el 91% de los impactos matarán).\nrodrigo_efficiency \u003c- rodrigo_stats %\u003e% filter( name_match %in% c(\"ak47\", \"aug\", \"awp\", \"fiveseven\", \"hkp2000\", \"m4a1\", \"mp7\", \"p90\", \"sg556\", \"xm1014\") ) %\u003e% mutate( stat_type = case_when( str_detect(name, \"shots\") ~ \"shots\", str_detect(name, \"hits\") ~ \"hits\", str_detect(name, \"kills\") ~ \"kills\" ) ) %\u003e% pivot_wider( names_from = stat_type, id_cols = name_match, values_from = value ) %\u003e% mutate( kills_efficiency = kills/shots*100, hits_efficiency = hits/shots*100, hits_to_kill = kills/hits*100 ) kbl(rodrigo_efficiency) %\u003e% kable_styling() name_match kills shots hits kills_efficiency hits_efficiency hits_to_kill fiveseven 1288 28187 5558 4.569482 19.71831 23.17380 xm1014 5611 205982 42541 2.724024 20.65278 13.18963 p90 3469 133273 20245 2.602928 15.19062 17.13510 awp 2051 6260 2235 32.763578 35.70288 91.76734 ak47 6969 154852 24823 4.500426 16.03014 28.07477 aug 2120 37949 8487 5.586445 22.36423 24.97938 hkp2000 1401 36975 6737 3.789047 18.22042 20.79561 sg556 1243 25091 4567 4.953968 18.20175 27.21699 mp7 1788 52657 10186 3.395560 19.34406 17.55350 m4a1 3526 81126 14687 4.346325 18.10394 24.00763 rodrigo_efficiency %\u003e% top_n(n = 10, wt = kills) %\u003e% ggplot(aes(x = name_match, size = shots)) + geom_point(aes(y = kills_efficiency, color = \"Kills Efficiency\")) + geom_point(aes(y = hits_efficiency, color = \"Hits Efficiency\")) + geom_point(aes(y = hits_to_kill, color = \"Hits to Kill\")) + ggtitle(\"WEAPON EFFICIENCY\") + ylab(\"Efficiency (%)\") + xlab(\"\") + labs(color = \"Efficiency Type\", size = \"Shots\") + theme_csgo( text = element_text(family = \"quantico\"), panel.grid.major.x = element_line(size = .1, color = \"black\",linetype = 2) ) + scale_color_csgo() En conclusión, le aconsejaría a Rodrigo usar la awp en sus próximas partidas, porque esta arma presentó la mejor eficiencia en términos de disparos para matar, disparos para dar en el blanco e impactos para matar. Pero definitivamente necesitamos más disparos con esta arma para ver si esta eficiencia se mantiene.. jajajaja\n",
+  "articleBody": " Resumen GitHub: adsoncostanzifilho/CSGo\nEl paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.\nInstalación Para obtener la versión actual publicada desde CRAN:\ninstall.packages(\"CSGo\") Para obtener la versión de desarrollo actual desde GitHub:\n# install.packages(\"devtools\") devtools::install_github(\"adsoncostanzifilho/CSGo\") Ejemplo El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(\"auth\", package = \"CSGo\"), o haz clic aquí.\nAhora que ya tienes tu API Key, deberías poder recolectar tus propios datos de CSGo, así como los datos de tus amigos. ¡Espero que a mi amigo Rodrigo no le importe que juguemos con sus datos (él es el ‘76561198263364899’)!\nPrimero recolectemos sus estadísticas de CSGo:\nlibrary(CSGo) # to get the statistics of the user 76561198263364899 rodrigo_stats \u003c- get_stats_user(api_key = 'your_key', user_id = '76561198263364899') Filtremos el data frame obtenido por “kills” y “weapon” para crear un análisis de muertes por tipo de arma.\nlibrary(dplyr) library(stringr) rodrigo_weapon_kill \u003c- rodrigo_stats %\u003e% filter( str_detect(name, 'kill'), type == ' weapon info' ) %\u003e% arrange(desc(value)) ¡Ahora echemos un vistazo al gráfico!\nPD: Para hacer el gráfico aún más bonito, recomiendo obtener la fuente “Quantico” de Google fonts usando el paquete showtext!\nlibrary(ggplot2) library(showtext) ## Loading Google fonts (https://fonts.google.com/) font_add_google(\"Quantico\", \"quantico\") rodrigo_weapon_kill %\u003e% top_n(n = 10, wt = value) %\u003e% ggplot(aes(x = name_match, y = value, fill = name_match)) + geom_col() + ggtitle(\"KILLS BY WEAPON\") + ylab(\"Number of Kills\") + xlab(\"\") + labs(fill = \"Weapon Name\") + theme_csgo(text = element_text(family = \"quantico\")) + scale_fill_csgo() Entonces, estas son las 10 mejores armas por muertes, pero… ¿Qué pasa con la eficiencia? ¿Es la ak47 el arma más eficiente de Rodrigo? Primero, definamos “eficiencia”:\nkills_efficiency significa cuántos disparos hizo para matar (ej.: el 32% de los disparos matarán)\nhits_efficiency significa cuántos disparos para dar en el blanco; esto está más relacionado con la habilidad de Rodrigo con cada arma (ej.: el 35% de los disparos darán en el blanco).\nhits_to_kill significa cuántos impactos son necesarios para matar; esto está más relacionado con el poder/eficiencia del arma (ej.: el 91% de los impactos matarán).\nrodrigo_efficiency \u003c- rodrigo_stats %\u003e% filter( name_match %in% c(\"ak47\", \"aug\", \"awp\", \"fiveseven\", \"hkp2000\", \"m4a1\", \"mp7\", \"p90\", \"sg556\", \"xm1014\") ) %\u003e% mutate( stat_type = case_when( str_detect(name, \"shots\") ~ \"shots\", str_detect(name, \"hits\") ~ \"hits\", str_detect(name, \"kills\") ~ \"kills\" ) ) %\u003e% pivot_wider( names_from = stat_type, id_cols = name_match, values_from = value ) %\u003e% mutate( kills_efficiency = kills/shots*100, hits_efficiency = hits/shots*100, hits_to_kill = kills/hits*100 ) kbl(rodrigo_efficiency) %\u003e% kable_styling() name_match kills shots hits kills_efficiency hits_efficiency hits_to_kill fiveseven 1288 28187 5558 4.569482 19.71831 23.17380 xm1014 5611 205982 42541 2.724024 20.65278 13.18963 p90 3469 133273 20245 2.602928 15.19062 17.13510 awp 2051 6260 2235 32.763578 35.70288 91.76734 ak47 6969 154852 24823 4.500426 16.03014 28.07477 aug 2120 37949 8487 5.586445 22.36423 24.97938 hkp2000 1401 36975 6737 3.789047 18.22042 20.79561 sg556 1243 25091 4567 4.953968 18.20175 27.21699 mp7 1788 52657 10186 3.395560 19.34406 17.55350 m4a1 3526 81126 14687 4.346325 18.10394 24.00763 rodrigo_efficiency %\u003e% top_n(n = 10, wt = kills) %\u003e% ggplot(aes(x = name_match, size = shots)) + geom_point(aes(y = kills_efficiency, color = \"Kills Efficiency\")) + geom_point(aes(y = hits_efficiency, color = \"Hits Efficiency\")) + geom_point(aes(y = hits_to_kill, color = \"Hits to Kill\")) + ggtitle(\"WEAPON EFFICIENCY\") + ylab(\"Efficiency (%)\") + xlab(\"\") + labs(color = \"Efficiency Type\", size = \"Shots\") + theme_csgo( text = element_text(family = \"quantico\"), panel.grid.major.x = element_line(size = .1, color = \"black\",linetype = 2) ) + scale_color_csgo() En conclusión, le aconsejaría a Rodrigo usar la **awp** en sus próximas partidas, porque esta arma presentó la mejor eficiencia en términos de **disparos para matar**, **disparos para dar en el blanco** e **impactos para matar**. Pero definitivamente necesitamos más disparos con esta arma para ver si esta eficiencia se mantiene.. jajajaja ",
   "wordCount" : "660",
   "inLanguage": "es",
   "image":"https://adsoncostanzifilho.github.io/img/banners/csgo_package.png","datePublished": "2021-03-25T00:00:00Z",
@@ -276,381 +269,224 @@ install.packages(&#34;CSGo&#34;) Para obtener la versión de desarrollo actual d
 
     <div class="inner"><ul>
             <li>
-                <a href="#" aria-label="Resumen">Resumen</a></li>
+                <a href="#resumen" aria-label="Resumen">Resumen</a></li>
             <li>
-                <a href="#" aria-label="Instalación">Instalación</a></li>
+                <a href="#instalaci%c3%b3n" aria-label="Instalación">Instalación</a></li>
             <li>
-                <a href="#" aria-label="Ejemplo">Ejemplo</a>
+                <a href="#ejemplo" aria-label="Ejemplo">Ejemplo</a>
             </li>
         </ul>
     </div>
 </details>
 
-  <div class="post-content md-content">
-<script src="https://adsoncostanzifilho.github.io/es/blog/csgo-package/index_files/kePrint/kePrint.js"></script>
+  <div class="post-content md-content"><script src="https://adsoncostanzifilho.github.io/es/blog/csgo-package/index_files/kePrint/kePrint.js"></script>
 <link href="https://adsoncostanzifilho.github.io/es/blog/csgo-package/index_files/lightable/lightable.css" rel="stylesheet" />
-
-
-<div id="resumen" class="section level2">
-<h2>Resumen</h2>
+<h2 id="resumen">Resumen<a hidden class="anchor" aria-hidden="true" href="#resumen">#</a></h2>
 <p><strong>GitHub:</strong> <a href="https://github.com/adsoncostanzifilho/CSGo">adsoncostanzifilho/CSGo</a></p>
 <p>El paquete <strong>CSGo</strong> es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el <a href="https://developer.valvesoftware.com/wiki/Steam_Web_API">sitio web de documentación de Steam</a> y la <a href="https://adsoncostanzifilho.github.io/CSGo/">Página del Paquete</a> para más información.</p>
-</div>
-<div id="instalación" class="section level2">
-<h2>Instalación</h2>
+<h2 id="instalación">Instalación<a hidden class="anchor" aria-hidden="true" href="#instalación">#</a></h2>
 <p>Para obtener la versión actual publicada desde <a href="https://cran.r-project.org/web/packages/CSGo/index.html">CRAN</a>:</p>
-<pre class="r"><code>install.packages(&quot;CSGo&quot;)</code></pre>
-<p>Para obtener la versión de desarrollo actual desde <a href="https://github.com/adsoncostanzifilho/CSGo">GitHub</a>:</p>
-<pre class="r"><code># install.packages(&quot;devtools&quot;)
-devtools::install_github(&quot;adsoncostanzifilho/CSGo&quot;)</code></pre>
-</div>
-<div id="ejemplo" class="section level2">
-<h2>Ejemplo</h2>
-<p>El primer paso para usar el paquete <code>CSGo</code> es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R <code>vignette("auth", package = "CSGo")</code>, o haz clic <a href="https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html">aquí</a>.</p>
-<p>Ahora que ya tienes tu <em>API Key</em>, deberías poder recolectar tus propios datos de CSGo, así como los datos de tus amigos. ¡Espero que a mi amigo <a href="https://github.com/Rodrigo-Fontoura">Rodrigo</a> no le importe que juguemos con sus datos (él es el ‘76561198263364899’)!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;CSGo&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Para obtener la versión de desarrollo actual desde <a href="https://github.com/adsoncostanzifilho/CSGo">GitHub</a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># install.packages(&#34;devtools&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;adsoncostanzifilho/CSGo&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="ejemplo">Ejemplo<a hidden class="anchor" aria-hidden="true" href="#ejemplo">#</a></h2>
+<p>El primer paso para usar el paquete <code>CSGo</code> es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R <code>vignette(&quot;auth&quot;, package = &quot;CSGo&quot;)</code>, o haz clic <a href="https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html">aquí</a>.</p>
+<p>Ahora que ya tienes tu <em>API Key</em>, deberías poder recolectar tus propios datos de CSGo, así como los datos de tus amigos. ¡Espero que a mi amigo <a href="https://github.com/Rodrigo-Fontoura">Rodrigo</a> no le importe que juguemos con sus datos (él es el &lsquo;76561198263364899&rsquo;)!</p>
 <p>Primero recolectemos sus estadísticas de CSGo:</p>
-<pre class="r"><code>library(CSGo)
-
-# to get the statistics of the user 76561198263364899
-rodrigo_stats &lt;- get_stats_user(api_key = &#39;your_key&#39;, user_id = &#39;76561198263364899&#39;)</code></pre>
-<p>Filtremos el data frame obtenido por “kills” y “weapon” para crear un análisis de muertes por tipo de arma.</p>
-<pre class="r"><code>library(dplyr)
-library(stringr)
-
-rodrigo_weapon_kill &lt;- rodrigo_stats %&gt;%
-  filter(
-    str_detect(name, &#39;kill&#39;),
-    type == &#39; weapon info&#39;
-  ) %&gt;%
-  arrange(desc(value))</code></pre>
-<p>¡Ahora echemos un vistazo al gráfico!</p>
-<p><em>PD</em>: Para hacer el gráfico aún más bonito, recomiendo obtener la fuente “Quantico” de Google fonts usando el paquete <code>showtext</code>!</p>
-<pre class="r"><code>library(ggplot2)
-library(showtext)
-
-## Loading Google fonts (https://fonts.google.com/)
-font_add_google(&quot;Quantico&quot;, &quot;quantico&quot;)
-
-rodrigo_weapon_kill %&gt;%
-  top_n(n = 10, wt = value) %&gt;%
-  ggplot(aes(x = name_match, y = value, fill = name_match)) +
-  geom_col() +
-  ggtitle(&quot;KILLS BY WEAPON&quot;) +
-  ylab(&quot;Number of Kills&quot;) +
-  xlab(&quot;&quot;) +
-  labs(fill = &quot;Weapon Name&quot;) +
-  theme_csgo(text = element_text(family = &quot;quantico&quot;)) +
-  scale_fill_csgo()</code></pre>
-<p><img src="/img/csgo_package/kills_weapon.png" style="width:100.0%" /></p>
-<p>Entonces, estas son las 10 mejores armas por muertes, pero… ¿Qué pasa con la eficiencia? ¿Es la <strong>ak47</strong> el arma más eficiente de Rodrigo? Primero, definamos “eficiencia”:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">CSGo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># to get the statistics of the user 76561198263364899</span>
+</span></span><span class="line"><span class="cl"><span class="n">rodrigo_stats</span> <span class="o">&lt;-</span> <span class="nf">get_stats_user</span><span class="p">(</span><span class="n">api_key</span> <span class="o">=</span> <span class="s">&#39;your_key&#39;</span><span class="p">,</span> <span class="n">user_id</span> <span class="o">=</span> <span class="s">&#39;76561198263364899&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Filtremos el data frame obtenido por &ldquo;kills&rdquo; y &ldquo;weapon&rdquo; para crear un análisis de muertes por tipo de arma.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rodrigo_weapon_kill</span> <span class="o">&lt;-</span> <span class="n">rodrigo_stats</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">str_detect</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#39;kill&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">type</span> <span class="o">==</span> <span class="s">&#39; weapon info&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+</span></span></code></pre></div><p>¡Ahora echemos un vistazo al gráfico!</p>
+<p><em>PD</em>: Para hacer el gráfico aún más bonito, recomiendo obtener la fuente &ldquo;Quantico&rdquo; de Google fonts usando el paquete <code>showtext</code>!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">showtext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Loading Google fonts (https://fonts.google.com/)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">font_add_google</span><span class="p">(</span><span class="s">&#34;Quantico&#34;</span><span class="p">,</span> <span class="s">&#34;quantico&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rodrigo_weapon_kill</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">top_n</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">wt</span> <span class="o">=</span> <span class="n">value</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">name_match</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">value</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">name_match</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_col</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggtitle</span><span class="p">(</span><span class="s">&#34;KILLS BY WEAPON&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ylab</span><span class="p">(</span><span class="s">&#34;Number of Kills&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">xlab</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;Weapon Name&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_csgo</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">family</span> <span class="o">=</span> <span class="s">&#34;quantico&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_fill_csgo</span><span class="p">()</span>
+</span></span></code></pre></div><img src="/img/csgo_package/kills_weapon.png" alt="" style="width: 100%; height: auto;">
+<p>Entonces, estas son las 10 mejores armas por muertes, pero&hellip; ¿Qué pasa con la eficiencia? ¿Es la <strong>ak47</strong> el arma más eficiente de Rodrigo? Primero, definamos &ldquo;eficiencia&rdquo;:</p>
 <ul>
-<li><p><strong>kills_efficiency</strong> significa cuántos disparos hizo para matar (ej.: el 32% de los disparos matarán)</p></li>
-<li><p><strong>hits_efficiency</strong> significa cuántos disparos para dar en el blanco; esto está más relacionado con la habilidad de Rodrigo con cada arma (ej.: el 35% de los disparos darán en el blanco).</p></li>
-<li><p><strong>hits_to_kill</strong> significa cuántos impactos son necesarios para matar; esto está más relacionado con el poder/eficiencia del arma (ej.: el 91% de los impactos matarán).</p></li>
+<li>
+<p><strong>kills_efficiency</strong> significa cuántos disparos hizo para matar (ej.: el 32% de los disparos matarán)</p>
+</li>
+<li>
+<p><strong>hits_efficiency</strong> significa cuántos disparos para dar en el blanco; esto está más relacionado con la habilidad de Rodrigo con cada arma (ej.: el 35% de los disparos darán en el blanco).</p>
+</li>
+<li>
+<p><strong>hits_to_kill</strong> significa cuántos impactos son necesarios para matar; esto está más relacionado con el poder/eficiencia del arma (ej.: el 91% de los impactos matarán).</p>
+</li>
 </ul>
-<pre class="r"><code>rodrigo_efficiency &lt;- rodrigo_stats %&gt;%
-  filter(
-    name_match %in% c(&quot;ak47&quot;, &quot;aug&quot;, &quot;awp&quot;, &quot;fiveseven&quot;,
-                      &quot;hkp2000&quot;, &quot;m4a1&quot;, &quot;mp7&quot;, &quot;p90&quot;,
-                      &quot;sg556&quot;, &quot;xm1014&quot;)
-  ) %&gt;%
-  mutate(
-    stat_type = case_when(
-      str_detect(name, &quot;shots&quot;) ~ &quot;shots&quot;,
-      str_detect(name, &quot;hits&quot;) ~ &quot;hits&quot;,
-      str_detect(name, &quot;kills&quot;) ~ &quot;kills&quot;
-    )
-  ) %&gt;% 
-  pivot_wider(
-    names_from = stat_type, 
-    id_cols = name_match, 
-    values_from = value
-  ) %&gt;%
-  mutate(
-    kills_efficiency = kills/shots*100,
-    hits_efficiency = hits/shots*100,
-    hits_to_kill = kills/hits*100
-  )
-
-kbl(rodrigo_efficiency) %&gt;%
-  kable_styling()</code></pre>
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-name_match
-</th>
-<th style="text-align:right;">
-kills
-</th>
-<th style="text-align:right;">
-shots
-</th>
-<th style="text-align:right;">
-hits
-</th>
-<th style="text-align:right;">
-kills_efficiency
-</th>
-<th style="text-align:right;">
-hits_efficiency
-</th>
-<th style="text-align:right;">
-hits_to_kill
-</th>
-</tr>
-</thead>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">rodrigo_efficiency</span> <span class="o">&lt;-</span> <span class="n">rodrigo_stats</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name_match</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;ak47&#34;</span><span class="p">,</span> <span class="s">&#34;aug&#34;</span><span class="p">,</span> <span class="s">&#34;awp&#34;</span><span class="p">,</span> <span class="s">&#34;fiveseven&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="s">&#34;hkp2000&#34;</span><span class="p">,</span> <span class="s">&#34;m4a1&#34;</span><span class="p">,</span> <span class="s">&#34;mp7&#34;</span><span class="p">,</span> <span class="s">&#34;p90&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="s">&#34;sg556&#34;</span><span class="p">,</span> <span class="s">&#34;xm1014&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stat_type</span> <span class="o">=</span> <span class="nf">case_when</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">str_detect</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;shots&#34;</span><span class="p">)</span> <span class="o">~</span> <span class="s">&#34;shots&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">str_detect</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;hits&#34;</span><span class="p">)</span> <span class="o">~</span> <span class="s">&#34;hits&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">str_detect</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;kills&#34;</span><span class="p">)</span> <span class="o">~</span> <span class="s">&#34;kills&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">pivot_wider</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">names_from</span> <span class="o">=</span> <span class="n">stat_type</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">id_cols</span> <span class="o">=</span> <span class="n">name_match</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">values_from</span> <span class="o">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">kills_efficiency</span> <span class="o">=</span> <span class="n">kills</span><span class="o">/</span><span class="n">shots</span><span class="o">*</span><span class="m">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hits_efficiency</span> <span class="o">=</span> <span class="n">hits</span><span class="o">/</span><span class="n">shots</span><span class="o">*</span><span class="m">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hits_to_kill</span> <span class="o">=</span> <span class="n">kills</span><span class="o">/</span><span class="n">hits</span><span class="o">*</span><span class="m">100</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">kbl</span><span class="p">(</span><span class="n">rodrigo_efficiency</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">kable_styling</span><span class="p">()</span>
+</span></span></code></pre></div><table class="table" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> name_match </th>
+   <th style="text-align:right;"> kills </th>
+   <th style="text-align:right;"> shots </th>
+   <th style="text-align:right;"> hits </th>
+   <th style="text-align:right;"> kills_efficiency </th>
+   <th style="text-align:right;"> hits_efficiency </th>
+   <th style="text-align:right;"> hits_to_kill </th>
+  </tr>
+ </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-fiveseven
-</td>
-<td style="text-align:right;">
-1288
-</td>
-<td style="text-align:right;">
-28187
-</td>
-<td style="text-align:right;">
-5558
-</td>
-<td style="text-align:right;">
-4.569482
-</td>
-<td style="text-align:right;">
-19.71831
-</td>
-<td style="text-align:right;">
-23.17380
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-xm1014
-</td>
-<td style="text-align:right;">
-5611
-</td>
-<td style="text-align:right;">
-205982
-</td>
-<td style="text-align:right;">
-42541
-</td>
-<td style="text-align:right;">
-2.724024
-</td>
-<td style="text-align:right;">
-20.65278
-</td>
-<td style="text-align:right;">
-13.18963
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-p90
-</td>
-<td style="text-align:right;">
-3469
-</td>
-<td style="text-align:right;">
-133273
-</td>
-<td style="text-align:right;">
-20245
-</td>
-<td style="text-align:right;">
-2.602928
-</td>
-<td style="text-align:right;">
-15.19062
-</td>
-<td style="text-align:right;">
-17.13510
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-awp
-</td>
-<td style="text-align:right;">
-2051
-</td>
-<td style="text-align:right;">
-6260
-</td>
-<td style="text-align:right;">
-2235
-</td>
-<td style="text-align:right;">
-32.763578
-</td>
-<td style="text-align:right;">
-35.70288
-</td>
-<td style="text-align:right;">
-91.76734
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ak47
-</td>
-<td style="text-align:right;">
-6969
-</td>
-<td style="text-align:right;">
-154852
-</td>
-<td style="text-align:right;">
-24823
-</td>
-<td style="text-align:right;">
-4.500426
-</td>
-<td style="text-align:right;">
-16.03014
-</td>
-<td style="text-align:right;">
-28.07477
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-aug
-</td>
-<td style="text-align:right;">
-2120
-</td>
-<td style="text-align:right;">
-37949
-</td>
-<td style="text-align:right;">
-8487
-</td>
-<td style="text-align:right;">
-5.586445
-</td>
-<td style="text-align:right;">
-22.36423
-</td>
-<td style="text-align:right;">
-24.97938
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-hkp2000
-</td>
-<td style="text-align:right;">
-1401
-</td>
-<td style="text-align:right;">
-36975
-</td>
-<td style="text-align:right;">
-6737
-</td>
-<td style="text-align:right;">
-3.789047
-</td>
-<td style="text-align:right;">
-18.22042
-</td>
-<td style="text-align:right;">
-20.79561
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-sg556
-</td>
-<td style="text-align:right;">
-1243
-</td>
-<td style="text-align:right;">
-25091
-</td>
-<td style="text-align:right;">
-4567
-</td>
-<td style="text-align:right;">
-4.953968
-</td>
-<td style="text-align:right;">
-18.20175
-</td>
-<td style="text-align:right;">
-27.21699
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-mp7
-</td>
-<td style="text-align:right;">
-1788
-</td>
-<td style="text-align:right;">
-52657
-</td>
-<td style="text-align:right;">
-10186
-</td>
-<td style="text-align:right;">
-3.395560
-</td>
-<td style="text-align:right;">
-19.34406
-</td>
-<td style="text-align:right;">
-17.55350
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-m4a1
-</td>
-<td style="text-align:right;">
-3526
-</td>
-<td style="text-align:right;">
-81126
-</td>
-<td style="text-align:right;">
-14687
-</td>
-<td style="text-align:right;">
-4.346325
-</td>
-<td style="text-align:right;">
-18.10394
-</td>
-<td style="text-align:right;">
-24.00763
-</td>
-</tr>
+  <tr>
+   <td style="text-align:left;"> fiveseven </td>
+   <td style="text-align:right;"> 1288 </td>
+   <td style="text-align:right;"> 28187 </td>
+   <td style="text-align:right;"> 5558 </td>
+   <td style="text-align:right;"> 4.569482 </td>
+   <td style="text-align:right;"> 19.71831 </td>
+   <td style="text-align:right;"> 23.17380 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> xm1014 </td>
+   <td style="text-align:right;"> 5611 </td>
+   <td style="text-align:right;"> 205982 </td>
+   <td style="text-align:right;"> 42541 </td>
+   <td style="text-align:right;"> 2.724024 </td>
+   <td style="text-align:right;"> 20.65278 </td>
+   <td style="text-align:right;"> 13.18963 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> p90 </td>
+   <td style="text-align:right;"> 3469 </td>
+   <td style="text-align:right;"> 133273 </td>
+   <td style="text-align:right;"> 20245 </td>
+   <td style="text-align:right;"> 2.602928 </td>
+   <td style="text-align:right;"> 15.19062 </td>
+   <td style="text-align:right;"> 17.13510 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> awp </td>
+   <td style="text-align:right;"> 2051 </td>
+   <td style="text-align:right;"> 6260 </td>
+   <td style="text-align:right;"> 2235 </td>
+   <td style="text-align:right;"> 32.763578 </td>
+   <td style="text-align:right;"> 35.70288 </td>
+   <td style="text-align:right;"> 91.76734 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ak47 </td>
+   <td style="text-align:right;"> 6969 </td>
+   <td style="text-align:right;"> 154852 </td>
+   <td style="text-align:right;"> 24823 </td>
+   <td style="text-align:right;"> 4.500426 </td>
+   <td style="text-align:right;"> 16.03014 </td>
+   <td style="text-align:right;"> 28.07477 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> aug </td>
+   <td style="text-align:right;"> 2120 </td>
+   <td style="text-align:right;"> 37949 </td>
+   <td style="text-align:right;"> 8487 </td>
+   <td style="text-align:right;"> 5.586445 </td>
+   <td style="text-align:right;"> 22.36423 </td>
+   <td style="text-align:right;"> 24.97938 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> hkp2000 </td>
+   <td style="text-align:right;"> 1401 </td>
+   <td style="text-align:right;"> 36975 </td>
+   <td style="text-align:right;"> 6737 </td>
+   <td style="text-align:right;"> 3.789047 </td>
+   <td style="text-align:right;"> 18.22042 </td>
+   <td style="text-align:right;"> 20.79561 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sg556 </td>
+   <td style="text-align:right;"> 1243 </td>
+   <td style="text-align:right;"> 25091 </td>
+   <td style="text-align:right;"> 4567 </td>
+   <td style="text-align:right;"> 4.953968 </td>
+   <td style="text-align:right;"> 18.20175 </td>
+   <td style="text-align:right;"> 27.21699 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> mp7 </td>
+   <td style="text-align:right;"> 1788 </td>
+   <td style="text-align:right;"> 52657 </td>
+   <td style="text-align:right;"> 10186 </td>
+   <td style="text-align:right;"> 3.395560 </td>
+   <td style="text-align:right;"> 19.34406 </td>
+   <td style="text-align:right;"> 17.55350 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> m4a1 </td>
+   <td style="text-align:right;"> 3526 </td>
+   <td style="text-align:right;"> 81126 </td>
+   <td style="text-align:right;"> 14687 </td>
+   <td style="text-align:right;"> 4.346325 </td>
+   <td style="text-align:right;"> 18.10394 </td>
+   <td style="text-align:right;"> 24.00763 </td>
+  </tr>
 </tbody>
 </table>
-<pre class="r"><code>rodrigo_efficiency %&gt;%
-  top_n(n = 10, wt = kills) %&gt;%
-  ggplot(aes(x = name_match, size = shots)) +
-  geom_point(aes(y = kills_efficiency, color = &quot;Kills Efficiency&quot;)) +
-  geom_point(aes(y = hits_efficiency, color = &quot;Hits Efficiency&quot;)) +
-  geom_point(aes(y = hits_to_kill, color = &quot;Hits to Kill&quot;)) +
-  ggtitle(&quot;WEAPON EFFICIENCY&quot;) +
-  ylab(&quot;Efficiency (%)&quot;) +
-  xlab(&quot;&quot;) +
-  labs(color = &quot;Efficiency Type&quot;, size = &quot;Shots&quot;) +
-  theme_csgo(
-    text = element_text(family = &quot;quantico&quot;),
-    panel.grid.major.x = element_line(size = .1, color = &quot;black&quot;,linetype = 2)
-  ) +
-  scale_color_csgo()</code></pre>
-<p><img src="/img/csgo_package/weapon_effic.png" style="width:100.0%" />
-En conclusión, le aconsejaría a Rodrigo usar la <strong>awp</strong> en sus próximas partidas, porque esta arma presentó la mejor eficiencia en términos de <strong>disparos para matar</strong>, <strong>disparos para dar en el blanco</strong> e <strong>impactos para matar</strong>. Pero definitivamente necesitamos más disparos con esta arma para ver si esta eficiencia se mantiene.. jajajaja</p>
-</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">rodrigo_efficiency</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">top_n</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">wt</span> <span class="o">=</span> <span class="n">kills</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">name_match</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">shots</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">kills_efficiency</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;Kills Efficiency&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">hits_efficiency</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;Hits Efficiency&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">hits_to_kill</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;Hits to Kill&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ggtitle</span><span class="p">(</span><span class="s">&#34;WEAPON EFFICIENCY&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ylab</span><span class="p">(</span><span class="s">&#34;Efficiency (%)&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">xlab</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s">&#34;Efficiency Type&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="s">&#34;Shots&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_csgo</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">family</span> <span class="o">=</span> <span class="s">&#34;quantico&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">panel.grid.major.x</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">.1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">,</span><span class="n">linetype</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_color_csgo</span><span class="p">()</span>
+</span></span></code></pre></div><img src="/img/csgo_package/weapon_effic.png" alt="" style="width: 100%; height: auto;">
+En conclusión, le aconsejaría a Rodrigo usar la **awp** en sus próximas partidas, porque esta arma presentó la mejor eficiencia en términos de **disparos para matar**, **disparos para dar en el blanco** e **impactos para matar**. Pero definitivamente necesitamos más disparos con esta arma para ver si esta eficiencia se mantiene.. jajajaja
 
 
   </div>

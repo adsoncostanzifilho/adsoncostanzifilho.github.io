@@ -13,9 +13,8 @@
       <link>https://adsoncostanzifilho.github.io/pt/blog/blogdown-tutorial/</link>
       <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/pt/blog/blogdown-tutorial/</guid>
-      <description>&lt;div id=&#34;motivação&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivação&lt;/h2&gt;
-&lt;p&gt;Tive a ideia de escrever um “passo a passo” sobre o blogdown, primeiro porque foi a minha primeira vez usando o pacote e ainda tenho todos os passos necessários frescos na memória, e segundo porque provavelmente vou precisar ter tudo documentado se um dia decidir renovar este blog. É claro que existem muitos tutoriais ótimos sobre blogdown pela internet (o &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;livro do blogdown&lt;/a&gt;, por exemplo), mas talvez alguém possa achar este mais fácil de alguma forma…&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;motivação&#34;&gt;Motivação&lt;/h2&gt;
+&lt;p&gt;Tive a ideia de escrever um &amp;ldquo;passo a passo&amp;rdquo; sobre o blogdown, primeiro porque foi a minha primeira vez usando o pacote e ainda tenho todos os passos necessários frescos na memória, e segundo porque provavelmente vou precisar ter tudo documentado se um dia decidir renovar este blog. É claro que existem muitos tutoriais ótimos sobre blogdown pela internet (o &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;livro do blogdown&lt;/a&gt;, por exemplo), mas talvez alguém possa achar este mais fácil de alguma forma&amp;hellip;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

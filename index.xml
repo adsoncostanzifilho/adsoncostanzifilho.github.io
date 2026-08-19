@@ -13,17 +13,15 @@
       <link>https://adsoncostanzifilho.github.io/blog/why-not-both/</link>
       <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/blog/why-not-both/</guid>
-      <description>&lt;div id=&#34;motivation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivation&lt;/h2&gt;
-&lt;p&gt;I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always “&lt;em&gt;Why not use both?&lt;/em&gt;”. The idea of this post is not to compare R vs Python but to show how easy it is to &lt;strong&gt;integrate both languages using APIs&lt;/strong&gt; (LIKE A PRO), this way we can use the best of each. Also, the post won’t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always &amp;ldquo;&lt;em&gt;Why not use both?&lt;/em&gt;&amp;rdquo;. The idea of this post is not to compare R vs Python but to show how easy it is to &lt;strong&gt;integrate both languages using APIs&lt;/strong&gt; (LIKE A PRO), this way we can use the best of each. Also, the post won&amp;rsquo;t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).&lt;/p&gt;</description>
     </item>
     <item>
       <title>GitHub Actions for R Users</title>
       <link>https://adsoncostanzifilho.github.io/blog/github-actions-for-r-users/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/blog/github-actions-for-r-users/</guid>
-      <description>&lt;div id=&#34;motivation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivation&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
 &lt;p&gt;Recently I was introduced by some friends to the &lt;strong&gt;GitHub Actions&lt;/strong&gt; and how it could help me execute tasks like: deploy my &lt;em&gt;Shiny Apps&lt;/em&gt;, deploy this &lt;em&gt;Blogdown&lt;/em&gt;, perform automated tests in packages, refresh data, and more. So, I decided to give it a try, and it was so simple and saved me so many work hours that I decided to write this post explaining how R developers can make good use of this amazing tool.&lt;/p&gt;</description>
     </item>
     <item>
@@ -33,34 +31,26 @@
       <guid>https://adsoncostanzifilho.github.io/blog/csgo-package/</guid>
       <description>&lt;script src=&#34;https://adsoncostanzifilho.github.io/blog/csgo-package/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 &lt;link href=&#34;https://adsoncostanzifilho.github.io/blog/csgo-package/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
-
-
-&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/CSGo&#34;&gt;adsoncostanzifilho/CSGo&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;strong&gt;CSGo&lt;/strong&gt; package is an R client for accessing Steam’s REST API specifically for the Counter-Strike Global Offensive Game (CS Go) data. Check out the &lt;a href=&#34;https://developer.valvesoftware.com/wiki/Steam_Web_API&#34;&gt;Steam documentation website&lt;/a&gt; and the &lt;a href=&#34;https://adsoncostanzifilho.github.io/CSGo/&#34;&gt;Package Page&lt;/a&gt; for more information.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;installation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;The &lt;strong&gt;CSGo&lt;/strong&gt; package is an R client for accessing Steam&amp;rsquo;s REST API specifically for the Counter-Strike Global Offensive Game (CS Go) data. Check out the &lt;a href=&#34;https://developer.valvesoftware.com/wiki/Steam_Web_API&#34;&gt;Steam documentation website&lt;/a&gt; and the &lt;a href=&#34;https://adsoncostanzifilho.github.io/CSGo/&#34;&gt;Package Page&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
 &lt;p&gt;To get the current released version from &lt;a href=&#34;https://cran.r-project.org/web/packages/CSGo/index.html&#34;&gt;CRAN&lt;/a&gt;:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;CSGo&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To get the current development version from &lt;a href=&#34;https://github.com/adsoncostanzifilho/CSGo&#34;&gt;GitHub&lt;/a&gt;:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;devtools&amp;quot;)
-devtools::install_github(&amp;quot;adsoncostanzifilho/CSGo&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example&lt;/h2&gt;
-&lt;p&gt;The first step to use the &lt;code&gt;CSGo&lt;/code&gt; package is to have your own credentials (API key) to pull the CSGo data from the Steam API. For more information about how to get your own API Key run in your R &lt;code&gt;vignette(&#34;auth&#34;, package = &#34;CSGo&#34;)&lt;/code&gt;, or click &lt;a href=&#34;https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;install.packages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;CSGo&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To get the current development version from &lt;a href=&#34;https://github.com/adsoncostanzifilho/CSGo&#34;&gt;GitHub&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# install.packages(&amp;#34;devtools&amp;#34;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;devtools&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;install_github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;adsoncostanzifilho/CSGo&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;p&gt;The first step to use the &lt;code&gt;CSGo&lt;/code&gt; package is to have your own credentials (API key) to pull the CSGo data from the Steam API. For more information about how to get your own API Key run in your R &lt;code&gt;vignette(&amp;quot;auth&amp;quot;, package = &amp;quot;CSGo&amp;quot;)&lt;/code&gt;, or click &lt;a href=&#34;https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Package Development Tutorial</title>
       <link>https://adsoncostanzifilho.github.io/blog/package-development-tutorial/</link>
       <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/blog/package-development-tutorial/</guid>
-      <description>&lt;div id=&#34;motivation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivation&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “&lt;em&gt;I heard it from someone, but I don’t remember who..&lt;/em&gt;”&lt;/p&gt;
+&lt;p&gt;If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. &amp;ldquo;&lt;em&gt;I heard it from someone, but I don&amp;rsquo;t remember who..&lt;/em&gt;&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Recently I experienced the whole flow to create a new R package with the help of amazing packages like &lt;code&gt;devtools&lt;/code&gt;, &lt;code&gt;usethis&lt;/code&gt;, &lt;code&gt;pkgdown&lt;/code&gt;, and &lt;code&gt;roxygen2&lt;/code&gt;. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).&lt;/p&gt;</description>
     </item>
@@ -69,23 +59,19 @@ devtools::install_github(&amp;quot;adsoncostanzifilho/CSGo&amp;quot;)&lt;/code&g
       <link>https://adsoncostanzifilho.github.io/blog/blogdown-tutorial/</link>
       <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/blog/blogdown-tutorial/</guid>
-      <description>&lt;div id=&#34;motivation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivation&lt;/h2&gt;
-&lt;p&gt;I had the idea of writing some “walking through” about blogdown, first because it was my first time using the package and I still have all the necessary steps fresh in my mind and second because probably I will need to have it all documented if I decided to refresh this blog one day. Of course, there are a lot of great tutorials about blogdown over the internet (the &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown book&lt;/a&gt; for example), but maybe someone could find this one easier in some way…&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;I had the idea of writing some &amp;ldquo;walking through&amp;rdquo; about blogdown, first because it was my first time using the package and I still have all the necessary steps fresh in my mind and second because probably I will need to have it all documented if I decided to refresh this blog one day. Of course, there are a lot of great tutorials about blogdown over the internet (the &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown book&lt;/a&gt; for example), but maybe someone could find this one easier in some way&amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Text Mining Tool</title>
       <link>https://adsoncostanzifilho.github.io/blog/text-mining-tool/</link>
       <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/blog/text-mining-tool/</guid>
-      <description>&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Overview&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/TextMining&#34;&gt;adsoncostanzifilho/TextMining&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Text Mining Tool&lt;/strong&gt; is an interface developed in R using mainly the shiny, tidytext and rtweet packages. The idea of this interface is to allow to you make your own text analysis using live Twitter data.&lt;/p&gt;
-&lt;p&gt;The tool is online on shinyapps’ repository at the address &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/TextMining/&#34; class=&#34;uri&#34;&gt;https://adsoncostanzi.shinyapps.io/TextMining/&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-does-this-interface-work&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;How does this interface work?&lt;/h2&gt;
+&lt;p&gt;The tool is online on shinyapps&amp;rsquo; repository at the address &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/TextMining/&#34;&gt;https://adsoncostanzi.shinyapps.io/TextMining/&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;how-does-this-interface-work&#34;&gt;How does this interface work?&lt;/h2&gt;
 &lt;p&gt;The interface is divided into 5 tabs presented in the menu on the left: Home , Search , Word Cloud , Sentiment Analysis and, Topic Modeling .&lt;/p&gt;</description>
     </item>
     <item>
@@ -93,16 +79,13 @@ devtools::install_github(&amp;quot;adsoncostanzifilho/CSGo&amp;quot;)&lt;/code&g
       <link>https://adsoncostanzifilho.github.io/blog/soothsayer/</link>
       <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/blog/soothsayer/</guid>
-      <description>&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Overview&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/soothsayeR&#34;&gt;adsoncostanzifilho/soothsayeR&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;SoothsayeR&lt;/strong&gt; is an interface based on the old prank called ‘Peter answers’..&lt;/p&gt;
 &lt;p&gt;The game’s idea is to play with your friends making questions that you know the answer, and make them believe that R is who is answering…&lt;/p&gt;
 &lt;p&gt;The app demonstrates how easy it is to integrate &lt;strong&gt;Shiny&lt;/strong&gt; with &lt;strong&gt;Javascript&lt;/strong&gt; through the &lt;strong&gt;shinyjs&lt;/strong&gt; library.&lt;/p&gt;
-&lt;p&gt;The tool is online on shinyapps’ repository at the address &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/soothsayeR/&#34; class=&#34;uri&#34;&gt;https://adsoncostanzi.shinyapps.io/soothsayeR/&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-to-play-with-soothsayer&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;How to play with soothsayeR?&lt;/h2&gt;
+&lt;p&gt;The tool is online on shinyapps&amp;rsquo; repository at the address &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/soothsayeR/&#34;&gt;https://adsoncostanzi.shinyapps.io/soothsayeR/&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-play-with-soothsayer&#34;&gt;How to play with soothsayeR?&lt;/h2&gt;
 &lt;p&gt;You just need to press dot (.) on the keyboard in the request session and then write the answer secretly. When you press dot in the request text input everything you type will be masked, so you could put the answer without anyone noticing.&lt;/p&gt;</description>
     </item>
     <item>

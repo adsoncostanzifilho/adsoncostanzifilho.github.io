@@ -13,9 +13,8 @@
       <link>https://adsoncostanzifilho.github.io/pt/blog/why-not-both/</link>
       <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
       <guid>https://adsoncostanzifilho.github.io/pt/blog/why-not-both/</guid>
-      <description>&lt;div id=&#34;motivação&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Motivação&lt;/h2&gt;
-&lt;p&gt;Acredito que a discussão mais comum nos times de ciência de dados seja R vs Python. Eu me vi em algumas dessas discussões algumas vezes e minha posição é sempre “&lt;em&gt;Por que não usar os dois?&lt;/em&gt;”. A ideia deste post não é comparar R vs Python, mas mostrar como é fácil &lt;strong&gt;integrar as duas linguagens usando APIs&lt;/strong&gt; (COMO UM PROFISSIONAL); dessa forma, podemos usar o melhor de cada uma. Além disso, o post não vai focar na publicação e na estrutura necessárias para colocar as APIs online; em vez disso, vou demonstrar localmente (para simplificar).&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;motivação&#34;&gt;Motivação&lt;/h2&gt;
+&lt;p&gt;Acredito que a discussão mais comum nos times de ciência de dados seja R vs Python. Eu me vi em algumas dessas discussões algumas vezes e minha posição é sempre &amp;ldquo;&lt;em&gt;Por que não usar os dois?&lt;/em&gt;&amp;rdquo;. A ideia deste post não é comparar R vs Python, mas mostrar como é fácil &lt;strong&gt;integrar as duas linguagens usando APIs&lt;/strong&gt; (COMO UM PROFISSIONAL); dessa forma, podemos usar o melhor de cada uma. Além disso, o post não vai focar na publicação e na estrutura necessárias para colocar as APIs online; em vez disso, vou demonstrar localmente (para simplificar).&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
