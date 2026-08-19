@@ -13,8 +13,6 @@ Actualmente soy Científico de Datos en [Laboratoria](https://www.laboratoria.la
 
 Soy un miembro activo de la comunidad de R y el desarrollador/mantenedor del paquete [CSGo](https://cran.r-project.org/web/packages/CSGo/index.html), alojado en CRAN, que extrae datos de la API de Steam para Counter-Strike: Global Offensive. Puedes encontrar más proyectos en los que participo en mi [GitHub](https://github.com/adsoncostanzifilho).
 
-<img src="/img/about/eu_fun2.jpg" alt="Adson Costanzi Filho" style="width: 50%; height: auto; display: block; margin: 0 auto;">
-
 ## Experiencia
 
 - **Científico de Datos** — [Laboratoria](https://www.laboratoria.la/), Remoto (oct. 2021 – actualidad)
