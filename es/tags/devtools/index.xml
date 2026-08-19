@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Devtools on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/es/tags/devtools/</link>
+    <description>Recent content in Devtools on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/es/tags/devtools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tutorial de Desarrollo de Paquetes</title>
+      <link>https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/</guid>
+      <description>&lt;div id=&#34;motivación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Motivación&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si estás usando un script más de 3 veces, es hora de crear una función, y si estás usando una función en 3 proyectos diferentes, es hora de crear un paquete. “&lt;em&gt;Lo escuché de alguien, pero no recuerdo de quién..&lt;/em&gt;”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Recientemente experimenté todo el flujo para crear un nuevo paquete de R con la ayuda de paquetes increíbles como &lt;code&gt;devtools&lt;/code&gt;, &lt;code&gt;usethis&lt;/code&gt;, &lt;code&gt;pkgdown&lt;/code&gt; y &lt;code&gt;roxygen2&lt;/code&gt;. Por eso decidí escribir sobre ello mientras todavía recuerdo todos los pasos necesarios para hacer que tus funciones locales estén disponibles para la comunidad de R (CRAN y Github).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

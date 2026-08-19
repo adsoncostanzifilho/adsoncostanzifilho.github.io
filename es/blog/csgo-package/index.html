@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Paquete CSGo | Adson Costanzi Filho</title>
+<meta name="keywords" content="CSGo, httr, jsonlite">
+<meta name="description" content="
+
+
+
+
+Resumen
+GitHub: adsoncostanzifilho/CSGo
+El paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.
+
+
+Instalación
+Para obtener la versión actual publicada desde CRAN:
+install.packages(&quot;CSGo&quot;)
+Para obtener la versión de desarrollo actual desde GitHub:
+# install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;adsoncostanzifilho/CSGo&quot;)
+
+
+Ejemplo
+El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(&#34;auth&#34;, package = &#34;CSGo&#34;), o haz clic aquí.">
+<meta name="author" content="Adson Costanzi Filho">
+<link rel="canonical" href="https://adsoncostanzifilho.github.io/es/blog/csgo-package/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b9e2a4b151eacdcb2ffce6b326e52319ad287d3b68b8e5acc871cd05b7ba535b.css" integrity="sha256-ueKksVHqzcsv/OazJuUjGa0ofTtouOWsyHHNBbe6U1s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="apple-touch-icon" href="https://adsoncostanzifilho.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://adsoncostanzifilho.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://adsoncostanzifilho.github.io/blog/csgo-package/">
+<link rel="alternate" hreflang="pt" href="https://adsoncostanzifilho.github.io/pt/blog/csgo-package/">
+<link rel="alternate" hreflang="es" href="https://adsoncostanzifilho.github.io/es/blog/csgo-package/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<meta property="og:url" content="https://adsoncostanzifilho.github.io/es/blog/csgo-package/">
+  <meta property="og:site_name" content="Adson Costanzi Filho">
+  <meta property="og:title" content="Paquete CSGo">
+  <meta property="og:description" content="Resumen GitHub: adsoncostanzifilho/CSGo
+El paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.
+Instalación Para obtener la versión actual publicada desde CRAN:
+install.packages(&#34;CSGo&#34;) Para obtener la versión de desarrollo actual desde GitHub:
+# install.packages(&#34;devtools&#34;) devtools::install_github(&#34;adsoncostanzifilho/CSGo&#34;) Ejemplo El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(&#34;auth&#34;, package = &#34;CSGo&#34;), o haz clic aquí.">
+  <meta property="og:locale" content="es">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2021-03-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-03-25T00:00:00+00:00">
+    <meta property="article:tag" content="CSGo">
+    <meta property="article:tag" content="Httr">
+    <meta property="article:tag" content="Jsonlite">
+    <meta property="og:image" content="https://adsoncostanzifilho.github.io/img/banners/csgo_package.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://adsoncostanzifilho.github.io/img/banners/csgo_package.png">
+  <meta name="twitter:title" content="Paquete CSGo">
+  <meta name="twitter:description" content="Resumen GitHub: adsoncostanzifilho/CSGo
+El paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.
+Instalación Para obtener la versión actual publicada desde CRAN:
+install.packages(&#34;CSGo&#34;) Para obtener la versión de desarrollo actual desde GitHub:
+# install.packages(&#34;devtools&#34;) devtools::install_github(&#34;adsoncostanzifilho/CSGo&#34;) Ejemplo El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(&#34;auth&#34;, package = &#34;CSGo&#34;), o haz clic aquí.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://adsoncostanzifilho.github.io/es/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Paquete CSGo",
+      "item": "https://adsoncostanzifilho.github.io/es/blog/csgo-package/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Paquete CSGo",
+  "name": "Paquete CSGo",
+  "description": " Resumen GitHub: adsoncostanzifilho/CSGo\nEl paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.\nInstalación Para obtener la versión actual publicada desde CRAN:\ninstall.packages(\u0026quot;CSGo\u0026quot;) Para obtener la versión de desarrollo actual desde GitHub:\n# install.packages(\u0026quot;devtools\u0026quot;) devtools::install_github(\u0026quot;adsoncostanzifilho/CSGo\u0026quot;) Ejemplo El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(\"auth\", package = \"CSGo\"), o haz clic aquí.\n",
+  "keywords": [
+    "CSGo", "httr", "jsonlite"
+  ],
+  "articleBody": " Resumen GitHub: adsoncostanzifilho/CSGo\nEl paquete CSGo es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el sitio web de documentación de Steam y la Página del Paquete para más información.\nInstalación Para obtener la versión actual publicada desde CRAN:\ninstall.packages(\"CSGo\") Para obtener la versión de desarrollo actual desde GitHub:\n# install.packages(\"devtools\") devtools::install_github(\"adsoncostanzifilho/CSGo\") Ejemplo El primer paso para usar el paquete CSGo es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R vignette(\"auth\", package = \"CSGo\"), o haz clic aquí.\nAhora que ya tienes tu API Key, deberías poder recolectar tus propios datos de CSGo, así como los datos de tus amigos. ¡Espero que a mi amigo Rodrigo no le importe que juguemos con sus datos (él es el ‘76561198263364899’)!\nPrimero recolectemos sus estadísticas de CSGo:\nlibrary(CSGo) # to get the statistics of the user 76561198263364899 rodrigo_stats \u003c- get_stats_user(api_key = 'your_key', user_id = '76561198263364899') Filtremos el data frame obtenido por “kills” y “weapon” para crear un análisis de muertes por tipo de arma.\nlibrary(dplyr) library(stringr) rodrigo_weapon_kill \u003c- rodrigo_stats %\u003e% filter( str_detect(name, 'kill'), type == ' weapon info' ) %\u003e% arrange(desc(value)) ¡Ahora echemos un vistazo al gráfico!\nPD: Para hacer el gráfico aún más bonito, recomiendo obtener la fuente “Quantico” de Google fonts usando el paquete showtext!\nlibrary(ggplot2) library(showtext) ## Loading Google fonts (https://fonts.google.com/) font_add_google(\"Quantico\", \"quantico\") rodrigo_weapon_kill %\u003e% top_n(n = 10, wt = value) %\u003e% ggplot(aes(x = name_match, y = value, fill = name_match)) + geom_col() + ggtitle(\"KILLS BY WEAPON\") + ylab(\"Number of Kills\") + xlab(\"\") + labs(fill = \"Weapon Name\") + theme_csgo(text = element_text(family = \"quantico\")) + scale_fill_csgo() Entonces, estas son las 10 mejores armas por muertes, pero… ¿Qué pasa con la eficiencia? ¿Es la ak47 el arma más eficiente de Rodrigo? Primero, definamos “eficiencia”:\nkills_efficiency significa cuántos disparos hizo para matar (ej.: el 32% de los disparos matarán)\nhits_efficiency significa cuántos disparos para dar en el blanco; esto está más relacionado con la habilidad de Rodrigo con cada arma (ej.: el 35% de los disparos darán en el blanco).\nhits_to_kill significa cuántos impactos son necesarios para matar; esto está más relacionado con el poder/eficiencia del arma (ej.: el 91% de los impactos matarán).\nrodrigo_efficiency \u003c- rodrigo_stats %\u003e% filter( name_match %in% c(\"ak47\", \"aug\", \"awp\", \"fiveseven\", \"hkp2000\", \"m4a1\", \"mp7\", \"p90\", \"sg556\", \"xm1014\") ) %\u003e% mutate( stat_type = case_when( str_detect(name, \"shots\") ~ \"shots\", str_detect(name, \"hits\") ~ \"hits\", str_detect(name, \"kills\") ~ \"kills\" ) ) %\u003e% pivot_wider( names_from = stat_type, id_cols = name_match, values_from = value ) %\u003e% mutate( kills_efficiency = kills/shots*100, hits_efficiency = hits/shots*100, hits_to_kill = kills/hits*100 ) kbl(rodrigo_efficiency) %\u003e% kable_styling() name_match kills shots hits kills_efficiency hits_efficiency hits_to_kill fiveseven 1288 28187 5558 4.569482 19.71831 23.17380 xm1014 5611 205982 42541 2.724024 20.65278 13.18963 p90 3469 133273 20245 2.602928 15.19062 17.13510 awp 2051 6260 2235 32.763578 35.70288 91.76734 ak47 6969 154852 24823 4.500426 16.03014 28.07477 aug 2120 37949 8487 5.586445 22.36423 24.97938 hkp2000 1401 36975 6737 3.789047 18.22042 20.79561 sg556 1243 25091 4567 4.953968 18.20175 27.21699 mp7 1788 52657 10186 3.395560 19.34406 17.55350 m4a1 3526 81126 14687 4.346325 18.10394 24.00763 rodrigo_efficiency %\u003e% top_n(n = 10, wt = kills) %\u003e% ggplot(aes(x = name_match, size = shots)) + geom_point(aes(y = kills_efficiency, color = \"Kills Efficiency\")) + geom_point(aes(y = hits_efficiency, color = \"Hits Efficiency\")) + geom_point(aes(y = hits_to_kill, color = \"Hits to Kill\")) + ggtitle(\"WEAPON EFFICIENCY\") + ylab(\"Efficiency (%)\") + xlab(\"\") + labs(color = \"Efficiency Type\", size = \"Shots\") + theme_csgo( text = element_text(family = \"quantico\"), panel.grid.major.x = element_line(size = .1, color = \"black\",linetype = 2) ) + scale_color_csgo() En conclusión, le aconsejaría a Rodrigo usar la awp en sus próximas partidas, porque esta arma presentó la mejor eficiencia en términos de disparos para matar, disparos para dar en el blanco e impactos para matar. Pero definitivamente necesitamos más disparos con esta arma para ver si esta eficiencia se mantiene.. jajajaja\n",
+  "wordCount" : "660",
+  "inLanguage": "es",
+  "image":"https://adsoncostanzifilho.github.io/img/banners/csgo_package.png","datePublished": "2021-03-25T00:00:00Z",
+  "dateModified": "2021-03-25T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Adson Costanzi Filho"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adsoncostanzifilho.github.io/es/blog/csgo-package/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adson Costanzi Filho",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adsoncostanzifilho.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://adsoncostanzifilho.github.io/es/" accesskey="h" title="Adson Costanzi Filho (Alt + H)">Adson Costanzi Filho</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/" title="English"
+                                aria-label="English">English</a>
+                        </li>
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/pt/" title="Português"
+                                aria-label="Português">Português</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/about/" title="Acerca">
+                    <span>Acerca</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/files/cv.pdf" title="Currículum">
+                    <span>Currículum</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/search/" title="Búsqueda">
+                    <span>Búsqueda</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/es/">Inicio</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/es/blog/">Blog</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Paquete CSGo
+    </h1>
+    <div class="post-meta">
+
+<span title='2021-03-25 00:00:00 +0000 UTC'>25 de marzo de 2021</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>660 palabras</span>&nbsp;·&nbsp;<span>Adson Costanzi Filho</span>&nbsp;|&nbsp;<span>Traducciones:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/blog/csgo-package/">English</a>
+        </li>
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/pt/blog/csgo-package/">Português</a>
+        </li>
+    </ul>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <a href="https://adsoncostanzifilho.github.io/img/banners/csgo_package.png" target="_blank" rel="noopener noreferrer">
+        <img loading="eager" src="https://adsoncostanzifilho.github.io/img/banners/csgo_package.png" alt="paquete CSGo">
+        </a>
+        
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Tabla de Contenidos</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#" aria-label="Resumen">Resumen</a></li>
+            <li>
+                <a href="#" aria-label="Instalación">Instalación</a></li>
+            <li>
+                <a href="#" aria-label="Ejemplo">Ejemplo</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content">
+<script src="https://adsoncostanzifilho.github.io/es/blog/csgo-package/index_files/kePrint/kePrint.js"></script>
+<link href="https://adsoncostanzifilho.github.io/es/blog/csgo-package/index_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<div id="resumen" class="section level2">
+<h2>Resumen</h2>
+<p><strong>GitHub:</strong> <a href="https://github.com/adsoncostanzifilho/CSGo">adsoncostanzifilho/CSGo</a></p>
+<p>El paquete <strong>CSGo</strong> es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el <a href="https://developer.valvesoftware.com/wiki/Steam_Web_API">sitio web de documentación de Steam</a> y la <a href="https://adsoncostanzifilho.github.io/CSGo/">Página del Paquete</a> para más información.</p>
+</div>
+<div id="instalación" class="section level2">
+<h2>Instalación</h2>
+<p>Para obtener la versión actual publicada desde <a href="https://cran.r-project.org/web/packages/CSGo/index.html">CRAN</a>:</p>
+<pre class="r"><code>install.packages(&quot;CSGo&quot;)</code></pre>
+<p>Para obtener la versión de desarrollo actual desde <a href="https://github.com/adsoncostanzifilho/CSGo">GitHub</a>:</p>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;adsoncostanzifilho/CSGo&quot;)</code></pre>
+</div>
+<div id="ejemplo" class="section level2">
+<h2>Ejemplo</h2>
+<p>El primer paso para usar el paquete <code>CSGo</code> es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R <code>vignette("auth", package = "CSGo")</code>, o haz clic <a href="https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html">aquí</a>.</p>
+<p>Ahora que ya tienes tu <em>API Key</em>, deberías poder recolectar tus propios datos de CSGo, así como los datos de tus amigos. ¡Espero que a mi amigo <a href="https://github.com/Rodrigo-Fontoura">Rodrigo</a> no le importe que juguemos con sus datos (él es el ‘76561198263364899’)!</p>
+<p>Primero recolectemos sus estadísticas de CSGo:</p>
+<pre class="r"><code>library(CSGo)
+
+# to get the statistics of the user 76561198263364899
+rodrigo_stats &lt;- get_stats_user(api_key = &#39;your_key&#39;, user_id = &#39;76561198263364899&#39;)</code></pre>
+<p>Filtremos el data frame obtenido por “kills” y “weapon” para crear un análisis de muertes por tipo de arma.</p>
+<pre class="r"><code>library(dplyr)
+library(stringr)
+
+rodrigo_weapon_kill &lt;- rodrigo_stats %&gt;%
+  filter(
+    str_detect(name, &#39;kill&#39;),
+    type == &#39; weapon info&#39;
+  ) %&gt;%
+  arrange(desc(value))</code></pre>
+<p>¡Ahora echemos un vistazo al gráfico!</p>
+<p><em>PD</em>: Para hacer el gráfico aún más bonito, recomiendo obtener la fuente “Quantico” de Google fonts usando el paquete <code>showtext</code>!</p>
+<pre class="r"><code>library(ggplot2)
+library(showtext)
+
+## Loading Google fonts (https://fonts.google.com/)
+font_add_google(&quot;Quantico&quot;, &quot;quantico&quot;)
+
+rodrigo_weapon_kill %&gt;%
+  top_n(n = 10, wt = value) %&gt;%
+  ggplot(aes(x = name_match, y = value, fill = name_match)) +
+  geom_col() +
+  ggtitle(&quot;KILLS BY WEAPON&quot;) +
+  ylab(&quot;Number of Kills&quot;) +
+  xlab(&quot;&quot;) +
+  labs(fill = &quot;Weapon Name&quot;) +
+  theme_csgo(text = element_text(family = &quot;quantico&quot;)) +
+  scale_fill_csgo()</code></pre>
+<p><img src="/img/csgo_package/kills_weapon.png" style="width:100.0%" /></p>
+<p>Entonces, estas son las 10 mejores armas por muertes, pero… ¿Qué pasa con la eficiencia? ¿Es la <strong>ak47</strong> el arma más eficiente de Rodrigo? Primero, definamos “eficiencia”:</p>
+<ul>
+<li><p><strong>kills_efficiency</strong> significa cuántos disparos hizo para matar (ej.: el 32% de los disparos matarán)</p></li>
+<li><p><strong>hits_efficiency</strong> significa cuántos disparos para dar en el blanco; esto está más relacionado con la habilidad de Rodrigo con cada arma (ej.: el 35% de los disparos darán en el blanco).</p></li>
+<li><p><strong>hits_to_kill</strong> significa cuántos impactos son necesarios para matar; esto está más relacionado con el poder/eficiencia del arma (ej.: el 91% de los impactos matarán).</p></li>
+</ul>
+<pre class="r"><code>rodrigo_efficiency &lt;- rodrigo_stats %&gt;%
+  filter(
+    name_match %in% c(&quot;ak47&quot;, &quot;aug&quot;, &quot;awp&quot;, &quot;fiveseven&quot;,
+                      &quot;hkp2000&quot;, &quot;m4a1&quot;, &quot;mp7&quot;, &quot;p90&quot;,
+                      &quot;sg556&quot;, &quot;xm1014&quot;)
+  ) %&gt;%
+  mutate(
+    stat_type = case_when(
+      str_detect(name, &quot;shots&quot;) ~ &quot;shots&quot;,
+      str_detect(name, &quot;hits&quot;) ~ &quot;hits&quot;,
+      str_detect(name, &quot;kills&quot;) ~ &quot;kills&quot;
+    )
+  ) %&gt;% 
+  pivot_wider(
+    names_from = stat_type, 
+    id_cols = name_match, 
+    values_from = value
+  ) %&gt;%
+  mutate(
+    kills_efficiency = kills/shots*100,
+    hits_efficiency = hits/shots*100,
+    hits_to_kill = kills/hits*100
+  )
+
+kbl(rodrigo_efficiency) %&gt;%
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+name_match
+</th>
+<th style="text-align:right;">
+kills
+</th>
+<th style="text-align:right;">
+shots
+</th>
+<th style="text-align:right;">
+hits
+</th>
+<th style="text-align:right;">
+kills_efficiency
+</th>
+<th style="text-align:right;">
+hits_efficiency
+</th>
+<th style="text-align:right;">
+hits_to_kill
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+fiveseven
+</td>
+<td style="text-align:right;">
+1288
+</td>
+<td style="text-align:right;">
+28187
+</td>
+<td style="text-align:right;">
+5558
+</td>
+<td style="text-align:right;">
+4.569482
+</td>
+<td style="text-align:right;">
+19.71831
+</td>
+<td style="text-align:right;">
+23.17380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+xm1014
+</td>
+<td style="text-align:right;">
+5611
+</td>
+<td style="text-align:right;">
+205982
+</td>
+<td style="text-align:right;">
+42541
+</td>
+<td style="text-align:right;">
+2.724024
+</td>
+<td style="text-align:right;">
+20.65278
+</td>
+<td style="text-align:right;">
+13.18963
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p90
+</td>
+<td style="text-align:right;">
+3469
+</td>
+<td style="text-align:right;">
+133273
+</td>
+<td style="text-align:right;">
+20245
+</td>
+<td style="text-align:right;">
+2.602928
+</td>
+<td style="text-align:right;">
+15.19062
+</td>
+<td style="text-align:right;">
+17.13510
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+awp
+</td>
+<td style="text-align:right;">
+2051
+</td>
+<td style="text-align:right;">
+6260
+</td>
+<td style="text-align:right;">
+2235
+</td>
+<td style="text-align:right;">
+32.763578
+</td>
+<td style="text-align:right;">
+35.70288
+</td>
+<td style="text-align:right;">
+91.76734
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ak47
+</td>
+<td style="text-align:right;">
+6969
+</td>
+<td style="text-align:right;">
+154852
+</td>
+<td style="text-align:right;">
+24823
+</td>
+<td style="text-align:right;">
+4.500426
+</td>
+<td style="text-align:right;">
+16.03014
+</td>
+<td style="text-align:right;">
+28.07477
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+aug
+</td>
+<td style="text-align:right;">
+2120
+</td>
+<td style="text-align:right;">
+37949
+</td>
+<td style="text-align:right;">
+8487
+</td>
+<td style="text-align:right;">
+5.586445
+</td>
+<td style="text-align:right;">
+22.36423
+</td>
+<td style="text-align:right;">
+24.97938
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hkp2000
+</td>
+<td style="text-align:right;">
+1401
+</td>
+<td style="text-align:right;">
+36975
+</td>
+<td style="text-align:right;">
+6737
+</td>
+<td style="text-align:right;">
+3.789047
+</td>
+<td style="text-align:right;">
+18.22042
+</td>
+<td style="text-align:right;">
+20.79561
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sg556
+</td>
+<td style="text-align:right;">
+1243
+</td>
+<td style="text-align:right;">
+25091
+</td>
+<td style="text-align:right;">
+4567
+</td>
+<td style="text-align:right;">
+4.953968
+</td>
+<td style="text-align:right;">
+18.20175
+</td>
+<td style="text-align:right;">
+27.21699
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mp7
+</td>
+<td style="text-align:right;">
+1788
+</td>
+<td style="text-align:right;">
+52657
+</td>
+<td style="text-align:right;">
+10186
+</td>
+<td style="text-align:right;">
+3.395560
+</td>
+<td style="text-align:right;">
+19.34406
+</td>
+<td style="text-align:right;">
+17.55350
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+m4a1
+</td>
+<td style="text-align:right;">
+3526
+</td>
+<td style="text-align:right;">
+81126
+</td>
+<td style="text-align:right;">
+14687
+</td>
+<td style="text-align:right;">
+4.346325
+</td>
+<td style="text-align:right;">
+18.10394
+</td>
+<td style="text-align:right;">
+24.00763
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>rodrigo_efficiency %&gt;%
+  top_n(n = 10, wt = kills) %&gt;%
+  ggplot(aes(x = name_match, size = shots)) +
+  geom_point(aes(y = kills_efficiency, color = &quot;Kills Efficiency&quot;)) +
+  geom_point(aes(y = hits_efficiency, color = &quot;Hits Efficiency&quot;)) +
+  geom_point(aes(y = hits_to_kill, color = &quot;Hits to Kill&quot;)) +
+  ggtitle(&quot;WEAPON EFFICIENCY&quot;) +
+  ylab(&quot;Efficiency (%)&quot;) +
+  xlab(&quot;&quot;) +
+  labs(color = &quot;Efficiency Type&quot;, size = &quot;Shots&quot;) +
+  theme_csgo(
+    text = element_text(family = &quot;quantico&quot;),
+    panel.grid.major.x = element_line(size = .1, color = &quot;black&quot;,linetype = 2)
+  ) +
+  scale_color_csgo()</code></pre>
+<p><img src="/img/csgo_package/weapon_effic.png" style="width:100.0%" />
+En conclusión, le aconsejaría a Rodrigo usar la <strong>awp</strong> en sus próximas partidas, porque esta arma presentó la mejor eficiencia en términos de <strong>disparos para matar</strong>, <strong>disparos para dar en el blanco</strong> e <strong>impactos para matar</strong>. Pero definitivamente necesitamos más disparos con esta arma para ver si esta eficiencia se mantiene.. jajajaja</p>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://adsoncostanzifilho.github.io/es/tags/csgo/">CSGo</a></li>
+      <li><a href="https://adsoncostanzifilho.github.io/es/tags/httr/">Httr</a></li>
+      <li><a href="https://adsoncostanzifilho.github.io/es/tags/jsonlite/">Jsonlite</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/">
+    <span class="title">« Anterior</span>
+    <span>GitHub Actions para Usuarios de R</span>
+  </a>
+  <a class="next" href="https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/">
+    <span class="title">Siguiente »</span>
+    <span>Tutorial de Desarrollo de Paquetes</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://adsoncostanzifilho.github.io/es/">Adson Costanzi Filho</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copiar';
+
+        function copyingDone() {
+            copybutton.innerHTML = '¡copiado!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copiar';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

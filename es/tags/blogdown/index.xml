@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blogdown on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/es/tags/blogdown/</link>
+    <description>Recent content in Blogdown on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Wed, 25 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/es/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tutorial de Blogdown</title>
+      <link>https://adsoncostanzifilho.github.io/es/blog/blogdown-tutorial/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/blog/blogdown-tutorial/</guid>
+      <description>&lt;div id=&#34;motivación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Motivación&lt;/h2&gt;
+&lt;p&gt;Se me ocurrió escribir una “guía paso a paso” sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;libro de blogdown&lt;/a&gt; por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera…&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

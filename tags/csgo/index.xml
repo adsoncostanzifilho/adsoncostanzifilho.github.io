@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>CSGo on Adson Costanzi Filho</title>
     <link>https://adsoncostanzifilho.github.io/tags/csgo/</link>
     <description>Recent content in CSGo on Adson Costanzi Filho</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/tags/csgo/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/tags/csgo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CSGo Package</title>
-      <link>https://adsoncostanzifilho.github.io/blog/2021/03/25/csgo-package/</link>
+      <link>https://adsoncostanzifilho.github.io/blog/csgo-package/</link>
       <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://adsoncostanzifilho.github.io/blog/2021/03/25/csgo-package/</guid>
-      <description>Overview  
-The CSGo package is an R client for accessing Steam’s REST API specifically for the Counter-Strike Global Offensive Game (CS Go) data. Check out the Steam documentation website and the Package Page for more information.
- Installation To get the current released version from CRAN:
-install.packages(&amp;quot;CSGo&amp;quot;) To get the current development version from GitHub:
-# install.packages(&amp;quot;devtools&amp;quot;) devtools::install_github(&amp;quot;adsoncostanzifilho/CSGo&amp;quot;)  Example The first step to use the CSGo package is to have your own credentials (API key) to pull the CSGo data from the Steam API.</description>
+      <guid>https://adsoncostanzifilho.github.io/blog/csgo-package/</guid>
+      <description>&lt;script src=&#34;https://adsoncostanzifilho.github.io/blog/csgo-package/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://adsoncostanzifilho.github.io/blog/csgo-package/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+
+
+&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/CSGo&#34;&gt;adsoncostanzifilho/CSGo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;CSGo&lt;/strong&gt; package is an R client for accessing Steam’s REST API specifically for the Counter-Strike Global Offensive Game (CS Go) data. Check out the &lt;a href=&#34;https://developer.valvesoftware.com/wiki/Steam_Web_API&#34;&gt;Steam documentation website&lt;/a&gt; and the &lt;a href=&#34;https://adsoncostanzifilho.github.io/CSGo/&#34;&gt;Package Page&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;installation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;To get the current released version from &lt;a href=&#34;https://cran.r-project.org/web/packages/CSGo/index.html&#34;&gt;CRAN&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;CSGo&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To get the current development version from &lt;a href=&#34;https://github.com/adsoncostanzifilho/CSGo&#34;&gt;GitHub&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;devtools&amp;quot;)
+devtools::install_github(&amp;quot;adsoncostanzifilho/CSGo&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;p&gt;The first step to use the &lt;code&gt;CSGo&lt;/code&gt; package is to have your own credentials (API key) to pull the CSGo data from the Steam API. For more information about how to get your own API Key run in your R &lt;code&gt;vignette(&#34;auth&#34;, package = &#34;CSGo&#34;)&lt;/code&gt;, or click &lt;a href=&#34;https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

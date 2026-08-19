@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Package Development Tutorial | Adson Costanzi Filho</title>
+<meta name="keywords" content="devtools, usethis, pkgdown, roxygen2">
+<meta name="description" content="
+Motivation
+
+If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “I heard it from someone, but I don’t remember who..”
+
+Recently I experienced the whole flow to create a new R package with the help of amazing packages like devtools, usethis, pkgdown, and roxygen2. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).">
+<meta name="author" content="Adson Costanzi Filho">
+<link rel="canonical" href="https://adsoncostanzifilho.github.io/blog/package-development-tutorial/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b9e2a4b151eacdcb2ffce6b326e52319ad287d3b68b8e5acc871cd05b7ba535b.css" integrity="sha256-ueKksVHqzcsv/OazJuUjGa0ofTtouOWsyHHNBbe6U1s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="apple-touch-icon" href="https://adsoncostanzifilho.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://adsoncostanzifilho.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://adsoncostanzifilho.github.io/blog/package-development-tutorial/">
+<link rel="alternate" hreflang="pt" href="https://adsoncostanzifilho.github.io/pt/blog/package-development-tutorial/">
+<link rel="alternate" hreflang="es" href="https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<meta property="og:url" content="https://adsoncostanzifilho.github.io/blog/package-development-tutorial/">
+  <meta property="og:site_name" content="Adson Costanzi Filho">
+  <meta property="og:title" content="Package Development Tutorial">
+  <meta property="og:description" content="Motivation If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “I heard it from someone, but I don’t remember who..”
+Recently I experienced the whole flow to create a new R package with the help of amazing packages like devtools, usethis, pkgdown, and roxygen2. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2021-03-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-03-17T00:00:00+00:00">
+    <meta property="article:tag" content="Devtools">
+    <meta property="article:tag" content="Usethis">
+    <meta property="article:tag" content="Pkgdown">
+    <meta property="article:tag" content="Roxygen2">
+    <meta property="og:image" content="https://adsoncostanzifilho.github.io/img/banners/packagedev_tutorial.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://adsoncostanzifilho.github.io/img/banners/packagedev_tutorial.png">
+  <meta name="twitter:title" content="Package Development Tutorial">
+  <meta name="twitter:description" content="Motivation If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “I heard it from someone, but I don’t remember who..”
+Recently I experienced the whole flow to create a new R package with the help of amazing packages like devtools, usethis, pkgdown, and roxygen2. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://adsoncostanzifilho.github.io/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Package Development Tutorial",
+      "item": "https://adsoncostanzifilho.github.io/blog/package-development-tutorial/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Package Development Tutorial",
+  "name": "Package Development Tutorial",
+  "description": " Motivation If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “I heard it from someone, but I don’t remember who..”\nRecently I experienced the whole flow to create a new R package with the help of amazing packages like devtools, usethis, pkgdown, and roxygen2. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).\n",
+  "keywords": [
+    "devtools", "usethis", "pkgdown", "roxygen2"
+  ],
+  "articleBody": " Motivation If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “I heard it from someone, but I don’t remember who..”\nRecently I experienced the whole flow to create a new R package with the help of amazing packages like devtools, usethis, pkgdown, and roxygen2. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).\nThe material I followed to guide me through this process was the R Packages Book by Hadley Wickham. Of course, there is MUCH MORE content in his book than the one presented here, but maybe this post can also help someone in some way.\nFunctions A package is nothing more than a bunch of functions together in the same place (sharing the same scope), so the main key to having a good package is also to have good functions.\nThis post will not cover the guidelines to create useful functions. For that I recommend you to take a look on the Functions section of the Advanced R Book.\nIn order to make the next steps easier for you to pack your functions, it is important to keep in mind two things:\nFirst, develop your functions the more generic as possible, and always include comments explaining the inputs, outputs and at least one example on how to use it.\nSecond, remember all the packages you used and if possible always use the package::function structure when using foreigners functions inside your own one.\nPS: Be careful with those packages we always use but usually we forget about because “they were always there”, such as stats and utils.\nThe base R is the only one that don`t need to be mentioned!\nNow that we have our functions in a good shape let`s move to the package development itself.\nHow to start The first thing to do is to install the packages that will make our life easier.\ninstall.packages(c(\"devtools\", \"usethis\", \"pkgdown\", \"roxygen2\")) If you also want to share your package on Github, now it is a good time to create a new Github repository with the name you want to call your package, for example ‘mypackage’. Clone this empty repository inside some folder you want.\nNow it should be possible to run the command devtools::create(\"~/path/mypackage\")(give the path of the Github repository you just cloned). This line of code will create the folders and files structure we are going to follow from now on. As soon as you run it a new RStudio session in an R project structure will prompt and it will set you inside the “~/path/mypackage” folder. If everything went well you must be able to see a folder called “R”, and the “DESCRIPTION” and “NAMESPACE” files.\nR folder: The R folder will be the place where you should put your scripts (which contains your functions, the .R files). There isn’t a rule on how you should organize your scripts inside this folder, however I like to follow the one function per script rule. For me, having one function per script structure makes the process of debugging and documentation easier. But at the end it is up to you!\nDESCRIPTION: This file will expose some important information about your package. It is not that challenge to fill the main options inside this file, indeed the file has very good explanations on how to fill it correctly. Also we have functions like usethis::use_package(\"packagename\") to help us on how to fill the other sections of this file. We will talk more about it later.\nNAMESPACE: This file brings all the functions the user of your package will be able to use (all those functions defined with a @export. We also will cover more about it later). You should not edit this file, instead, you can run devtools::document() to update it.\nFunction Documentation Now it is time to document your functions. This step is really important to make your package useful for the R community and to help the proper usage of each one of your functions. To do that we are going to use the roxygen2 package.\nThanks to roxygen2 package the documentation process is more simple than ever. If you are on RStudio you can simple open the script which contains your function, position the cursor in the begin of your function and go to the Code menu \u003e Insert Roxygen Skeleton or ctrl+shift+alt+R. If everything went well you should see an output like this:\n#' Title #' #' @param a #' @param b #' #' @return #' @export #' #' @examples myfunction \u003c- function(a,b) { return(a+b) } Now it is only a matter of fill the presented options with clear explanations regarding the use of the function and parameters. In addition, you must provide at least one example of how to use it and explain what the user should expect in return.\nSometimes the example we provided will only work in very specific conditions. For these cases you should create your examples inside the \\dontrun{}, it will prevent the execution of it while compile and check your package.\nNote that the default skeleton roxigen2 provides us considers the #' @export. It only means that this function will be exposed to the end user, in other words the user should be able to run mypackage::myfunction(). If for some reason you don’t want to export this function you can only remove this line from your script.\nFunctions defined without the #' @export will work internally with no problems, but the end user will be able to access it only with the ::: structure, like mypackage:::myfunction().\nAt the end of this process your function script should be something like this:\n#' My Function #' #' This function provides the sum of two values (the worst example ever, I know!). #' #' @param a the first numeric value #' @param b the second numeric value #' #' @return a numeric value with the sum of a + b #' @export #' #' @examples #' \\dontrun{ #' ## the parameters must be numeric #' #' myfunction(a = 1, b = 1) #' } myfunction \u003c- function(a,b) { return(a+b) } Once you have your function documented you should run devtools::document() this will create/update the folder called “man”. This folder will store all your functions documentations. Don’t forget to run devtools::document() every time you update your functions descriptions!\nYou can also run devtools::load_all() to load your package in your current R session, than you should be able to see how your documentation looks like by running help('mypackage::myfunction') or ?mypackage::myfunction.\nForeigner Packages It is very unlikely that you will create your functions without using ANY dependencies (foreigner packages), and that is not a problem at all. However you must provide this information for the end user in some way, otherwise, the users will not be able to run your codes as expected.\nThe right place for this information is inside the DESCRIPTION file in the “Imports” section. It is possible to fill this by hand by opening the DESCRIPTION file and including all the packages you used in your functions (separated by “,”) OR you can use the function usethis::use_package(\"ggplot2\") and it will take care of filling it for you.\nThe use_package function also provides options like the minimum pakage version and the type of dependency.\nDO NOT USE library() OR require() IN YOUR R SCRIPTS!!!\nOne other possibility is to include just one function from a foreigner package. This is very common because sometimes we used only one function from a specific package and we don’t want to “import” the whole package but only that one function we are using. For that you can include @importFrom package_name function_name in the documentation of your function, this way you should be able to use the function without declare the package it came from. From now on it will be available like your own functions mypackage::function_name().\nLet’s say we want to include the beep() function from the beepr package, but we don’t want the whole beepr. The script should be something like this:\n#' My Function #' #' This function provides the sum of two values (the worst example ever, I know!). #' #' @param a the first numeric value #' @param b the second numeric value #' #' @return a numeric value with the sum of a + b #' @export #' #' @importFrom beepr beep #' #' @examples #' \\dontrun{ #' ## the parameters must be numeric #' #' myfunction(a = 1, b = 1) #' } myfunction \u003c- function(a,b) { beep() return(a+b) } From now one the beep() function should be part of mypackage. If you run devtools::document() and devtools::load_all() you will see that mypackage::beep() is going to work.\nIt is also very common to use the %\u003e% operator inside your functions. As we know the pipe operator is from the magrittr package but it is not necessary to import the whole magrittr package to only use the %\u003e%. For this you can run the usethis::use_pipe() and that is it!\nIncluding Data What if my package uses external data? That other very common possibility and it is very easy to include external data sources in your package. Thanks again to the usethis package for provide us the use_data() function! So, to make your external data available inside your function environment you just need to run usethis::use_data(mydf), like this:\nmydf \u003c- data.frame( x = rnorm(10,0,1), y = runif(10) ) usethis::use_data(mydf) From now on you should be able to use the “mydf” data frame inside your functions without problems.\nJust like functions data objects also must be documented, and the idea is almost the same as documenting your functions. First, open a new R script and save it inside the R folder with the name you want (my advise is to follow the name of your data). Then you can follow the structure presented bellow.\n#' Random values #' #' A completely useless data set. #' #' #' @format A data frame with 10 rows and 2 variables: #' \\describe{ #' \\item{x}{10 values from a normal distribution with mean = 0 and sd = 1} #' \\item{y}{10 values from a uniform distribution} #' ... #' } #' @source Created by the author. \"mydf\" Once you finish this process you can run devtools::document() and a new file named like your data will be created inside the “man” folder. To actually see the result of your documentation just run devtools::load_all() and then you should be able to run help(mypackage::mydf).\nNever @export a data set!\nCreating Vignettes The Vignettes are an important part of the package development process because it is the space for you to actually make a “walking through” your package capabilities. It is important to highlight that you can create as many vignettes as you like!\nStarting a new Vignette is really simple, you just need to run devtools::use_vignette(\"intro\"). It will create a new folder called “vignettes” and inside this folder, you can see a file named “intro.Rmd”. The “intro.Rmd” is at the end a standard Rmarkdown file, now you can create the content of it the way you like.\nIf you need some help with the rmarkdown package my advice is to take a look at the Rmarkdown Book!\nCreating README As the idea is also to make the package available on Github it is almost mandatory to have a good README section. Thinking on that (AGAIN) the usethis package has the usethis::use_readme_rmd() function to help us organize our README file. Now it is only a matter of opening the file created by the usethis::use_readme_rmd() following the structure and including whatever you want.\nRemember to Knit any time you changed something on the README file!\nIt is a good idea to take a look in other packages repositories on Github to get inspiration.\nTo include the badges you can use the usethis package (ex:usethis::use_badge(), usethis::use_cran_badge(), etc).\nCRAN Submission Now it is time to update your package on the main R repository the Comprehensive R Archive Network, CRAN. All the work we have done so far is essential to have your package accepted on CRAN repository.\nThe first thing to do is be in accordance with the CRAN Repository Policy. Here you will find the rules and guidelines to follow to have your package hosted by CRAN. The next step is to fill the web form.\nSpoiler Alert: The web form will request you to provide your package in a .tar.gz file, and also they will run some automatic routines to verify if your package is in a good shape to be review by someone on CRAN. Before we “build” your package in a .tar.gz format let’s take a look if our package will pass the CRAN’s automatic tests. To simulate the CRAN’s check procedure you can run the devtools::check(), it should provide you a good idea if your package is ready to be hosted by CRAN.\nNow that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build the package in the .tar.gz. The simple way to do that is by running the devtools::build() and that’s it! Your package now is ready to be submitted on CRAN! Follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).\nFor the next version of your pacakge you can use the devtools::release()!\npkgdown Now that our package is available on Github and on CRAN we can easily create its own page, like a pro! Thanks to pkgdown it is very simple to make a very beautiful page to spreading your package for the whole R community.\nI will not gona cover the whole functionality of pkgdown for that you can see the pkgdown page!\nSince we already have the package structure the only thing to do to create your packages’ page is:\n# Run to configure package to use pkgdown (once) usethis::use_pkgdown() # Run to build the website (every time you change it) pkgdown::build_site() I told you that this is the easier part! Now let’s host the page on Github Pages!\nTo do that you should enter your package Github repository and go to Settings \u003e GitHub Pages:\nNow you only need to change the Source where will be the page structure (for me it is in the master branch and inside the docs folder).\nThe pkgdown by default will create the docs folder for you when you run pkgdown::build_site()!\nDone! Just add, commit, push and your package’s page will be online at: your_github_user.github.io/repository_name.\nThat is all I hope someone finds this tutorial useful. As always your feedback is much appreciated, feel free to get in touch with me over social media! 😄\n",
+  "wordCount" : "2483",
+  "inLanguage": "en",
+  "image":"https://adsoncostanzifilho.github.io/img/banners/packagedev_tutorial.png","datePublished": "2021-03-17T00:00:00Z",
+  "dateModified": "2021-03-17T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Adson Costanzi Filho"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adsoncostanzifilho.github.io/blog/package-development-tutorial/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adson Costanzi Filho",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adsoncostanzifilho.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://adsoncostanzifilho.github.io/" accesskey="h" title="Adson Costanzi Filho (Alt + H)">Adson Costanzi Filho</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/pt/" title="Português"
+                                aria-label="Português">Português</a>
+                        </li>
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/es/" title="Español"
+                                aria-label="Español">Español</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/files/cv.pdf" title="Résumé">
+                    <span>Résumé</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/blog/">Blog</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Package Development Tutorial
+    </h1>
+    <div class="post-meta">
+
+<span title='2021-03-17 00:00:00 +0000 UTC'>March 17, 2021</span>&nbsp;·&nbsp;<span>12 min</span>&nbsp;·&nbsp;<span>2483 words</span>&nbsp;·&nbsp;<span>Adson Costanzi Filho</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/pt/blog/package-development-tutorial/">Português</a>
+        </li>
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/">Español</a>
+        </li>
+    </ul>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <a href="https://adsoncostanzifilho.github.io/img/banners/packagedev_tutorial.png" target="_blank" rel="noopener noreferrer">
+        <img loading="eager" src="https://adsoncostanzifilho.github.io/img/banners/packagedev_tutorial.png" alt="package-development-tutorial">
+        </a>
+        
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#" aria-label="Motivation">Motivation</a></li>
+            <li>
+                <a href="#" aria-label="Functions">Functions</a></li>
+            <li>
+                <a href="#" aria-label="How to start">How to start</a></li>
+            <li>
+                <a href="#" aria-label="Function Documentation">Function Documentation</a></li>
+            <li>
+                <a href="#" aria-label="Foreigner Packages">Foreigner Packages</a></li>
+            <li>
+                <a href="#" aria-label="Including Data">Including Data</a></li>
+            <li>
+                <a href="#" aria-label="Creating Vignettes">Creating Vignettes</a></li>
+            <li>
+                <a href="#" aria-label="Creating README">Creating README</a></li>
+            <li>
+                <a href="#" aria-label="CRAN Submission">CRAN Submission</a></li>
+            <li>
+                <a href="#" aria-label="pkgdown">pkgdown</a></li>
+            <li>
+                <a href="#" aria-label="That is all">That is all</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content">
+
+
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<blockquote>
+<p>If you are using a script more than 3 times it is time to create a function and if you are using a function in 3 different projects it is time to create a package. “<em>I heard it from someone, but I don’t remember who..</em>”</p>
+</blockquote>
+<p>Recently I experienced the whole flow to create a new R package with the help of amazing packages like <code>devtools</code>, <code>usethis</code>, <code>pkgdown</code>, and <code>roxygen2</code>. That is why I decided to write about it while I still remember all the necessary steps to make your local functions available for the R community (CRAN and Github).</p>
+<p>The material I followed to guide me through this process was the <a href="https://r-pkgs.org/">R Packages Book</a> by Hadley Wickham. Of course, there is MUCH MORE content in his book than the one presented here, but maybe this post can also help someone in some way.</p>
+</div>
+<div id="functions" class="section level2">
+<h2>Functions</h2>
+<p>A package is nothing more than a bunch of functions together in the same place (sharing the same scope), so the main key to having a good package is also to have good functions.</p>
+<blockquote>
+<p>This post will not cover the guidelines to create useful functions. For that I recommend you to take a look on the <em>Functions section</em> of the <a href="https://adv-r.hadley.nz/functions.html">Advanced R Book</a>.</p>
+</blockquote>
+<p>In order to make the next steps easier for you to pack your functions, it is important to keep in mind two things:</p>
+<ul>
+<li><p>First, develop your functions the more generic as possible, and <strong>always include comments</strong> explaining the <em>inputs</em>, <em>outputs</em> and at least one <em>example</em> on how to use it.</p></li>
+<li><p>Second, remember <strong>all the packages you used</strong> and if possible always use the <code>package::function</code> structure when using foreigners functions inside your own one.</p></li>
+</ul>
+<p><em>PS</em>: Be careful with those packages we always use but usually we forget about because “they were always there”, such as <code>stats</code> and <code>utils</code>.</p>
+<blockquote>
+<p>The base R is the only one that don`t need to be mentioned!</p>
+</blockquote>
+<p>Now that we have our functions in a good shape let`s move to the package development itself.</p>
+</div>
+<div id="how-to-start" class="section level2">
+<h2>How to start</h2>
+<p>The first thing to do is to install the packages that will make our life easier.</p>
+<pre class="r"><code>install.packages(c(&quot;devtools&quot;, &quot;usethis&quot;, &quot;pkgdown&quot;, &quot;roxygen2&quot;))</code></pre>
+<p>If you also want to share your package on Github, now it is a good time to create a new Github repository with the name you want to call your package, for example ‘mypackage’. Clone this empty repository inside some folder you want.</p>
+<p>Now it should be possible to run the command <code>devtools::create("~/path/mypackage")</code>(give the path of the Github repository you just cloned). This line of code will create the folders and files structure we are going to follow from now on. As soon as you run it a new RStudio session in an R project structure will prompt and it will set you inside the “~/path/mypackage” folder. If everything went well you must be able to see a folder called “R”, and the “DESCRIPTION” and “NAMESPACE” files.</p>
+<ul>
+<li><p><strong>R folder</strong>: The R folder will be the place where you should put your scripts (which contains your functions, the .R files). There isn’t a rule on how you should organize your scripts inside this folder, however I like to follow the one function per script rule. For me, having one function per script structure makes the process of <em>debugging</em> and documentation easier. But at the end it is up to you!</p></li>
+<li><p><strong>DESCRIPTION</strong>: This file will expose some important information about your package. It is not that challenge to fill the main options inside this file, indeed the file has very good explanations on how to fill it correctly. Also we have functions like <code>usethis::use_package("packagename")</code> to help us on how to fill the other sections of this file. We will talk more about it later.</p></li>
+<li><p><strong>NAMESPACE</strong>: This file brings all the functions the user of your package will be able to use (all those functions defined with a <code>@export</code>. We also will cover more about it later). You should not edit this file, instead, you can run <code>devtools::document()</code> to update it.</p></li>
+</ul>
+</div>
+<div id="function-documentation" class="section level2">
+<h2>Function Documentation</h2>
+<p>Now it is time to document your functions. This step is really important to make your package useful for the R community and to help the proper usage of each one of your functions. To do that we are going to use the <code>roxygen2</code> package.</p>
+<p>Thanks to <code>roxygen2</code> package the documentation process is more simple than ever. If you are on RStudio you can simple open the script which contains your function, position the cursor in the begin of your function and go to the <em>Code menu &gt; Insert Roxygen Skeleton</em> or <em>ctrl+shift+alt+R</em>. If everything went well you should see an output like this:</p>
+<pre class="r"><code>#&#39; Title
+#&#39;
+#&#39; @param a 
+#&#39; @param b 
+#&#39;
+#&#39; @return
+#&#39; @export
+#&#39;
+#&#39; @examples
+myfunction &lt;- function(a,b)
+{
+  return(a+b)
+}</code></pre>
+<p>Now it is only a matter of fill the presented options with clear explanations regarding the use of the function and parameters. In addition, you must provide at least one example of how to use it and explain what the user should expect in return.</p>
+<blockquote>
+<p>Sometimes the example we provided will only work in very specific conditions. For these cases you should create your examples inside the <code>\dontrun{}</code>, it will prevent the execution of it while compile and check your package.</p>
+</blockquote>
+<p>Note that the default skeleton <code>roxigen2</code> provides us considers the <code>#' @export</code>. It only means that this function will be exposed to the end user, in other words the user should be able to run <code>mypackage::myfunction()</code>. If for some reason you don’t want to export this function you can only remove this line from your script.</p>
+<blockquote>
+<p>Functions defined without the <code>#' @export</code> will work internally with no problems, but the end user will be able to access it only with the <code>:::</code> structure, like <code>mypackage:::myfunction()</code>.</p>
+</blockquote>
+<p>At the end of this process your function script should be something like this:</p>
+<pre class="r"><code>#&#39; My Function
+#&#39;
+#&#39; This function provides the sum of two values (the worst example ever, I know!).
+#&#39; 
+#&#39; @param a the first numeric value
+#&#39; @param b the second numeric value
+#&#39;
+#&#39; @return a numeric value with the sum of a + b
+#&#39; @export
+#&#39;
+#&#39; @examples
+#&#39; \dontrun{
+#&#39; ## the parameters must be numeric
+#&#39;
+#&#39; myfunction(a = 1, b = 1)
+#&#39; }
+myfunction &lt;- function(a,b)
+{
+  return(a+b)
+}</code></pre>
+<p>Once you have your function documented you should run <code>devtools::document()</code> this will create/update the folder called “man”. This folder will store all your functions documentations. Don’t forget to run <code>devtools::document()</code> every time you update your functions descriptions!</p>
+<p>You can also run <code>devtools::load_all()</code> to load your package in your current R session, than you should be able to see how your documentation looks like by running <code>help('mypackage::myfunction')</code> or <code>?mypackage::myfunction</code>.</p>
+</div>
+<div id="foreigner-packages" class="section level2">
+<h2>Foreigner Packages</h2>
+<p>It is very unlikely that you will create your functions without using ANY dependencies (foreigner packages), and that is not a problem at all. However you must provide this information for the end user in some way, otherwise, the users will not be able to run your codes as expected.</p>
+<p>The right place for this information is inside the DESCRIPTION file in the <strong>“Imports” section</strong>. It is possible to fill this by hand by opening the DESCRIPTION file and including all the packages you used in your functions (separated by “,”) OR you can use the function <code>usethis::use_package("ggplot2")</code> and it will take care of filling it for you.</p>
+<blockquote>
+<p>The <code>use_package</code> function also provides options like the minimum pakage version and the type of dependency.</p>
+</blockquote>
+<blockquote>
+<p><strong>DO NOT USE library() OR require() IN YOUR R SCRIPTS!!!</strong></p>
+</blockquote>
+<p>One other possibility is to include just one function from a foreigner package. This is very common because sometimes we used only one function from a specific package and we don’t want to “import” the whole package but only that one function we are using. For that you can include <code>@importFrom package_name function_name</code> in the documentation of your function, this way you should be able to use the function without declare the package it came from. From now on it will be available like your own functions <code>mypackage::function_name()</code>.</p>
+<p>Let’s say we want to include the <code>beep()</code> function from the <code>beepr</code> package, but we don’t want the whole <code>beepr</code>. The script should be something like this:</p>
+<pre class="r"><code>#&#39; My Function
+#&#39;
+#&#39; This function provides the sum of two values (the worst example ever, I know!).
+#&#39;
+#&#39; @param a the first numeric value
+#&#39; @param b the second numeric value
+#&#39;
+#&#39; @return a numeric value with the sum of a + b
+#&#39; @export
+#&#39;
+#&#39; @importFrom beepr beep
+#&#39;
+#&#39; @examples
+#&#39; \dontrun{
+#&#39; ## the parameters must be numeric
+#&#39;
+#&#39; myfunction(a = 1, b = 1)
+#&#39; }
+myfunction &lt;- function(a,b)
+{
+  beep()
+  return(a+b)
+}</code></pre>
+<p>From now one the <code>beep()</code> function should be part of <code>mypackage</code>. If you run <code>devtools::document()</code> and <code>devtools::load_all()</code> you will see that <code>mypackage::beep()</code> is going to work.</p>
+<p>It is also very common to use the <code>%&gt;%</code> operator inside your functions. As we know the pipe operator is from the <code>magrittr</code> package but it is not necessary to import the whole <code>magrittr</code> package to only use the <code>%&gt;%</code>. For this you can run the <code>usethis::use_pipe()</code> and that is it!</p>
+</div>
+<div id="including-data" class="section level2">
+<h2>Including Data</h2>
+<p>What if my package uses external data? That other very common possibility and it is very easy to include external data sources in your package. Thanks again to the <code>usethis</code> package for provide us the <code>use_data()</code> function! So, to make your external data available inside your function environment you just need to run <code>usethis::use_data(mydf)</code>, like this:</p>
+<pre class="r"><code>mydf &lt;- data.frame(
+  x = rnorm(10,0,1),
+  y = runif(10)
+)
+
+usethis::use_data(mydf)</code></pre>
+<p>From now on you should be able to use the “mydf” data frame inside your functions without problems.</p>
+<p>Just like functions data objects also must be documented, and the idea is almost the same as documenting your functions. First, open a new R script and save it inside the R folder with the name you want (my advise is to follow the name of your data). Then you can follow the structure presented bellow.</p>
+<pre class="r"><code>#&#39; Random values
+#&#39;
+#&#39; A completely useless data set.
+#&#39;
+#&#39;
+#&#39; @format A data frame with 10 rows and 2 variables:
+#&#39; \describe{
+#&#39;   \item{x}{10 values from a normal distribution with mean = 0 and sd = 1}
+#&#39;   \item{y}{10 values from a uniform distribution}
+#&#39;   ...
+#&#39; }
+#&#39; @source Created by the author.
+&quot;mydf&quot;</code></pre>
+<p>Once you finish this process you can run <code>devtools::document()</code> and a new file named like your data will be created inside the “man” folder. To actually see the result of your documentation just run <code>devtools::load_all()</code> and then you should be able to run <code>help(mypackage::mydf)</code>.</p>
+<blockquote>
+<p>Never <code>@export</code> a data set!</p>
+</blockquote>
+</div>
+<div id="creating-vignettes" class="section level2">
+<h2>Creating Vignettes</h2>
+<p>The Vignettes are an important part of the package development process because it is the space for you to actually make a “walking through” your package capabilities. It is important to highlight that you can create as many vignettes as you like!</p>
+<p>Starting a new Vignette is really simple, you just need to run <code>devtools::use_vignette("intro")</code>. It will create a new folder called “vignettes” and inside this folder, you can see a file named “intro.Rmd”. The “intro.Rmd” is at the end a standard Rmarkdown file, now you can create the content of it the way you like.</p>
+<blockquote>
+<p>If you need some help with the <code>rmarkdown</code> package my advice is to take a look at the <a href="https://bookdown.org/yihui/rmarkdown/">Rmarkdown Book</a>!</p>
+</blockquote>
+</div>
+<div id="creating-readme" class="section level2">
+<h2>Creating README</h2>
+<p>As the idea is also to make the package available on Github it is almost mandatory to have a good README section. Thinking on that (AGAIN) the <code>usethis</code> package has the <code>usethis::use_readme_rmd()</code> function to help us organize our README file. Now it is only a matter of opening the file created by the <code>usethis::use_readme_rmd()</code> following the structure and including whatever you want.</p>
+<blockquote>
+<p>Remember to <strong>Knit</strong> any time you changed something on the README file!</p>
+</blockquote>
+<blockquote>
+<p>It is a good idea to take a look in other packages repositories on Github to get inspiration.</p>
+</blockquote>
+<blockquote>
+<p>To include the <strong>badges</strong> you can use the <code>usethis</code> package (ex:<code>usethis::use_badge()</code>, <code>usethis::use_cran_badge()</code>, etc).</p>
+</blockquote>
+</div>
+<div id="cran-submission" class="section level2">
+<h2>CRAN Submission</h2>
+<p>Now it is time to update your package on the main R repository the <strong>Comprehensive R Archive Network</strong>, CRAN. All the work we have done so far is essential to have your package accepted on CRAN repository.</p>
+<p>The first thing to do is be in accordance with the <a href="https://cran.r-project.org/web/packages/policies.html">CRAN Repository Policy</a>. Here you will find the rules and guidelines to follow to have your package hosted by CRAN. The next step is to fill the <a href="https://cran.r-project.org/">web form</a>.</p>
+<p><strong>Spoiler Alert</strong>: The web form will request you to provide your package in a <em>.tar.gz</em> file, and also they will run some automatic routines to verify if your package is in a good shape to be review by someone on CRAN. Before we “build” your package in a <em>.tar.gz</em> format let’s take a look if our package will pass the CRAN’s automatic tests. To simulate the CRAN’s check procedure you can run the <code>devtools::check()</code>, it should provide you a good idea if your package is ready to be hosted by CRAN.</p>
+<p>Now that you have a package with 0 errors 0 warnings and 0 notes it is time to actually build the package in the <em>.tar.gz</em>. The simple way to do that is by running the <code>devtools::build()</code> and that’s it! Your package now is ready to be submitted on CRAN! Follow the steps presented on the web form, and be aware of your email (all the communications about your package status will be over email).</p>
+<blockquote>
+<p>For the next version of your pacakge you can use the <code>devtools::release()</code>!</p>
+</blockquote>
+</div>
+<div id="pkgdown" class="section level2">
+<h2><code>pkgdown</code></h2>
+<p>Now that our package is available on Github and on CRAN we can easily create its own page, like a pro! Thanks to <code>pkgdown</code> it is very simple to make a very beautiful page to spreading your package for the whole R community.</p>
+<blockquote>
+<p>I will not gona cover the whole functionality of <code>pkgdown</code> for that you can see the <a href="https://pkgdown.r-lib.org/">pkgdown page</a>!</p>
+</blockquote>
+<p>Since we already have the package structure the only thing to do to create your packages’ page is:</p>
+<pre class="r"><code># Run to configure package to use pkgdown (once)
+usethis::use_pkgdown()
+
+# Run to build the website (every time you change it)
+pkgdown::build_site()</code></pre>
+<p>I told you that this is the easier part! Now let’s host the page on Github Pages!</p>
+<p>To do that you should enter your package Github repository and go to <em>Settings &gt; GitHub Pages</em>:</p>
+<p><img src="/img/packagedev_tutorial/settings.png" style="width:100.0%" /></p>
+<p><img src="/img/packagedev_tutorial/githubpages.png" style="width:100.0%" /></p>
+<p>Now you only need to change the <em>Source</em> where will be the page structure (for me it is in the <em>master branch</em> and inside the <em>docs folder</em>).</p>
+<blockquote>
+<p>The <code>pkgdown</code> by default will create the <strong>docs</strong> folder for you when you run <code>pkgdown::build_site()</code>!</p>
+</blockquote>
+<p><img src="/img/packagedev_tutorial/master_docs.png" style="width:100.0%" /></p>
+<p>Done! Just <strong>add</strong>, <strong>commit</strong>, <strong>push</strong> and your package’s page will be online at: <em>your_github_user.github.io/repository_name</em>.</p>
+</div>
+<div id="that-is-all" class="section level2">
+<h2>That is all</h2>
+<p>I hope someone finds this tutorial useful. As always your feedback is much appreciated, feel free to get in touch with me over social media! 😄</p>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://adsoncostanzifilho.github.io/tags/devtools/">Devtools</a></li>
+      <li><a href="https://adsoncostanzifilho.github.io/tags/usethis/">Usethis</a></li>
+      <li><a href="https://adsoncostanzifilho.github.io/tags/pkgdown/">Pkgdown</a></li>
+      <li><a href="https://adsoncostanzifilho.github.io/tags/roxygen2/">Roxygen2</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://adsoncostanzifilho.github.io/blog/csgo-package/">
+    <span class="title">« Prev</span>
+    <span>CSGo Package</span>
+  </a>
+  <a class="next" href="https://adsoncostanzifilho.github.io/blog/blogdown-tutorial/">
+    <span class="title">Next »</span>
+    <span>Blogdown Tutorial</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://adsoncostanzifilho.github.io/">Adson Costanzi Filho</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

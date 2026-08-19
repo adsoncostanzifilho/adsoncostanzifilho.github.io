@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tidytext on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/pt/tags/tidytext/</link>
+    <description>Recent content in Tidytext on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/pt/tags/tidytext/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ferramenta de Mineração de Texto</title>
+      <link>https://adsoncostanzifilho.github.io/pt/blog/text-mining-tool/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/pt/blog/text-mining-tool/</guid>
+      <description>&lt;div id=&#34;visão-geral&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visão Geral&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/TextMining&#34;&gt;adsoncostanzifilho/TextMining&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;Ferramenta de Mineração de Texto&lt;/strong&gt; é uma interface desenvolvida em R usando principalmente os pacotes shiny, tidytext e rtweet. A ideia dessa interface é permitir que você faça suas próprias análises de texto usando dados ao vivo do Twitter.&lt;/p&gt;
+&lt;p&gt;A ferramenta está online no repositório shinyapps no endereço &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/TextMining/&#34; class=&#34;uri&#34;&gt;https://adsoncostanzi.shinyapps.io/TextMining/&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;como-essa-interface-funciona&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Como essa interface funciona?&lt;/h2&gt;
+&lt;p&gt;A interface é dividida em 5 abas apresentadas no menu à esquerda: Home , Search , Word Cloud , Sentiment Analysis e Topic Modeling .&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

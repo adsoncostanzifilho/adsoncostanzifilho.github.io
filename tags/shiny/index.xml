@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>shiny on Adson Costanzi Filho</title>
+    <title>Shiny on Adson Costanzi Filho</title>
     <link>https://adsoncostanzifilho.github.io/tags/shiny/</link>
-    <description>Recent content in shiny on Adson Costanzi Filho</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://adsoncostanzifilho.github.io/tags/shiny/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recent content in Shiny on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/tags/shiny/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Text Mining Tool</title>
-      <link>https://adsoncostanzifilho.github.io/blog/2020/11/24/text-mining-tool/</link>
+      <link>https://adsoncostanzifilho.github.io/blog/text-mining-tool/</link>
       <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://adsoncostanzifilho.github.io/blog/2020/11/24/text-mining-tool/</guid>
-      <description>Overview  
-Text Mining Tool is an interface developed in R using mainly the shiny, tidytext and rtweet packages. The idea of this interface is to allow to you make your own text analysis using live Twitter data.
-The tool is online on shinyapps’ repository at the address https://adsoncostanzi.shinyapps.io/TextMining/.
- How does this interface work? The interface is divided into 5 tabs presented in the menu on the left: Home , Search , Word Cloud , Sentiment Analysis and, Topic Modeling .</description>
+      <guid>https://adsoncostanzifilho.github.io/blog/text-mining-tool/</guid>
+      <description>&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/TextMining&#34;&gt;adsoncostanzifilho/TextMining&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Text Mining Tool&lt;/strong&gt; is an interface developed in R using mainly the shiny, tidytext and rtweet packages. The idea of this interface is to allow to you make your own text analysis using live Twitter data.&lt;/p&gt;
+&lt;p&gt;The tool is online on shinyapps’ repository at the address &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/TextMining/&#34; class=&#34;uri&#34;&gt;https://adsoncostanzi.shinyapps.io/TextMining/&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-does-this-interface-work&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How does this interface work?&lt;/h2&gt;
+&lt;p&gt;The interface is divided into 5 tabs presented in the menu on the left: Home , Search , Word Cloud , Sentiment Analysis and, Topic Modeling .&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>soothsayeR</title>
-      <link>https://adsoncostanzifilho.github.io/blog/2020/11/23/soothsayer/</link>
+      <link>https://adsoncostanzifilho.github.io/blog/soothsayer/</link>
       <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://adsoncostanzifilho.github.io/blog/2020/11/23/soothsayer/</guid>
-      <description>Overview  
-SoothsayeR is an interface based on the old prank called ‘Peter answers’..
-The game’s idea is to play with your friends making questions that you know the answer, and make them believe that R is who is answering…
-The app demonstrates how easy it is to integrate Shiny with Javascript through the shinyjs library.
-The tool is online on shinyapps’ repository at the address https://adsoncostanzi.shinyapps.io/soothsayeR/.</description>
+      <guid>https://adsoncostanzifilho.github.io/blog/soothsayer/</guid>
+      <description>&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/soothsayeR&#34;&gt;adsoncostanzifilho/soothsayeR&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SoothsayeR&lt;/strong&gt; is an interface based on the old prank called ‘Peter answers’..&lt;/p&gt;
+&lt;p&gt;The game’s idea is to play with your friends making questions that you know the answer, and make them believe that R is who is answering…&lt;/p&gt;
+&lt;p&gt;The app demonstrates how easy it is to integrate &lt;strong&gt;Shiny&lt;/strong&gt; with &lt;strong&gt;Javascript&lt;/strong&gt; through the &lt;strong&gt;shinyjs&lt;/strong&gt; library.&lt;/p&gt;
+&lt;p&gt;The tool is online on shinyapps’ repository at the address &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/soothsayeR/&#34; class=&#34;uri&#34;&gt;https://adsoncostanzi.shinyapps.io/soothsayeR/&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-play-with-soothsayer&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How to play with soothsayeR?&lt;/h2&gt;
+&lt;p&gt;You just need to press dot (.) on the keyboard in the request session and then write the answer secretly. When you press dot in the request text input everything you type will be masked, so you could put the answer without anyone noticing.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

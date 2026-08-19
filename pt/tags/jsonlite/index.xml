@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Jsonlite on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/pt/tags/jsonlite/</link>
+    <description>Recent content in Jsonlite on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/pt/tags/jsonlite/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pacote CSGo</title>
+      <link>https://adsoncostanzifilho.github.io/pt/blog/csgo-package/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/pt/blog/csgo-package/</guid>
+      <description>&lt;script src=&#34;https://adsoncostanzifilho.github.io/pt/blog/csgo-package/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://adsoncostanzifilho.github.io/pt/blog/csgo-package/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+
+
+&lt;div id=&#34;visão-geral&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visão Geral&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/CSGo&#34;&gt;adsoncostanzifilho/CSGo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;O pacote &lt;strong&gt;CSGo&lt;/strong&gt; é um cliente R para acessar a API REST da Steam, especificamente para dados do jogo Counter-Strike Global Offensive (CS Go). Confira o &lt;a href=&#34;https://developer.valvesoftware.com/wiki/Steam_Web_API&#34;&gt;site de documentação da Steam&lt;/a&gt; e a &lt;a href=&#34;https://adsoncostanzifilho.github.io/CSGo/&#34;&gt;página do pacote&lt;/a&gt; para mais informações.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;instalação&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Instalação&lt;/h2&gt;
+&lt;p&gt;Para obter a versão atual publicada no &lt;a href=&#34;https://cran.r-project.org/web/packages/CSGo/index.html&#34;&gt;CRAN&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;CSGo&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Para obter a versão de desenvolvimento atual do &lt;a href=&#34;https://github.com/adsoncostanzifilho/CSGo&#34;&gt;GitHub&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;devtools&amp;quot;)
+devtools::install_github(&amp;quot;adsoncostanzifilho/CSGo&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exemplo&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Exemplo&lt;/h2&gt;
+&lt;p&gt;O primeiro passo para usar o pacote &lt;code&gt;CSGo&lt;/code&gt; é ter suas próprias credenciais (API key) para puxar os dados do CSGo da API da Steam. Para mais informações sobre como obter sua própria API Key, execute no seu R &lt;code&gt;vignette(&#34;auth&#34;, package = &#34;CSGo&#34;)&lt;/code&gt; ou clique &lt;a href=&#34;https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html&#34;&gt;aqui&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/es/tags/</link>
+    <description>Recent content in Tags on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/es/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FastAPI</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/fastapi/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/fastapi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Plumber</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/plumber/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/plumber/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/github/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/github/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GitHub-Actions</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/github-actions/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/github-actions/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CSGo</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/csgo/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/csgo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Httr</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/httr/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/httr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jsonlite</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/jsonlite/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/jsonlite/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Devtools</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/devtools/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/devtools/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pkgdown</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/pkgdown/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/pkgdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Roxygen2</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/roxygen2/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/roxygen2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Usethis</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/usethis/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/usethis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blogdown</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/blogdown/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/blogdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rmarkdown</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/rmarkdown/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/rmarkdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rtweet</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/rtweet/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/rtweet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shiny</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/shiny/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/shiny/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tidytext</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/tidytext/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/tidytext/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shinyjs</title>
+      <link>https://adsoncostanzifilho.github.io/es/tags/shinyjs/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/tags/shinyjs/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

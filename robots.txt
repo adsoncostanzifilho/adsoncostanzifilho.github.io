@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://adsoncostanzifilho.github.io/sitemap.xml

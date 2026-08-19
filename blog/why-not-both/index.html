@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Why not both? | Adson Costanzi Filho</title>
+<meta name="keywords" content="plumber, FastAPI">
+<meta name="description" content="
+Motivation
+I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always “Why not use both?”. The idea of this post is not to compare R vs Python but to show how easy it is to integrate both languages using APIs (LIKE A PRO), this way we can use the best of each. Also, the post won’t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).">
+<meta name="author" content="Adson Costanzi Filho">
+<link rel="canonical" href="https://adsoncostanzifilho.github.io/blog/why-not-both/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b9e2a4b151eacdcb2ffce6b326e52319ad287d3b68b8e5acc871cd05b7ba535b.css" integrity="sha256-ueKksVHqzcsv/OazJuUjGa0ofTtouOWsyHHNBbe6U1s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="apple-touch-icon" href="https://adsoncostanzifilho.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://adsoncostanzifilho.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://adsoncostanzifilho.github.io/blog/why-not-both/">
+<link rel="alternate" hreflang="pt" href="https://adsoncostanzifilho.github.io/pt/blog/why-not-both/">
+<link rel="alternate" hreflang="es" href="https://adsoncostanzifilho.github.io/es/blog/why-not-both/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<meta property="og:url" content="https://adsoncostanzifilho.github.io/blog/why-not-both/">
+  <meta property="og:site_name" content="Adson Costanzi Filho">
+  <meta property="og:title" content="Why not both?">
+  <meta property="og:description" content="Motivation I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always “Why not use both?”. The idea of this post is not to compare R vs Python but to show how easy it is to integrate both languages using APIs (LIKE A PRO), this way we can use the best of each. Also, the post won’t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2021-07-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-07-13T00:00:00+00:00">
+    <meta property="article:tag" content="Plumber">
+    <meta property="article:tag" content="FastAPI">
+    <meta property="og:image" content="https://adsoncostanzifilho.github.io/img/banners/plumber_fast_tutorial.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://adsoncostanzifilho.github.io/img/banners/plumber_fast_tutorial.png">
+  <meta name="twitter:title" content="Why not both?">
+  <meta name="twitter:description" content="Motivation I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always “Why not use both?”. The idea of this post is not to compare R vs Python but to show how easy it is to integrate both languages using APIs (LIKE A PRO), this way we can use the best of each. Also, the post won’t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://adsoncostanzifilho.github.io/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Why not both?",
+      "item": "https://adsoncostanzifilho.github.io/blog/why-not-both/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why not both?",
+  "name": "Why not both?",
+  "description": " Motivation I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always “Why not use both?”. The idea of this post is not to compare R vs Python but to show how easy it is to integrate both languages using APIs (LIKE A PRO), this way we can use the best of each. Also, the post won’t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).\n",
+  "keywords": [
+    "plumber", "FastAPI"
+  ],
+  "articleBody": " Motivation I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always “Why not use both?”. The idea of this post is not to compare R vs Python but to show how easy it is to integrate both languages using APIs (LIKE A PRO), this way we can use the best of each. Also, the post won’t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).\nThis post is divided into 3 sections: Creating a function, Creating an API, and Calling an API. In the first section, you will find a simple function created in R and Python, the second section is about how to transform that functions into APIs, the last one is how we can call/use the APIs.\nCreating a function Imagine that you are working in a data science team and someone needs a piece of code that return the sum of two values (sorry for the stupid example). See, the request is not about R, Python, Julia, Java, or whatever, but to solve the problem! So, let’s solve the problem the best way we can, and let’s write a function to solve it in R and Python.\nThis post will not cover the guidelines to create useful functions. For that I recommend you to take a look at the Functions section of the Advanced R Book.\nFunction in R A simple function to return the sum of two values in R would look like this:\nsum_two_r \u003c- function(x, y) { result \u003c- x + y return(result) } It is done, now we can call it inside R like this:\nsum_two_r(x = 1, y = 1) ## [1] 2 Function in Python A simple function to return the sum of two values in Python would look like this:\ndef sum_two_python(x, y): result = x + y return result It is done, now we can call it inside Python like this:\nsum_two_python(x = 1, y = 1) ## 2 Creating an API The problem is almost solved, but we still need to find the best way to share our solution with the rest of the team. Well, the part of the team that works in R can use the function we wrote in R, but that function is simply not available to the part of the team that uses Python, the same happens with the code written in Python which is simply not available to anyone using R. So, it is necessary to create a solution independent of the language to make it reachable for everyone on the team.\nI know the reticulate package can help, but it’s a one-way solution, and we are interested in a more generic form of integration that can be extended not just to Python, but to any programming language.\nOne good solution would be to create and deploy an API with our piece of code, this way the rest of the team can interact with it independently, in other words, doesn’t matter anymore what was the language you used to solve the problem. To do that we are going to use the plumber package for R and the FastAPI package for Python.\nThis post will not cover how to deploy the APIs. However, if you are interested in learning how to bring your APIs online you can use this link for plumber, and this link for FastAPI.\nAPI in R The first step to create an API in R is to install the plumber package:\ninstall.packages(\"plumber\") That done, let’s get back to our function file and add a couple of things to it.\n#* @param x first number #* @param y second number #* @get /sum_r sum_two_r \u003c- function(x, y) { result \u003c- as.numeric(x) + as.numeric(y) return(result) } Notice that we add some “comments” at the begging of the code very similar to the ones used in the roxygen2 package. These comments are the key that plumber uses to transform your functions in APIs endpoints. Also, for this example, we defined a GET request, the same could be done, for example, with POST requests by changing the comment to #* @post /sum_r.\nIf you are not familiar with HTTP requests you can take a look at this link.\nYou can see that it was included the as.numeric() transformation, which is necessary because the parameters “enter” R as strings, and to apply mathematical operations it is necessary to transform the numeric ones into numbers.\nThe next step is to deploy it! To bring it online you just need to provide the file path and the port you want to expose the API. We are going to make it available locally (localhost) at the port 8000 by running:\nlibrary(magrittr) library(plumber) pr('functions/sum_r.R') %\u003e% pr_run(port = 8000) Done! Now our API is exposed and you can access the Swagger documentation at http://localhost:8000/__docs__/, and you can interact with it by pressing GET, followed by the Try it out button, fill in the parameters and press Execute.\nIf you want to learn more about Swagger UI here is the link for you.\nAPI in Python The first step to create an API in Python is to install the FastAPI package. On the terminal run:\n$ pip install fastapi[all] That done, let’s get back to our function file and add a couple of things to it.\nfrom fastapi import FastAPI app = FastAPI() @app.get(\"/sum_py\") def sum_two_python(x:float, y:float): result = x + y return result Notice that we import the fastapi package and we created an object called app that is a FastAPI instance. Then we defined it as a GET request, the same could be done, for example, with POST requests by changing to @app.post(\"/sum_py\").\nYou can see that it was included the :float to force the variable type to be numeric, that is necessary because the default APIs calls “enter” Python as strings, and to apply mathematical operations it is necessary to transform the numeric ones into numbers.\nThe next step is to deploy it! To bring it online you just need to open the terminal and get inside the folder you saved your Python API script. I named my file as “sum_py” and I am going to make it available locally (localhost) at the port 8080 by running:\n$ uvicorn sum_py:app --port 8080 --reload The reload option will reload your API every time you save the file. It is a very good feature for development!\nDone! Now our API is exposed and you can access the Swagger documentation at http://localhost:8080/docs#/, and you can interact with it by pressing GET, followed by the Try it out button, fill in the parameters and press Execute.\nOf course, in the real world, the deployment of your APIs shouldn’t be local, but the logic will be (almost) the same. Also, there are MUCH MORE FEATURES on the API development, so my advice would be to read the plumber and FastAPI documentation to learn more about it.\nCalling an API From now on, the solution should be available for EVERYONE in the team, whether they use Python, R, etc. Now things will get crazy because we are going to call the Python API in R and the R API in Python!!! 😵\nPS: Keep both APIs running locally!\nCalling an API in R It is very simple to call APIs using R, and for that, we are going to use the httr package. Let’s install it:\ninstall.packages(\"httr\") Do you remember that our Python API is running locally (localhost) at the port 8080? Well, that and the request type (GET, in this case) are the only information we need to call it through R.\nlibrary(httr) python_request \u003c- GET('http://localhost:8080/sum_py?x=1\u0026y=1') python_result \u003c- content(python_request) python_result ## [1] 2 Calling an API in Python Let’s do the same, but this time we are going to call the R API through Python! For that, it will be necessary to install the requests package.\n$ pip install requests Our R API is also running on localhost but at the port 8000. Again, that and the request type (GET, in this case) are the only information we need to call it through Python.\nimport requests r_request = requests.get(\"http://localhost:8000/sum_r?x=1\u0026y=1\") print(r_request.json()) ## [2] That is all There are MUCH MORE to discuss when we talk about APIs/deploy/calls/requests, but the idea was to make it simple, to demonstrate the possibilities, and to STOP THE FIGHT between R and Python 😆. I believe this post is a good example of how to integrate both languages (LIKE A PRO), because, in the end, we want to SOLVE THE PROBLEM!!! Does it really matter if you solved it in Python or R?\nI hope someone finds this useful. As always your feedback is much appreciated, feel free to get in touch with me over social media! 😄\n",
+  "wordCount" : "1484",
+  "inLanguage": "en",
+  "image":"https://adsoncostanzifilho.github.io/img/banners/plumber_fast_tutorial.png","datePublished": "2021-07-13T00:00:00Z",
+  "dateModified": "2021-07-13T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Adson Costanzi Filho"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adsoncostanzifilho.github.io/blog/why-not-both/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adson Costanzi Filho",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adsoncostanzifilho.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://adsoncostanzifilho.github.io/" accesskey="h" title="Adson Costanzi Filho (Alt + H)">Adson Costanzi Filho</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/pt/" title="Português"
+                                aria-label="Português">Português</a>
+                        </li>
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/es/" title="Español"
+                                aria-label="Español">Español</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/files/cv.pdf" title="Résumé">
+                    <span>Résumé</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/blog/">Blog</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Why not both?
+    </h1>
+    <div class="post-meta">
+
+<span title='2021-07-13 00:00:00 +0000 UTC'>July 13, 2021</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>1484 words</span>&nbsp;·&nbsp;<span>Adson Costanzi Filho</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/pt/blog/why-not-both/">Português</a>
+        </li>
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/es/blog/why-not-both/">Español</a>
+        </li>
+    </ul>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <a href="https://adsoncostanzifilho.github.io/img/banners/plumber_fast_tutorial.png" target="_blank" rel="noopener noreferrer">
+        <img loading="eager" src="https://adsoncostanzifilho.github.io/img/banners/plumber_fast_tutorial.png" alt="why-not-both">
+        </a>
+        
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#" aria-label="Motivation">Motivation</a></li>
+            <li>
+                <a href="#" aria-label="Creating a function">Creating a function</a><ul>
+                    
+            <li>
+                <a href="#" aria-label="Function in R">Function in R</a></li>
+            <li>
+                <a href="#" aria-label="Function in Python">Function in Python</a></li></ul>
+            </li>
+            <li>
+                <a href="#" aria-label="Creating an API">Creating an API</a><ul>
+                    
+            <li>
+                <a href="#" aria-label="API in R">API in R</a></li>
+            <li>
+                <a href="#" aria-label="API in Python">API in Python</a></li></ul>
+            </li>
+            <li>
+                <a href="#" aria-label="Calling an API">Calling an API</a><ul>
+                    
+            <li>
+                <a href="#" aria-label="Calling an API in R">Calling an API in R</a></li>
+            <li>
+                <a href="#" aria-label="Calling an API in Python">Calling an API in Python</a></li></ul>
+            </li>
+            <li>
+                <a href="#" aria-label="That is all">That is all</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content">
+
+
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<p>I believe the most common discussion on data science teams is R vs Python. I saw myself in some of these discussions a couple of times and my position is always “<em>Why not use both?</em>”. The idea of this post is not to compare R vs Python but to show how easy it is to <strong>integrate both languages using APIs</strong> (LIKE A PRO), this way we can use the best of each. Also, the post won’t focus on the deployment and structure needed to bring the APIs online, instead, I will demonstrate it locally (to make it simple).</p>
+<p>This post is divided into 3 sections: <strong>Creating a function</strong>, <strong>Creating an API</strong>, and <strong>Calling an API</strong>. In the first section, you will find a simple function created in R and Python, the second section is about how to transform that functions into APIs, the last one is how we can call/use the APIs.</p>
+</div>
+<div id="creating-a-function" class="section level2">
+<h2>Creating a function</h2>
+<p>Imagine that you are working in a data science team and someone needs a piece of code that return the sum of two values (sorry for the stupid example). See, the request is not about R, Python, Julia, Java, or whatever, but to <strong>solve the problem</strong>! So, let’s solve the problem the best way we can, and let’s write a function to solve it in R and Python.</p>
+<blockquote>
+<p>This post will not cover the guidelines to create useful functions. For that I recommend you to take a look at the <em>Functions section</em> of the <a href="https://adv-r.hadley.nz/functions.html">Advanced R Book</a>.</p>
+</blockquote>
+<div id="function-in-r" class="section level3">
+<h3>Function in R</h3>
+<p>A simple function to return the sum of two values in R would look like this:</p>
+<pre class="r"><code>sum_two_r &lt;- function(x, y)
+{
+  result &lt;- x + y
+  return(result)
+}</code></pre>
+<p>It is done, now we can call it <strong>inside R</strong> like this:</p>
+<pre class="r"><code>sum_two_r(x = 1, y = 1)</code></pre>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="function-in-python" class="section level3">
+<h3>Function in Python</h3>
+<p>A simple function to return the sum of two values in Python would look like this:</p>
+<pre class="python"><code>def sum_two_python(x, y):
+  result = x + y
+  return result</code></pre>
+<p>It is done, now we can call it <strong>inside Python</strong> like this:</p>
+<pre class="python"><code>sum_two_python(x = 1, y = 1)</code></pre>
+<pre><code>## 2</code></pre>
+</div>
+</div>
+<div id="creating-an-api" class="section level2">
+<h2>Creating an API</h2>
+<p>The problem is almost solved, but we still need to find the best way to <strong>share our solution with the rest of the team</strong>. Well, the part of the team that works in R can use the function we wrote in R, but that function is simply not available to the part of the team that uses Python, the same happens with the code written in Python which is simply not available to anyone using R. So, it is necessary to create a solution independent of the language to make it reachable for everyone on the team.</p>
+<blockquote>
+<p>I know the <a href="https://rstudio.github.io/reticulate/">reticulate</a> package can help, but it’s a one-way solution, and we are interested in a more generic form of integration that can be extended not just to Python, but to any programming language.</p>
+</blockquote>
+<p>One good solution would be to <strong>create and deploy an API</strong> with our piece of code, this way the rest of the team can interact with it independently, in other words, doesn’t matter anymore what was the language you used to solve the problem. To do that we are going to use the <a href="https://www.rplumber.io/">plumber</a> package for R and the <a href="https://fastapi.tiangolo.com/">FastAPI</a> package for Python.</p>
+<blockquote>
+<p>This post will not cover how to deploy the APIs. However, if you are interested in learning how to bring your APIs online you can use this <a href="https://www.rplumber.io/articles/hosting.html">link</a> for <strong>plumber</strong>, and this <a href="https://fastapi.tiangolo.com/deployment/">link</a> for <strong>FastAPI</strong>.</p>
+</blockquote>
+<div id="api-in-r" class="section level3">
+<h3>API in R</h3>
+<p>The first step to create an API in R is to install the <code>plumber</code> package:</p>
+<pre class="r"><code>install.packages(&quot;plumber&quot;)</code></pre>
+<p>That done, let’s get back to our function file and add a couple of things to it.</p>
+<pre class="r"><code>#* @param x first number 
+#* @param y second number
+#* @get /sum_r
+
+sum_two_r &lt;- function(x, y)
+{
+  result &lt;- as.numeric(x) + as.numeric(y)
+  return(result)
+}</code></pre>
+<p>Notice that we add some “comments” at the begging of the code very similar to the ones used in the <code>roxygen2</code> package. These comments are the key that plumber uses to transform your functions in APIs endpoints. Also, for this example, we defined a <em>GET</em> request, the same could be done, for example, with <em>POST</em> requests by changing the comment to <code>#* @post /sum_r</code>.</p>
+<blockquote>
+<p>If you are not familiar with HTTP requests you can take a look at this <a href="https://www.rplumber.io/articles/routing-and-input.html">link</a>.</p>
+</blockquote>
+<blockquote>
+<p>You can see that it was included the <code>as.numeric()</code> transformation, which is necessary because the parameters “enter” R as strings, and to apply mathematical operations it is necessary to transform the numeric ones into numbers.</p>
+</blockquote>
+<p>The next step is to deploy it! To bring it online you just need to provide the <strong>file path</strong> and the <strong>port</strong> you want to expose the API. We are going to make it available locally (localhost) at the port 8000 by running:</p>
+<pre class="r"><code>library(magrittr)
+library(plumber)
+
+pr(&#39;functions/sum_r.R&#39;) %&gt;%
+  pr_run(port = 8000)</code></pre>
+<p>Done! Now our API is exposed and you can access the Swagger documentation at <a href="http://localhost:8000/__docs__/" class="uri">http://localhost:8000/__docs__/</a>, and you can interact with it by pressing <strong>GET</strong>, followed by the <strong>Try it out</strong> button, <strong>fill in the parameters</strong> and press <strong>Execute</strong>.</p>
+<p><img src="/img/plumber_fast_tutorial/swagger_plumber.gif" style="width:100.0%" /></p>
+<blockquote>
+<p>If you want to learn more about <em>Swagger UI</em> here is the <a href="https://swagger.io/">link</a> for you.</p>
+</blockquote>
+</div>
+<div id="api-in-python" class="section level3">
+<h3>API in Python</h3>
+<p>The first step to create an API in Python is to install the <code>FastAPI</code> package. On the terminal run:</p>
+<pre class="bash"><code>$ pip install fastapi[all]
+</code></pre>
+<p>That done, let’s get back to our function file and add a couple of things to it.</p>
+<pre class="python"><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get(&quot;/sum_py&quot;)
+def sum_two_python(x:float, y:float):
+  result = x + y
+  return result</code></pre>
+<p>Notice that we import the fastapi package and we created an object called app that is a FastAPI instance. Then we defined it as a <em>GET</em> request, the same could be done, for example, with <em>POST</em> requests by changing to <code>@app.post("/sum_py")</code>.</p>
+<blockquote>
+<p>You can see that it was included the <code>:float</code> to force the variable type to be numeric, that is necessary because the default APIs calls “enter” Python as strings, and to apply mathematical operations it is necessary to transform the numeric ones into numbers.</p>
+</blockquote>
+<p>The next step is to deploy it! To bring it online you just need to open the terminal and get <strong>inside the folder you saved your Python API script</strong>. I named my file as <em>“sum_py”</em> and I am going to make it available locally (localhost) at the port 8080 by running:</p>
+<pre class="bash"><code>$ uvicorn sum_py:app --port 8080 --reload
+</code></pre>
+<blockquote>
+<p>The <em>reload</em> option will reload your API every time you save the file. It is a very good feature for development!</p>
+</blockquote>
+<p>Done! Now our API is exposed and you can access the Swagger documentation at <a href="http://localhost:8080/docs#/" class="uri">http://localhost:8080/docs#/</a>, and you can interact with it by pressing <strong>GET</strong>, followed by the <strong>Try it out</strong> button, <strong>fill in the parameters</strong> and press <strong>Execute</strong>.</p>
+<p><img src="/img/plumber_fast_tutorial/swagger_fastapi.gif" style="width:100.0%" /></p>
+<p>Of course, in the real world, the deployment of your APIs shouldn’t be local, but the logic will be (almost) the same. Also, there are <strong>MUCH MORE FEATURES</strong> on the API development, so my advice would be to read the <a href="https://www.rplumber.io/">plumber</a> and <a href="https://fastapi.tiangolo.com/">FastAPI</a> documentation to learn more about it.</p>
+</div>
+</div>
+<div id="calling-an-api" class="section level2">
+<h2>Calling an API</h2>
+<p>From now on, the solution should be available for <strong>EVERYONE</strong> in the team, whether they use Python, R, etc. Now things will get crazy because we are going to call the Python API in R and the R API in Python!!! 😵</p>
+<p><strong>PS</strong>: Keep both APIs running locally!</p>
+<div id="calling-an-api-in-r" class="section level3">
+<h3>Calling an API in R</h3>
+<p>It is very simple to call APIs using R, and for that, we are going to use the <code>httr</code> package. Let’s install it:</p>
+<pre class="r"><code>install.packages(&quot;httr&quot;)</code></pre>
+<p>Do you remember that our Python API is running locally (localhost) at the port 8080? Well, that and the request type (<em>GET</em>, in this case) are the only information we need to call it through R.</p>
+<pre class="r"><code>library(httr)
+
+python_request &lt;- GET(&#39;http://localhost:8080/sum_py?x=1&amp;y=1&#39;)
+
+python_result &lt;- content(python_request)
+
+python_result</code></pre>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="calling-an-api-in-python" class="section level3">
+<h3>Calling an API in Python</h3>
+<p>Let’s do the same, but this time we are going to call the R API through Python! For that, it will be necessary to install the <code>requests</code> package.</p>
+<pre class="bash"><code>$ pip install requests
+</code></pre>
+<p>Our R API is also running on localhost but at the port 8000. Again, that and the request type (<em>GET</em>, in this case) are the only information we need to call it through Python.</p>
+<pre class="python"><code>import requests
+
+r_request = requests.get(&quot;http://localhost:8000/sum_r?x=1&amp;y=1&quot;)
+
+print(r_request.json())</code></pre>
+<pre><code>## [2]</code></pre>
+</div>
+</div>
+<div id="that-is-all" class="section level2">
+<h2>That is all</h2>
+<p>There are <strong>MUCH MORE</strong> to discuss when we talk about APIs/deploy/calls/requests, but the idea was to make it simple, to demonstrate the possibilities, and to <strong>STOP THE FIGHT</strong> between R and Python 😆. I believe this post is a good example of how to integrate both languages (LIKE A PRO), because, in the end, we want to <strong>SOLVE THE PROBLEM</strong>!!! Does it really matter if you solved it in Python or R?</p>
+<p>I hope someone finds this useful. As always your feedback is much appreciated, feel free to get in touch with me over social media! 😄</p>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://adsoncostanzifilho.github.io/tags/plumber/">Plumber</a></li>
+      <li><a href="https://adsoncostanzifilho.github.io/tags/fastapi/">FastAPI</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://adsoncostanzifilho.github.io/blog/github-actions-for-r-users/">
+    <span class="title">Next »</span>
+    <span>GitHub Actions for R Users</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://adsoncostanzifilho.github.io/">Adson Costanzi Filho</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

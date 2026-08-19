@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Categories on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/pt/categories/</link>
+    <description>Recent content in Categories on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/pt/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python</title>
+      <link>https://adsoncostanzifilho.github.io/pt/categories/python/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/pt/categories/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>R</title>
+      <link>https://adsoncostanzifilho.github.io/pt/categories/r/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/pt/categories/r/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>https://adsoncostanzifilho.github.io/pt/categories/tutorial/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/pt/categories/tutorial/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Project</title>
+      <link>https://adsoncostanzifilho.github.io/pt/categories/project/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/pt/categories/project/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shiny</title>
+      <link>https://adsoncostanzifilho.github.io/pt/categories/shiny/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/pt/categories/shiny/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

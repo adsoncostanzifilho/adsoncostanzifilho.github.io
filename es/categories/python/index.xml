@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/es/categories/python/</link>
+    <description>Recent content in Python on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/es/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>¿Por qué no ambos?</title>
+      <link>https://adsoncostanzifilho.github.io/es/blog/why-not-both/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/blog/why-not-both/</guid>
+      <description>&lt;div id=&#34;motivación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Motivación&lt;/h2&gt;
+&lt;p&gt;Creo que la discusión más común en los equipos de ciencia de datos es R vs Python. Me he visto en algunas de estas discusiones un par de veces y mi posición es siempre “&lt;em&gt;¿Por qué no usar ambos?&lt;/em&gt;”. La idea de este post no es comparar R vs Python, sino mostrar lo fácil que es &lt;strong&gt;integrar ambos lenguajes usando APIs&lt;/strong&gt; (COMO UN PROFESIONAL); de esta manera podemos usar lo mejor de cada uno. Además, el post no se centrará en la publicación y la estructura necesarias para poner las APIs en línea; en su lugar, lo demostraré localmente (para que sea simple).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

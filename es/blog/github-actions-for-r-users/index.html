@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>GitHub Actions para Usuarios de R | Adson Costanzi Filho</title>
+<meta name="keywords" content="GitHub, GitHub-Actions">
+<meta name="description" content="
+Motivación
+Recientemente algunos amigos me presentaron GitHub Actions y cómo podría ayudarme a ejecutar tareas como: publicar mis Shiny Apps, publicar este Blogdown, realizar pruebas automáticas en paquetes, actualizar datos y más. Así que decidí probarlo, y fue tan simple y me ahorró tantas horas de trabajo que decidí escribir este post explicando cómo los desarrolladores de R pueden hacer buen uso de esta increíble herramienta.
+Primero, las referencias que usé para empezar con GitHub Actions:">
+<meta name="author" content="Adson Costanzi Filho">
+<link rel="canonical" href="https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b9e2a4b151eacdcb2ffce6b326e52319ad287d3b68b8e5acc871cd05b7ba535b.css" integrity="sha256-ueKksVHqzcsv/OazJuUjGa0ofTtouOWsyHHNBbe6U1s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="apple-touch-icon" href="https://adsoncostanzifilho.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://adsoncostanzifilho.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://adsoncostanzifilho.github.io/blog/github-actions-for-r-users/">
+<link rel="alternate" hreflang="pt" href="https://adsoncostanzifilho.github.io/pt/blog/github-actions-for-r-users/">
+<link rel="alternate" hreflang="es" href="https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<meta property="og:url" content="https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/">
+  <meta property="og:site_name" content="Adson Costanzi Filho">
+  <meta property="og:title" content="GitHub Actions para Usuarios de R">
+  <meta property="og:description" content="Motivación Recientemente algunos amigos me presentaron GitHub Actions y cómo podría ayudarme a ejecutar tareas como: publicar mis Shiny Apps, publicar este Blogdown, realizar pruebas automáticas en paquetes, actualizar datos y más. Así que decidí probarlo, y fue tan simple y me ahorró tantas horas de trabajo que decidí escribir este post explicando cómo los desarrolladores de R pueden hacer buen uso de esta increíble herramienta.
+Primero, las referencias que usé para empezar con GitHub Actions:">
+  <meta property="og:locale" content="es">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2021-04-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-04-01T00:00:00+00:00">
+    <meta property="article:tag" content="GitHub">
+    <meta property="article:tag" content="GitHub-Actions">
+    <meta property="og:image" content="https://adsoncostanzifilho.github.io/img/banners/gha_tutorial.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://adsoncostanzifilho.github.io/img/banners/gha_tutorial.png">
+  <meta name="twitter:title" content="GitHub Actions para Usuarios de R">
+  <meta name="twitter:description" content="Motivación Recientemente algunos amigos me presentaron GitHub Actions y cómo podría ayudarme a ejecutar tareas como: publicar mis Shiny Apps, publicar este Blogdown, realizar pruebas automáticas en paquetes, actualizar datos y más. Así que decidí probarlo, y fue tan simple y me ahorró tantas horas de trabajo que decidí escribir este post explicando cómo los desarrolladores de R pueden hacer buen uso de esta increíble herramienta.
+Primero, las referencias que usé para empezar con GitHub Actions:">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://adsoncostanzifilho.github.io/es/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "GitHub Actions para Usuarios de R",
+      "item": "https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "GitHub Actions para Usuarios de R",
+  "name": "GitHub Actions para Usuarios de R",
+  "description": " Motivación Recientemente algunos amigos me presentaron GitHub Actions y cómo podría ayudarme a ejecutar tareas como: publicar mis Shiny Apps, publicar este Blogdown, realizar pruebas automáticas en paquetes, actualizar datos y más. Así que decidí probarlo, y fue tan simple y me ahorró tantas horas de trabajo que decidí escribir este post explicando cómo los desarrolladores de R pueden hacer buen uso de esta increíble herramienta.\nPrimero, las referencias que usé para empezar con GitHub Actions:\n",
+  "keywords": [
+    "GitHub", "GitHub-Actions"
+  ],
+  "articleBody": " Motivación Recientemente algunos amigos me presentaron GitHub Actions y cómo podría ayudarme a ejecutar tareas como: publicar mis Shiny Apps, publicar este Blogdown, realizar pruebas automáticas en paquetes, actualizar datos y más. Así que decidí probarlo, y fue tan simple y me ahorró tantas horas de trabajo que decidí escribir este post explicando cómo los desarrolladores de R pueden hacer buen uso de esta increíble herramienta.\nPrimero, las referencias que usé para empezar con GitHub Actions:\nLa presentación de Jim Hester en la RStudio Conference aquí.\nEl repositorio de GitHub Actions para el lenguaje R aquí.\nLa Documentación de GitHub Actions aquí.\ninstall.packages(\"usethis\") La primera función muy interesante sobre GitHub Action en el paquete usethis es usethis::browse_github_actions(); con esta función puedes ver las acciones activas que se ejecutan en los más diversos paquetes de R. Este es un muy buen comienzo para darte una idea de cuáles son las Actions que se usan en paquetes grandes de R como “shiny”, “dplyr”, etc.\nEl usethis también tiene la función usethis::use_github_action(), que en mi opinión es la forma más fácil de empezar. Creará por ti la estructura de archivos/carpetas necesaria para que GitHub entienda y ejecute tus Actions; en otras palabras, creará la estructura carpeta .github \u003e carpeta workflows \u003e archivo .yaml dentro de la ruta de tu proyecto actual. Esta función también necesita como argumento un nombre de workflow específico (puedes consultar las opciones disponibles aquí); dependiendo de la opción que elijas, puede darte un muy buen punto de partida (a veces no necesitas cambiar nada). Por ejemplo, si ejecutas usethis::use_github_action(\"pkgdown\"), creará por ti la estructura de carpetas predeterminada (carpeta .github \u003e carpeta workflows \u003e archivo file.yaml) y comenzará un archivo .yaml como este:\non: push: branches: - main - master name: pkgdown jobs: pkgdown: runs-on: macOS-latest env: GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }} steps: - uses: actions/checkout@v2 - uses: r-lib/actions/setup-r@v1 - uses: r-lib/actions/setup-pandoc@v1 - name: Query dependencies run: | install.packages('remotes') saveRDS(remotes::dev_package_deps(dependencies = TRUE), \".github/depends.Rds\", version = 2) writeLines(sprintf(\"R-%i.%i\", getRversion()$major, getRversion()$minor), \".github/R-version\") shell: Rscript {0} - name: Restore R package cache uses: actions/cache@v2 with: path: ${{ env.R_LIBS_USER }} key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }} restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1- - name: Install dependencies run: | remotes::install_deps(dependencies = TRUE) install.packages(\"pkgdown\", type = \"binary\") shell: Rscript {0} - name: Install package run: R CMD INSTALL . - name: Deploy package run: | git config --local user.email \"actions@github.com\" git config --local user.name \"GitHub Actions\" Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)' Cubriremos los pasos presentados dentro del archivo .yaml más adelante, así como presentaremos algunos workflows específicos para:\nPublicar tu shiny en shinyapps.io automáticamente\nPublicar tu página de blogdown en GitHub Pages automáticamente.\nRealizar pruebas automáticas en tus paquetes de R.\nProgramar algunas rutinas.\n¡Recuerda que GitHub solo ejecutará los archivos .yaml dentro de la carpeta workflows (que está dentro de la carpeta .github)!\n# Triggered on push branch master on: push: branches: [ master ] El segundo paso es definir el nombre del workflow y el sistema operativo que quieras. GitHub Actions tiene varias opciones de SO para elegir, incluyendo los 3 más populares: ubuntu, macos y windows. Voy a nombrar nuestro procedimiento como “Shiny-Deploy” y vamos a usar macos-10.15.\nPuedes asociar tus acciones a badges con el paquete usethis. Por ejemplo, si el nombre de tu workflow es “Shiny-Deploy”, puedes agregar este badge en tu archivo README ejecutando usethis::use_github_actions_badge(\"Shiny-Deploy\").\n# Name of the workflow - usethis::use_github_actions_badge(\"Shiny-Deploy\") name: Shiny-Deploy # Set the job, the machine and the R version jobs: Shiny-Deploy: runs-on: macos-10.15 strategy: matrix: r-version: [4.0.2] Ahora que ya tenemos nuestra máquina de GitHub Actions, ¡podemos empezar a desarrollar los pasos! Primero clonemos el repositorio desde la rama respectiva que activó la acción.\nPD: de ahora en adelante, todas las acciones estarán “dentro” de la estructura steps.\nsteps: # Cloning your repository from the respective branch that has triggered it - uses: actions/checkout@v2 ¡Bien! Ya hicimos una copia de nuestros archivos; ahora necesitamos configurar la instalación de R en nuestra máquina de GitHub Actions para poder ejecutar nuestros scripts de R. También configuraremos pandoc para compilar nuestros scripts de shiny o Rmarkdown.\n# set-up an R installation in our GHA machine to run our scripts - name: Set up R ${{ matrix.r-version }} uses: r-lib/actions/setup-R@v1 # for macos with: r-version: ${{ matrix.r-version }} # We will also need pandoc to compile our Shiny or RMarkdown report - name: Setting up pandoc uses: r-lib/actions/setup-pandoc@v1 De ahora en adelante podemos ejecutar algunos scripts de R directamente en la terminal de nuestra máquina de GitHub Actions. Por lo tanto, nuestro próximo paso será instalar todos los paquetes que tu app de shiny necesita. Obviamente, este paso cambiará dependiendo de los paquetes que usaste para construir tu app.\n¡No olvides incluir el paquete rsconnect! Vamos a usar este paquete para conectar nuestra máquina de GitHub al servidor de shinyapps.\n# Install R packages - name: Install dependencies run: | install.packages(c( \"rsconnect\", \"dplyr\", \"shiny\", \"shinyjs\", \"shinyWidgets\", \"shinyalert\", \"shinycssloaders\", \"evaluate\", \"highr\", \"knitr\", \"markdown\", \"rmarkdown\", \"stringi\", \"stringr\", \"tinytex\", \"xfun\" )) shell: Rscript {0} Ahora viene la parte complicada. Para hacer la conexión entre tu máquina de GitHub Actions y tu cuenta de shiny apps, necesitamos configurar tu token y key de shiny apps. Evidentemente, por razones de seguridad no quieres publicar tus credenciales de shinyapps para que cualquiera que acceda a tu repositorio de GitHub las vea. Sin embargo, también necesitamos tu token y key para poder publicar tu app automáticamente; por eso vamos a usar la función GitHub Secrets!\nPrimero necesitas ir a tu cuenta de shiny apps, hacer clic en tu nombre de perfil y entrar en la opción de tokens.\nSi aún no has creado tus tokens de shinyapps, o si quieres usar uno nuevo, puedes hacer clic en el botón + Add Token. Una vez que lo hagas, aparecerá una nueva línea y deberías poder ver tu Token pero no tu Secret. Necesitas presionar el botón Show seguido del Show Secret para poder copiar tu credencial Secret.\nAhora necesitamos incluir estas credenciales en GitHub Secrets. Para ello debes entrar en la página de tu repositorio de GitHub e ir a Settings.\nEn el menú de la izquierda deberías poder ver la opción Secrets. Una vez que entres en la pestaña Secrets verás el título “Actions secrets”, y justo a su lado verás el botón “New repository secret”. Necesitas hacer clic en este botón para crear tus variables de entorno encriptadas (en este caso, tus credenciales de shinyapps).\nVamos a crear 2 variables de entorno diferentes: la primera llamada “SHINYAPP_TOKEN” y la segunda llamada “SHINYAPP_SECRET” (por supuesto, puedes ponerles el nombre que quieras). Una vez que hagas clic en el botón “New repository secret”, deberás proporcionar el nombre de tu variable y su valor, y presionar “Add Secret”, como puedes ver a continuación.\n¡Tu Secret y Token no necesitan estar entre comillas (“my token”)!\nBien, ahora podemos usar estas dos variables dentro de nuestro archivo .yaml y deberíamos poder publicar nuestra app en el servidor de shinyapps. También debes proporcionar tu nombre de cuenta de shinyapps, el nombre de tu app y el directorio de los scripts de tu app. Claro, si quieres puedes configurar todo esto usando GitHub Secrets.\n# Connect on shinyapps server - name: Connect to ShinyApps env: # set the shinyapps keys as environment variables SHINY_TOKEN: ${{ secrets.SHINYAPP_TOKEN }} SHINY_SECRET: ${{ secrets.SHINYAPP_SECRET }} run: | shiny_token = Sys.getenv(\"SHINY_TOKEN\") shiny_secret = Sys.getenv(\"SHINY_SECRET\") rsconnect::setAccountInfo(name = 'adsoncostanzi', token = shiny_token, secret = shiny_secret) shell: Rscript {0} # deploy the app on shinyapps server - name: Deploy to shinyapps.io run: | rsconnect::deployApp(appName = \"soothsayeR\", appDir = \"app\") shell: Rscript {0} ¡Eso es todo! Ahora GitHub publicará tu shiny en shinyapps cada vez que hagas “push” en la rama master.\nPor razones de copiar y pegar, aquí está el archivo .yaml completo.\n¡Sigue la indentación, es una parte esencial del código!\n# Triggered on push branch master on: push: branches: [ master ] # Name of the workflow - usethis::use_github_actions_badge(\"Shiny-Deploy\") name: Shiny-Deploy # Set the job, the machine and the R version jobs: Shiny-Deploy: #runs-on: ubuntu-latest runs-on: macos-10.15 strategy: matrix: r-version: [4.0.2] steps: # Cloning your repository from the respective branch that has triggered it - uses: actions/checkout@v2 # set-up an R installation in our GHA machine to run our scripts - name: Set up R ${{ matrix.r-version }} uses: r-lib/actions/setup-R@v1 # for macos with: r-version: ${{ matrix.r-version }} # We will also need pandoc to compile our Shiny or RMarkdown report - name: Setting up pandoc uses: r-lib/actions/setup-pandoc@v1 # Install R packages - name: Install dependencies run: | install.packages(c( \"rsconnect\", \"dplyr\", \"shiny\", \"shinyjs\", \"shinyWidgets\", \"shinyalert\", \"shinycssloaders\", \"evaluate\", \"highr\", \"knitr\", \"markdown\", \"rmarkdown\", \"stringi\", \"stringr\", \"tinytex\", \"xfun\" )) shell: Rscript {0} # Connect in shinyapps server - name: Connect to ShinyApps env: # set the shinyapps keys as environment variables SHINY_TOKEN: ${{ secrets.SHINYAPP_TOKEN }} SHINY_SECRET: ${{ secrets.SHINYAPP_SECRET }} run: | shiny_token = Sys.getenv(\"SHINY_TOKEN\") shiny_secret = Sys.getenv(\"SHINY_SECRET\") rsconnect::setAccountInfo(name = 'adsoncostanzi', token = shiny_token, secret = shiny_secret) shell: Rscript {0} # deploy the app on shinyapps server - name: Deploy to shinyapps.io run: | rsconnect::deployApp(appName = \"soothsayeR\", appDir = \"app\") shell: Rscript {0} Publicación automática de Blogdown ¿Qué tal hacer que tu blogdown se publique automáticamente en GitHub Pages? Cada vez que escribas un nuevo post solo necesitarás hacer “push” y GitHub Actions se encargará del resto. Este procedimiento funciona de manera muy similar al de shiny, ¡así que empecemos nuestro archivo .yaml!\nPara la publicación de blogdown vamos a usar dos ramas diferentes: la primera llamada “source”, que contendrá el lado de desarrollo de nuestro blogdown, y la rama “master”, que expondrá la página compilada (la rama master recibirá el resultado de blogdown::build_site(local = FALSE)).\n¡La rama master DEBE ser la que tenga el contenido de build_site()!\nDe esta manera configuraremos nuestro trigger como un “push” en la rama “source”:\n# Triggered on push branch source on: push: branches: - source En el siguiente paso definiremos el nombre del workflow y el SO que queremos usar. Para este ejemplo, vamos a nombrar nuestro workflow como “deployblog” y el SO será Ubuntu 18.04.\n# Name of the workflow - usethis::use_github_actions_badge(\"deployblog\") name: deployblog # Set the job, the machine jobs: deployblog: name: Render and deploy blogdown runs-on: ubuntu-18.04 La parte más fácil está hecha; ¡ahora empecemos con los pasos! Vamos a clonar el repositorio (en la rama “source”) y configurar R y pandoc, como hicimos en la sección de publicación de shiny.\nPD: de ahora en adelante, todas las acciones estarán “dentro” de la estructura steps.\nsteps: # Cloning your repository from the respective branch that has triggered it - uses: actions/checkout@v2 with: submodules: true fetch-depth: 0 # set-up an R installation in our GHA machine to run our scripts - uses: r-lib/actions/setup-r@v1 # We will also need pandoc to compile our Shiny or RMarkdown report - uses: r-lib/actions/setup-pandoc@v1 Ahora que tenemos nuestros scripts y R configurados, podemos continuar con la instalación de los paquetes, así como instalar HUGO, de la siguiente manera:\n# Install R packages - name: Install r packages run: | Rscript -e 'install.packages(c(\"remotes\", \"rmarkdown\"))' \\ -e 'remotes::install_github(\"rstudio/blogdown\")' - name: install hugo # Install Hugo run: Rscript -e 'blogdown::install_hugo(extended = TRUE, version = \"0.78.2\")' - name: Get themes run: git submodule update --remote Terminado eso, deberíamos poder renderizar/compilar nuestro blogdown en una carpeta específica (en este caso será la carpeta “public”) usando la función blogdown::build_site(local = FALSE). Hecho eso, solo necesitamos subir el contenido de la carpeta “public” a la rama master y ¡tu blogdown estará en línea en GitHub Pages!\n- name: Look at files run: ls ./public - name: Render blog run: Rscript -e 'blogdown::build_site(local = FALSE)' - name: Deploy uses: peaceiris/actions-gh-pages@v3 with: github_token: ${{ secrets.GITHUB_TOKEN }} publish_branch: master ¡ROBÉ ESTE SCRIPT DE MI BUEN AMIGO LUCAS GODOY (¡él también me enseñó cómo hacerlo funcionar)!\nPor razones de copiar y pegar, aquí está el archivo .yaml completo.\n# Triggered on push branch source on: push: branches: - source # Name of the workflow - usethis::use_github_actions_badge(\"deployblog\") name: deployblog # Set the job, the machine jobs: deployblog: name: Render and deploy blogdown runs-on: ubuntu-18.04 steps: # Cloning your repository from the respective branch that has triggered it - uses: actions/checkout@v2 with: submodules: true fetch-depth: 0 # set-up an R installation in our GHA machine to run our scripts - uses: r-lib/actions/setup-r@v1 # We will also need pandoc to compile our Shiny or RMarkdown report - uses: r-lib/actions/setup-pandoc@v1 # Install R packages - name: Install r packages run: | Rscript -e 'install.packages(c(\"remotes\", \"rmarkdown\"))' \\ -e 'remotes::install_github(\"rstudio/blogdown\")' - name: install hugo # Install Hugo run: Rscript -e 'blogdown::install_hugo(extended = TRUE, version = \"0.78.2\")' - name: Get themes run: git submodule update --remote - name: Look at files run: ls ./public - name: Render blog run: Rscript -e 'blogdown::build_site(local = FALSE)' - name: Deploy uses: peaceiris/actions-gh-pages@v3 with: github_token: ${{ secrets.GITHUB_TOKEN }} publish_branch: master publish_dir: ./public Pruebas automáticas Diría que ejecutar pruebas manualmente puede ser el trabajo que más tiempo consume de todos los presentados en este post, y es por eso que realizar pruebas automáticas puede ahorrarte muchas horas de trabajo. Sé que las pruebas automáticas son muy específicas; en otras palabras, dependerá del tipo de pruebas que quieras realizar. Sin embargo, podemos tener un muy buen punto de partida con el paquete usethis.\nPor ejemplo, al ejecutar la función usethis::use_github_action_check_full() se creará el procedimiento R-CMD-check predeterminado para ti en una estructura de GitHub Actions. El R-CMD-check estimulará el uso de tus códigos en los más diversos entornos, como windows, ubuntu y macos, los tres ejecutando también diferentes versiones de R. Mi consejo es usar como punto de partida el .yaml proporcionado por la función usethis::use_github_action_check_full() para realizar tus propias pruebas automáticas.\nPuedes encontrar a continuación el archivo .yaml generado por la función usethis::use_github_action_check_full():\non: push: branches: - main - master pull_request: branches: - main - master name: R-CMD-check jobs: R-CMD-check: runs-on: ${{ matrix.config.os }} name: ${{ matrix.config.os }} (${{ matrix.config.r }}) strategy: fail-fast: false matrix: config: - {os: macOS-latest, r: 'release'} - {os: windows-latest, r: 'release'} - {os: windows-latest, r: '3.6'} - {os: ubuntu-18.04, r: 'devel', rspm: \"https://packagemanager.rstudio.com/cran/__linux__/bionic/latest\", http-user-agent: \"R/4.0.0 (ubuntu-18.04) R (4.0.0 x86_64-pc-linux-gnu x86_64 linux-gnu) on GitHub Actions\" } - {os: ubuntu-18.04, r: 'release', rspm: \"https://packagemanager.rstudio.com/cran/__linux__/bionic/latest\"} - {os: ubuntu-18.04, r: 'oldrel', rspm: \"https://packagemanager.rstudio.com/cran/__linux__/bionic/latest\"} - {os: ubuntu-18.04, r: '3.5', rspm: \"https://packagemanager.rstudio.com/cran/__linux__/bionic/latest\"} - {os: ubuntu-18.04, r: '3.4', rspm: \"https://packagemanager.rstudio.com/cran/__linux__/bionic/latest\"} - {os: ubuntu-18.04, r: '3.3', rspm: \"https://packagemanager.rstudio.com/cran/__linux__/bionic/latest\"} env: RSPM: ${{ matrix.config.rspm }} GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }} steps: - uses: actions/checkout@v2 - uses: r-lib/actions/setup-r@v1 id: install-r with: r-version: ${{ matrix.config.r }} http-user-agent: ${{ matrix.config.http-user-agent }} - uses: r-lib/actions/setup-pandoc@v1 - name: Install pak and query dependencies run: | install.packages(\"pak\", repos = \"https://r-lib.github.io/p/pak/dev/\") saveRDS(pak::pkg_deps(\"local::.\", dependencies = TRUE), \".github/r-depends.rds\") shell: Rscript {0} - name: Restore R package cache uses: actions/cache@v2 with: path: | ${{ env.R_LIBS_USER }} !${{ env.R_LIBS_USER }}/pak key: ${{ matrix.config.os }}-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('.github/r-depends.rds') }} restore-keys: ${{ matrix.config.os }}-${{ steps.install-r.outputs.installed-r-version }}-1- - name: Install system dependencies if: runner.os == 'Linux' run: | pak::local_system_requirements(execute = TRUE) pak::pkg_system_requirements(\"rcmdcheck\", execute = TRUE) shell: Rscript {0} - name: Install dependencies run: | pak::local_install_dev_deps(upgrade = TRUE) pak::pkg_install(\"rcmdcheck\") shell: Rscript {0} - name: Session info run: | options(width = 100) pkgs \u003c- installed.packages()[, \"Package\"] sessioninfo::session_info(pkgs, include_base = TRUE) shell: Rscript {0} - name: Check env: _R_CHECK_CRAN_INCOMING_: false run: | options(crayon.enabled = TRUE) rcmdcheck::rcmdcheck(args = c(\"--no-manual\", \"--as-cran\"), error_on = \"warning\", check_dir = \"check\") shell: Rscript {0} - name: Show testthat output if: always() run: find check -name 'testthat.Rout*' -exec cat '{}' \\; || true shell: bash - name: Upload check results if: failure() uses: actions/upload-artifact@main with: name: ${{ matrix.config.os }}-r${{ matrix.config.r }}-results path: check Rutinas programadas GitHub Actions también ofrece la opción de programar rutinas; en otras palabras, puedes definir como triggers cualquier momento específico que quieras. Para ello, GitHub Actions usa la sintaxis cron, que es la parte difícil (al menos para mí, que nunca la había usado). Primero, ¡entendamos la sintaxis que GitHub Actions usa para ejecutar las rutinas programadas!\nLa sintaxis cron está dividida en 5 partes (*****):\nLa primera parte sirve para definir el minuto (0 - 59)\nLa segunda parte sirve para definir la hora (0 - 23)\nLa tercera parte sirve para definir el día del mes (1 - 31)\nLa cuarta parte sirve para definir el mes (1 - 12)\nLa quinta parte sirve para definir el día de la semana (0 - 6)\nObviamente, ¡no quieres ejecutar tu rutina solo una vez! Entonces, necesitas alguna forma de abstraer algunas de las partes; en la sintaxis cron, eso se hace usando un asterisco (*). Por ejemplo, ***** significa ejecutar la rutina cada minuto, todos los días.\nTen en cuenta que las horas de GitHub se basan en UTC!\nAquí hay algunos ejemplos útiles que tomé de este post:\n# Every Monday at 1PM UTC (9AM EST) 0 13 * * 1 # At the end of every day 0 0 * * * # Every 10 minutes */10 * * * * ¿Y la sintaxis .yaml? Es muy simple: en lugar de usar “on” seguido de “push”, “merge”, “pull_request”, etc., debes escribir “schedule” y ¡listo!\non: schedule: - cron: '0 0 * * *' Eso es todo Espero que alguien encuentre útil este tutorial. Como siempre, tus comentarios son muy apreciados; ¡no dudes en ponerte en contacto conmigo a través de las redes sociales! 😄\n",
+  "wordCount" : "2870",
+  "inLanguage": "es",
+  "image":"https://adsoncostanzifilho.github.io/img/banners/gha_tutorial.png","datePublished": "2021-04-01T00:00:00Z",
+  "dateModified": "2021-04-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Adson Costanzi Filho"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adson Costanzi Filho",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adsoncostanzifilho.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://adsoncostanzifilho.github.io/es/" accesskey="h" title="Adson Costanzi Filho (Alt + H)">Adson Costanzi Filho</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/" title="English"
+                                aria-label="English">English</a>
+                        </li>
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/pt/" title="Português"
+                                aria-label="Português">Português</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/about/" title="Acerca">
+                    <span>Acerca</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/files/cv.pdf" title="Currículum">
+                    <span>Currículum</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/search/" title="Búsqueda">
+                    <span>Búsqueda</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/es/">Inicio</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/es/blog/">Blog</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      GitHub Actions para Usuarios de R
+    </h1>
+    <div class="post-meta">
+
+<span title='2021-04-01 00:00:00 +0000 UTC'>1 de abril de 2021</span>&nbsp;·&nbsp;<span>14 min</span>&nbsp;·&nbsp;<span>2870 palabras</span>&nbsp;·&nbsp;<span>Adson Costanzi Filho</span>&nbsp;|&nbsp;<span>Traducciones:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/blog/github-actions-for-r-users/">English</a>
+        </li>
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/pt/blog/github-actions-for-r-users/">Português</a>
+        </li>
+    </ul>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <a href="https://adsoncostanzifilho.github.io/img/banners/gha_tutorial.png" target="_blank" rel="noopener noreferrer">
+        <img loading="eager" src="https://adsoncostanzifilho.github.io/img/banners/gha_tutorial.png" alt="GitHub Actions para usuarios de R">
+        </a>
+        
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Tabla de Contenidos</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#" aria-label="Motivación">Motivación</a></li>
+            <li>
+                <a href="#" aria-label="Publicación automática de Blogdown">Publicación automática de Blogdown</a></li>
+            <li>
+                <a href="#" aria-label="Pruebas automáticas">Pruebas automáticas</a></li>
+            <li>
+                <a href="#" aria-label="Rutinas programadas">Rutinas programadas</a></li>
+            <li>
+                <a href="#" aria-label="Eso es todo">Eso es todo</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content">
+
+
+<div id="motivación" class="section level2">
+<h2>Motivación</h2>
+<p>Recientemente algunos amigos me presentaron <strong>GitHub Actions</strong> y cómo podría ayudarme a ejecutar tareas como: publicar mis <em>Shiny Apps</em>, publicar este <em>Blogdown</em>, realizar pruebas automáticas en paquetes, actualizar datos y más. Así que decidí probarlo, y fue tan simple y me ahorró tantas horas de trabajo que decidí escribir este post explicando cómo los desarrolladores de R pueden hacer buen uso de esta increíble herramienta.</p>
+<p>Primero, las referencias que usé para empezar con <em>GitHub Actions</em>:</p>
+<ul>
+<li><p>La presentación de Jim Hester en la RStudio Conference <a href="https://www.jimhester.com/talk/2020-rsc-github-actions/">aquí</a>.</p></li>
+<li><p>El repositorio de GitHub Actions para el lenguaje R <a href="https://github.com/r-lib/actions">aquí</a>.</p></li>
+<li><p>La Documentación de GitHub Actions <a href="https://docs.github.com/en/actions/learn-github-actions">aquí</a>.</p></li>
+</ul>
+<pre class="r"><code>install.packages(&quot;usethis&quot;)</code></pre>
+<p>La primera función muy interesante sobre GitHub Action en el paquete <code>usethis</code> es <code>usethis::browse_github_actions()</code>; con esta función puedes ver las acciones activas que se ejecutan en los más diversos paquetes de R. Este es un muy buen comienzo para darte una idea de cuáles son las Actions que se usan en paquetes grandes de R como “shiny”, “dplyr”, etc.</p>
+<p>El <code>usethis</code> también tiene la función <code>usethis::use_github_action()</code>, que en mi opinión es la forma más fácil de empezar. Creará por ti la estructura de archivos/carpetas necesaria para que GitHub entienda y ejecute tus <em>Actions</em>; en otras palabras, creará la estructura <em>carpeta .github &gt; carpeta workflows &gt; archivo .yaml</em> dentro de la ruta de tu proyecto actual. Esta función también necesita como argumento un nombre de workflow específico (puedes consultar las opciones disponibles <a href="https://github.com/r-lib/actions/tree/master/examples">aquí</a>); dependiendo de la opción que elijas, puede darte un muy buen punto de partida (a veces no necesitas cambiar nada). Por ejemplo, si ejecutas <code>usethis::use_github_action("pkgdown")</code>, creará por ti la estructura de carpetas predeterminada (<em>carpeta .github &gt; carpeta workflows &gt; archivo file.yaml</em>) y comenzará un archivo <em>.yaml</em> como este:</p>
+<pre class="r"><code>on:
+  push:
+    branches:
+      - main
+      - master
+
+name: pkgdown
+
+jobs:
+  pkgdown:
+    runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+
+      - uses: r-lib/actions/setup-pandoc@v1
+
+      - name: Query dependencies
+        run: |
+          install.packages(&#39;remotes&#39;)
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), &quot;.github/depends.Rds&quot;, version = 2)
+          writeLines(sprintf(&quot;R-%i.%i&quot;, getRversion()$major, getRversion()$minor), &quot;.github/R-version&quot;)
+        shell: Rscript {0}
+
+      - name: Restore R package cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-${{ hashFiles(&#39;.github/R-version&#39;) }}-1-${{ hashFiles(&#39;.github/depends.Rds&#39;) }}
+          restore-keys: ${{ runner.os }}-${{ hashFiles(&#39;.github/R-version&#39;) }}-1-
+
+      - name: Install dependencies
+        run: |
+          remotes::install_deps(dependencies = TRUE)
+          install.packages(&quot;pkgdown&quot;, type = &quot;binary&quot;)
+        shell: Rscript {0}
+
+      - name: Install package
+        run: R CMD INSTALL .
+
+      - name: Deploy package
+        run: |
+          git config --local user.email &quot;actions@github.com&quot;
+          git config --local user.name &quot;GitHub Actions&quot;
+          Rscript -e &#39;pkgdown::deploy_to_branch(new_process = FALSE)&#39;</code></pre>
+<p>Cubriremos los pasos presentados dentro del archivo <em>.yaml</em> más adelante, así como presentaremos algunos workflows específicos para:</p>
+<ul>
+<li><p>Publicar tu shiny en shinyapps.io automáticamente</p></li>
+<li><p>Publicar tu página de blogdown en GitHub Pages automáticamente.</p></li>
+<li><p>Realizar pruebas automáticas en tus paquetes de R.</p></li>
+<li><p>Programar algunas rutinas.</p></li>
+</ul>
+<blockquote>
+<p>¡Recuerda que GitHub solo ejecutará los archivos <em>.yaml</em> dentro de la carpeta workflows (que está dentro de la carpeta <em>.github</em>)!</p>
+</blockquote>
+<pre class="r"><code># Triggered on push branch master
+on:
+  push:
+    branches: [ master ]</code></pre>
+<p>El segundo paso es definir el <strong>nombre del workflow</strong> y el <strong>sistema operativo</strong> que quieras. GitHub Actions tiene varias opciones de SO para elegir, incluyendo los 3 más populares: ubuntu, macos y windows. Voy a nombrar nuestro procedimiento como “Shiny-Deploy” y vamos a usar macos-10.15.</p>
+<blockquote>
+<p>Puedes asociar tus acciones a badges con el paquete <code>usethis</code>. Por ejemplo, si el nombre de tu workflow es “Shiny-Deploy”, puedes agregar este badge en tu archivo README ejecutando <code>usethis::use_github_actions_badge("Shiny-Deploy")</code>.</p>
+</blockquote>
+<pre class="r"><code># Name of the workflow - usethis::use_github_actions_badge(&quot;Shiny-Deploy&quot;)
+name: Shiny-Deploy
+
+# Set the job, the machine and the R version
+jobs:
+  Shiny-Deploy:
+    runs-on: macos-10.15
+    strategy:
+      matrix:
+        r-version: [4.0.2] </code></pre>
+<p>Ahora que ya tenemos nuestra máquina de GitHub Actions, ¡podemos empezar a desarrollar los pasos! Primero clonemos el repositorio desde la rama respectiva que activó la acción.</p>
+<p><em>PD</em>: de ahora en adelante, todas las acciones estarán “dentro” de la estructura <em>steps</em>.</p>
+<pre class="r"><code>  steps:
+        # Cloning your repository from the respective branch that has triggered it
+      - uses: actions/checkout@v2</code></pre>
+<p>¡Bien! Ya hicimos una copia de nuestros archivos; ahora necesitamos configurar la instalación de R en nuestra máquina de GitHub Actions para poder ejecutar nuestros scripts de R. También configuraremos <code>pandoc</code> para compilar nuestros scripts de shiny o Rmarkdown.</p>
+<pre class="r"><code>        # set-up an R installation in our GHA machine to run our scripts
+      - name: Set up R ${{ matrix.r-version }}
+        uses: r-lib/actions/setup-R@v1 # for macos
+        with:
+          r-version: ${{ matrix.r-version }}
+        # We will also need pandoc to compile our Shiny or RMarkdown report
+      - name: Setting up pandoc
+        uses: r-lib/actions/setup-pandoc@v1</code></pre>
+<p>De ahora en adelante podemos ejecutar algunos scripts de R directamente en la terminal de nuestra máquina de GitHub Actions. Por lo tanto, nuestro próximo paso será instalar todos los paquetes que tu app de shiny necesita. Obviamente, este paso cambiará dependiendo de los paquetes que usaste para construir tu app.</p>
+<blockquote>
+<p>¡No olvides incluir el paquete <code>rsconnect</code>! Vamos a usar este paquete para conectar nuestra máquina de GitHub al servidor de shinyapps.</p>
+</blockquote>
+<pre class="r"><code>        # Install R packages
+      - name: Install dependencies
+        run: |
+          install.packages(c(
+            &quot;rsconnect&quot;,
+            &quot;dplyr&quot;,
+            &quot;shiny&quot;, 
+            &quot;shinyjs&quot;,
+            &quot;shinyWidgets&quot;,
+            &quot;shinyalert&quot;,
+            &quot;shinycssloaders&quot;,
+            &quot;evaluate&quot;,
+            &quot;highr&quot;,
+            &quot;knitr&quot;,
+            &quot;markdown&quot;,
+            &quot;rmarkdown&quot;,
+            &quot;stringi&quot;,
+            &quot;stringr&quot;,
+            &quot;tinytex&quot;,
+            &quot;xfun&quot;
+          ))
+        shell: Rscript {0}</code></pre>
+<p>Ahora viene la parte complicada. Para hacer la conexión entre tu máquina de GitHub Actions y tu cuenta de shiny apps, necesitamos configurar tu <strong>token y key de shiny apps</strong>. Evidentemente, por razones de seguridad no quieres publicar tus credenciales de shinyapps para que cualquiera que acceda a tu repositorio de GitHub las vea. Sin embargo, también necesitamos tu token y key para poder publicar tu app automáticamente; por eso vamos a usar la función <strong>GitHub Secrets</strong>!</p>
+<p>Primero necesitas ir a tu <a href="https://www.shinyapps.io/admin/">cuenta de shiny apps</a>, hacer clic en tu nombre de perfil y entrar en la opción de tokens.</p>
+<p><img src="/img/githubact_tutorial/shinyapps_token1.png" style="width:70.0%" /></p>
+<p>Si aún no has creado tus tokens de shinyapps, o si quieres usar uno nuevo, puedes hacer clic en el botón <strong>+ Add Token</strong>. Una vez que lo hagas, aparecerá una nueva línea y deberías poder ver tu Token pero no tu Secret. Necesitas presionar el botón <strong>Show</strong> seguido del <strong>Show Secret</strong> para poder copiar tu credencial Secret.</p>
+<p>Ahora necesitamos incluir estas credenciales en <strong>GitHub Secrets</strong>. Para ello debes entrar en la página de tu repositorio de GitHub e ir a <em>Settings</em>.</p>
+<p><img src="/img/githubact_tutorial/settings.png" style="width:100.0%" /></p>
+<p>En el menú de la izquierda deberías poder ver la opción <strong>Secrets</strong>. Una vez que entres en la pestaña Secrets verás el título “Actions secrets”, y justo a su lado verás el botón “New repository secret”. Necesitas hacer clic en este botón para crear tus variables de entorno encriptadas (en este caso, tus credenciales de shinyapps).</p>
+<p><img src="/img/githubact_tutorial/secrets1.png" style="width:100.0%" /></p>
+<p>Vamos a crear 2 variables de entorno diferentes: la primera llamada “SHINYAPP_TOKEN” y la segunda llamada “SHINYAPP_SECRET” (por supuesto, puedes ponerles el nombre que quieras). Una vez que hagas clic en el botón “New repository secret”, deberás proporcionar el nombre de tu variable y su valor, y presionar “Add Secret”, como puedes ver a continuación.</p>
+<p><img src="/img/githubact_tutorial/shiny_token.png" style="width:100.0%" /></p>
+<blockquote>
+<p>¡Tu Secret y Token no necesitan estar entre comillas (“my token”)!</p>
+</blockquote>
+<p>Bien, ahora podemos usar estas dos variables dentro de nuestro archivo <em>.yaml</em> y deberíamos poder publicar nuestra app en el servidor de <em>shinyapps</em>. También debes proporcionar tu <strong>nombre de cuenta de shinyapps</strong>, <strong>el nombre de tu app</strong> y el <strong>directorio de los scripts de tu app</strong>. Claro, si quieres puedes configurar todo esto usando GitHub Secrets.</p>
+<pre class="r"><code>        # Connect on shinyapps server
+      - name: Connect to ShinyApps
+        env:
+          # set the shinyapps keys as environment variables
+          SHINY_TOKEN: ${{ secrets.SHINYAPP_TOKEN }}
+          SHINY_SECRET: ${{ secrets.SHINYAPP_SECRET }}
+        run: |
+          shiny_token = Sys.getenv(&quot;SHINY_TOKEN&quot;)
+          shiny_secret = Sys.getenv(&quot;SHINY_SECRET&quot;)
+          rsconnect::setAccountInfo(name = &#39;adsoncostanzi&#39;, token = shiny_token, secret = shiny_secret)
+        shell: Rscript {0}
+        # deploy the app on shinyapps server
+      - name: Deploy to shinyapps.io
+        run: |
+          rsconnect::deployApp(appName = &quot;soothsayeR&quot;, appDir = &quot;app&quot;)
+        shell: Rscript {0}</code></pre>
+<p>¡Eso es todo! Ahora GitHub publicará tu shiny en shinyapps cada vez que hagas “push” en la rama master.</p>
+<p>Por razones de copiar y pegar, aquí está el archivo <em>.yaml</em> completo.</p>
+<blockquote>
+<p>¡Sigue la indentación, es una parte esencial del código!</p>
+</blockquote>
+<pre class="r"><code># Triggered on push branch master
+on:
+  push:
+    branches: [ master ]
+
+# Name of the workflow - usethis::use_github_actions_badge(&quot;Shiny-Deploy&quot;)
+name: Shiny-Deploy
+
+# Set the job, the machine and the R version
+jobs:
+  Shiny-Deploy:
+    #runs-on: ubuntu-latest 
+    runs-on: macos-10.15
+    strategy:
+      matrix:
+        r-version: [4.0.2] 
+        
+    steps:
+        # Cloning your repository from the respective branch that has triggered it
+      - uses: actions/checkout@v2
+        # set-up an R installation in our GHA machine to run our scripts
+      - name: Set up R ${{ matrix.r-version }}
+        uses: r-lib/actions/setup-R@v1 # for macos
+        with:
+          r-version: ${{ matrix.r-version }}
+        # We will also need pandoc to compile our Shiny or RMarkdown report
+      - name: Setting up pandoc
+        uses: r-lib/actions/setup-pandoc@v1
+        # Install R packages
+      - name: Install dependencies
+        run: |
+          install.packages(c(
+            &quot;rsconnect&quot;,
+            &quot;dplyr&quot;,
+            &quot;shiny&quot;, 
+            &quot;shinyjs&quot;,
+            &quot;shinyWidgets&quot;,
+            &quot;shinyalert&quot;,
+            &quot;shinycssloaders&quot;,
+            &quot;evaluate&quot;,
+            &quot;highr&quot;,
+            &quot;knitr&quot;,
+            &quot;markdown&quot;,
+            &quot;rmarkdown&quot;,
+            &quot;stringi&quot;,
+            &quot;stringr&quot;,
+            &quot;tinytex&quot;,
+            &quot;xfun&quot;
+          ))
+        shell: Rscript {0}
+        # Connect in shinyapps server
+      - name: Connect to ShinyApps
+        env:
+          # set the shinyapps keys as environment variables
+          SHINY_TOKEN: ${{ secrets.SHINYAPP_TOKEN }}
+          SHINY_SECRET: ${{ secrets.SHINYAPP_SECRET }}
+        run: |
+          shiny_token = Sys.getenv(&quot;SHINY_TOKEN&quot;)
+          shiny_secret = Sys.getenv(&quot;SHINY_SECRET&quot;)
+          rsconnect::setAccountInfo(name = &#39;adsoncostanzi&#39;, token = shiny_token, secret = shiny_secret)
+        shell: Rscript {0}
+        # deploy the app on shinyapps server
+      - name: Deploy to shinyapps.io
+        run: |
+          rsconnect::deployApp(appName = &quot;soothsayeR&quot;, appDir = &quot;app&quot;)
+        shell: Rscript {0}</code></pre>
+</div>
+<div id="publicación-automática-de-blogdown" class="section level2">
+<h2>Publicación automática de Blogdown</h2>
+<p>¿Qué tal hacer que tu blogdown se publique automáticamente en GitHub Pages? Cada vez que escribas un nuevo post solo necesitarás hacer “push” y GitHub Actions se encargará del resto. Este procedimiento funciona de manera muy similar al de shiny, ¡así que empecemos nuestro archivo <em>.yaml</em>!</p>
+<p>Para la publicación de blogdown vamos a usar dos ramas diferentes: la primera llamada <strong>“source”</strong>, que contendrá el <strong>lado de desarrollo</strong> de nuestro blogdown, y la rama <strong>“master”</strong>, que expondrá la <strong>página compilada</strong> (la rama master recibirá el resultado de <code>blogdown::build_site(local = FALSE)</code>).</p>
+<blockquote>
+<p>¡La rama master DEBE ser la que tenga el contenido de <code>build_site()</code>!</p>
+</blockquote>
+<p>De esta manera configuraremos nuestro trigger como un “push” en la rama “source”:</p>
+<pre class="r"><code># Triggered on push branch source
+on:
+  push:
+     branches:
+       - source</code></pre>
+<p>En el siguiente paso definiremos el nombre del workflow y el SO que queremos usar. Para este ejemplo, vamos a nombrar nuestro workflow como “deployblog” y el SO será Ubuntu 18.04.</p>
+<pre class="r"><code># Name of the workflow - usethis::use_github_actions_badge(&quot;deployblog&quot;)
+name: deployblog
+
+# Set the job, the machine
+jobs:
+  deployblog:
+    name: Render and deploy blogdown
+    runs-on: ubuntu-18.04</code></pre>
+<p>La parte más fácil está hecha; ¡ahora empecemos con los pasos! Vamos a clonar el repositorio (en la rama “source”) y configurar R y pandoc, como hicimos en la sección de publicación de shiny.</p>
+<p><em>PD</em>: de ahora en adelante, todas las acciones estarán “dentro” de la estructura <em>steps</em>.</p>
+<pre class="r"><code>    steps:
+      # Cloning your repository from the respective branch that has triggered it
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+        # set-up an R installation in our GHA machine to run our scripts
+      - uses: r-lib/actions/setup-r@v1
+        # We will also need pandoc to compile our Shiny or RMarkdown report
+      - uses: r-lib/actions/setup-pandoc@v1</code></pre>
+<p>Ahora que tenemos nuestros scripts y R configurados, podemos continuar con la instalación de los paquetes, así como <strong>instalar HUGO</strong>, de la siguiente manera:</p>
+<pre class="r"><code>     # Install R packages
+      - name: Install r packages
+        run: |
+          Rscript -e &#39;install.packages(c(&quot;remotes&quot;, &quot;rmarkdown&quot;))&#39; \
+                  -e &#39;remotes::install_github(&quot;rstudio/blogdown&quot;)&#39;
+      - name: install hugo
+        # Install Hugo
+        run: Rscript -e &#39;blogdown::install_hugo(extended = TRUE, version = &quot;0.78.2&quot;)&#39;
+      - name: Get themes
+        run: git submodule update --remote</code></pre>
+<p>Terminado eso, deberíamos poder renderizar/compilar nuestro blogdown en una carpeta específica (en este caso será la carpeta “public”) usando la función <code>blogdown::build_site(local = FALSE)</code>. Hecho eso, solo necesitamos subir el contenido de la carpeta “public” a la rama master y ¡tu blogdown estará en línea en GitHub Pages!</p>
+<pre class="r"><code>      - name: Look at files
+        run: ls ./public
+      - name: Render blog
+        run: Rscript -e &#39;blogdown::build_site(local = FALSE)&#39;
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: master</code></pre>
+<blockquote>
+<p>¡<strong>ROBÉ</strong> ESTE SCRIPT DE MI BUEN AMIGO <a href="https://github.com/lcgodoy">LUCAS GODOY</a> (¡él también me enseñó cómo hacerlo funcionar)!</p>
+</blockquote>
+<p>Por razones de copiar y pegar, aquí está el archivo <em>.yaml</em> completo.</p>
+<pre class="r"><code># Triggered on push branch source
+on:
+  push:
+     branches:
+       - source
+
+# Name of the workflow - usethis::use_github_actions_badge(&quot;deployblog&quot;)
+name: deployblog
+
+# Set the job, the machine
+jobs:
+  deployblog:
+    name: Render and deploy blogdown
+    runs-on: ubuntu-18.04
+    steps:
+      # Cloning your repository from the respective branch that has triggered it
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+        # set-up an R installation in our GHA machine to run our scripts
+      - uses: r-lib/actions/setup-r@v1
+        # We will also need pandoc to compile our Shiny or RMarkdown report
+      - uses: r-lib/actions/setup-pandoc@v1
+        # Install R packages
+      - name: Install r packages
+        run: |
+          Rscript -e &#39;install.packages(c(&quot;remotes&quot;, &quot;rmarkdown&quot;))&#39; \
+                  -e &#39;remotes::install_github(&quot;rstudio/blogdown&quot;)&#39;
+      - name: install hugo
+        # Install Hugo
+        run: Rscript -e &#39;blogdown::install_hugo(extended = TRUE, version = &quot;0.78.2&quot;)&#39;
+      - name: Get themes
+        run: git submodule update --remote
+      - name: Look at files
+        run: ls ./public
+      - name: Render blog
+        run: Rscript -e &#39;blogdown::build_site(local = FALSE)&#39;
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: master
+          publish_dir: ./public</code></pre>
+</div>
+<div id="pruebas-automáticas" class="section level2">
+<h2>Pruebas automáticas</h2>
+<p>Diría que ejecutar pruebas manualmente puede ser el trabajo que más tiempo consume de todos los presentados en este post, y es por eso que realizar pruebas automáticas puede ahorrarte muchas horas de trabajo. Sé que las pruebas automáticas son muy específicas; en otras palabras, dependerá del tipo de pruebas que quieras realizar. Sin embargo, podemos tener un muy buen punto de partida con el paquete <code>usethis</code>.</p>
+<p>Por ejemplo, al ejecutar la función <code>usethis::use_github_action_check_full()</code> se creará el procedimiento R-CMD-check predeterminado para ti en una estructura de GitHub Actions. El R-CMD-check estimulará el uso de tus códigos en los más diversos entornos, como windows, ubuntu y macos, los tres ejecutando también diferentes versiones de R. Mi consejo es usar como punto de partida el <em>.yaml</em> proporcionado por la función <code>usethis::use_github_action_check_full()</code> para realizar tus propias pruebas automáticas.</p>
+<p>Puedes encontrar a continuación el archivo <em>.yaml</em> generado por la función <code>usethis::use_github_action_check_full()</code>:</p>
+<pre class="r"><code>on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+name: R-CMD-check
+
+jobs:
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macOS-latest,   r: &#39;release&#39;}
+          - {os: windows-latest, r: &#39;release&#39;}
+          - {os: windows-latest, r: &#39;3.6&#39;}
+          - {os: ubuntu-18.04,   r: &#39;devel&#39;, rspm: &quot;https://packagemanager.rstudio.com/cran/__linux__/bionic/latest&quot;, http-user-agent: &quot;R/4.0.0 (ubuntu-18.04) R (4.0.0 x86_64-pc-linux-gnu x86_64 linux-gnu) on GitHub Actions&quot; }
+          - {os: ubuntu-18.04,   r: &#39;release&#39;, rspm: &quot;https://packagemanager.rstudio.com/cran/__linux__/bionic/latest&quot;}
+          - {os: ubuntu-18.04,   r: &#39;oldrel&#39;,  rspm: &quot;https://packagemanager.rstudio.com/cran/__linux__/bionic/latest&quot;}
+          - {os: ubuntu-18.04,   r: &#39;3.5&#39;,     rspm: &quot;https://packagemanager.rstudio.com/cran/__linux__/bionic/latest&quot;}
+          - {os: ubuntu-18.04,   r: &#39;3.4&#39;,     rspm: &quot;https://packagemanager.rstudio.com/cran/__linux__/bionic/latest&quot;}
+          - {os: ubuntu-18.04,   r: &#39;3.3&#39;,     rspm: &quot;https://packagemanager.rstudio.com/cran/__linux__/bionic/latest&quot;}
+
+    env:
+      RSPM: ${{ matrix.config.rspm }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+        id: install-r
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+
+      - uses: r-lib/actions/setup-pandoc@v1
+
+      - name: Install pak and query dependencies
+        run: |
+          install.packages(&quot;pak&quot;, repos = &quot;https://r-lib.github.io/p/pak/dev/&quot;)
+          saveRDS(pak::pkg_deps(&quot;local::.&quot;, dependencies = TRUE), &quot;.github/r-depends.rds&quot;)
+        shell: Rscript {0}
+
+      - name: Restore R package cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ env.R_LIBS_USER }}
+            !${{ env.R_LIBS_USER }}/pak
+          key: ${{ matrix.config.os }}-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles(&#39;.github/r-depends.rds&#39;) }}
+          restore-keys: ${{ matrix.config.os }}-${{ steps.install-r.outputs.installed-r-version }}-1-
+
+      - name: Install system dependencies
+        if: runner.os == &#39;Linux&#39;
+        run: |
+          pak::local_system_requirements(execute = TRUE)
+          pak::pkg_system_requirements(&quot;rcmdcheck&quot;, execute = TRUE)
+        shell: Rscript {0}
+
+      - name: Install dependencies
+        run: |
+          pak::local_install_dev_deps(upgrade = TRUE)
+          pak::pkg_install(&quot;rcmdcheck&quot;)
+        shell: Rscript {0}
+
+      - name: Session info
+        run: |
+          options(width = 100)
+          pkgs &lt;- installed.packages()[, &quot;Package&quot;]
+          sessioninfo::session_info(pkgs, include_base = TRUE)
+        shell: Rscript {0}
+
+      - name: Check
+        env:
+          _R_CHECK_CRAN_INCOMING_: false
+        run: |
+          options(crayon.enabled = TRUE)
+          rcmdcheck::rcmdcheck(args = c(&quot;--no-manual&quot;, &quot;--as-cran&quot;), error_on = &quot;warning&quot;, check_dir = &quot;check&quot;)
+        shell: Rscript {0}
+
+      - name: Show testthat output
+        if: always()
+        run: find check -name &#39;testthat.Rout*&#39; -exec cat &#39;{}&#39; \; || true
+        shell: bash
+
+      - name: Upload check results
+        if: failure()
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ matrix.config.os }}-r${{ matrix.config.r }}-results
+          path: check</code></pre>
+</div>
+<div id="rutinas-programadas" class="section level2">
+<h2>Rutinas programadas</h2>
+<p>GitHub Actions también ofrece la opción de programar rutinas; en otras palabras, <strong>puedes definir como triggers cualquier momento específico que quieras</strong>. Para ello, GitHub Actions usa la <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07">sintaxis cron</a>, que es la parte difícil (al menos para mí, que nunca la había usado). Primero, ¡entendamos la sintaxis que GitHub Actions usa para ejecutar las rutinas programadas!</p>
+<p>La <em>sintaxis cron</em> está dividida en <strong>5 partes</strong> (*****):</p>
+<ul>
+<li><p>La primera parte sirve para definir el minuto <strong>(0 - 59)</strong></p></li>
+<li><p>La segunda parte sirve para definir la hora <strong>(0 - 23)</strong></p></li>
+<li><p>La tercera parte sirve para definir el día del mes <strong>(1 - 31)</strong></p></li>
+<li><p>La cuarta parte sirve para definir el mes <strong>(1 - 12)</strong></p></li>
+<li><p>La quinta parte sirve para definir el día de la semana <strong>(0 - 6)</strong></p></li>
+</ul>
+<p>Obviamente, ¡no quieres ejecutar tu rutina solo una vez! Entonces, necesitas alguna forma de abstraer algunas de las partes; en la sintaxis cron, eso se hace usando un <strong>asterisco</strong> (*). Por ejemplo, <code>*****</code> significa ejecutar la rutina cada minuto, todos los días.</p>
+<blockquote>
+<p>Ten en cuenta que las horas de GitHub se basan en <strong>UTC</strong>!</p>
+</blockquote>
+<p>Aquí hay algunos ejemplos útiles que tomé de <a href="https://jasonet.co/posts/scheduled-actions/">este post</a>:</p>
+<pre class="r"><code># Every Monday at 1PM UTC (9AM EST)
+0 13 * * 1
+
+# At the end of every day
+0 0 * * *
+
+# Every 10 minutes
+*/10 * * * *</code></pre>
+<p>¿Y la sintaxis <em>.yaml</em>? Es muy simple: en lugar de usar “on” seguido de “push”, “merge”, “pull_request”, etc., debes escribir “schedule” y ¡listo!</p>
+<pre class="r"><code>on:
+  schedule:
+    - cron: &#39;0 0 * * *&#39;</code></pre>
+</div>
+<div id="eso-es-todo" class="section level2">
+<h2>Eso es todo</h2>
+<p>Espero que alguien encuentre útil este tutorial. Como siempre, tus comentarios son muy apreciados; ¡no dudes en ponerte en contacto conmigo a través de las redes sociales! 😄</p>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://adsoncostanzifilho.github.io/es/tags/github/">GitHub</a></li>
+      <li><a href="https://adsoncostanzifilho.github.io/es/tags/github-actions/">GitHub-Actions</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://adsoncostanzifilho.github.io/es/blog/why-not-both/">
+    <span class="title">« Anterior</span>
+    <span>¿Por qué no ambos?</span>
+  </a>
+  <a class="next" href="https://adsoncostanzifilho.github.io/es/blog/csgo-package/">
+    <span class="title">Siguiente »</span>
+    <span>Paquete CSGo</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://adsoncostanzifilho.github.io/es/">Adson Costanzi Filho</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copiar';
+
+        function copyingDone() {
+            copybutton.innerHTML = '¡copiado!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copiar';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

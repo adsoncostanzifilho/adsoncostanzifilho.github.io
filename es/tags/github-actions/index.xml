@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>GitHub-Actions on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/es/tags/github-actions/</link>
+    <description>Recent content in GitHub-Actions on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/es/tags/github-actions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub Actions para Usuarios de R</title>
+      <link>https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/blog/github-actions-for-r-users/</guid>
+      <description>&lt;div id=&#34;motivación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Motivación&lt;/h2&gt;
+&lt;p&gt;Recientemente algunos amigos me presentaron &lt;strong&gt;GitHub Actions&lt;/strong&gt; y cómo podría ayudarme a ejecutar tareas como: publicar mis &lt;em&gt;Shiny Apps&lt;/em&gt;, publicar este &lt;em&gt;Blogdown&lt;/em&gt;, realizar pruebas automáticas en paquetes, actualizar datos y más. Así que decidí probarlo, y fue tan simple y me ahorró tantas horas de trabajo que decidí escribir este post explicando cómo los desarrolladores de R pueden hacer buen uso de esta increíble herramienta.&lt;/p&gt;
+&lt;p&gt;Primero, las referencias que usé para empezar con &lt;em&gt;GitHub Actions&lt;/em&gt;:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

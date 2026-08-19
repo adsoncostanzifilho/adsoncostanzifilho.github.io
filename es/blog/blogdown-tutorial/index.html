@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Tutorial de Blogdown | Adson Costanzi Filho</title>
+<meta name="keywords" content="blogdown, rmarkdown">
+<meta name="description" content="
+Motivación
+Se me ocurrió escribir una “guía paso a paso” sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el libro de blogdown por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera…">
+<meta name="author" content="Adson Costanzi Filho">
+<link rel="canonical" href="https://adsoncostanzifilho.github.io/es/blog/blogdown-tutorial/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b9e2a4b151eacdcb2ffce6b326e52319ad287d3b68b8e5acc871cd05b7ba535b.css" integrity="sha256-ueKksVHqzcsv/OazJuUjGa0ofTtouOWsyHHNBbe6U1s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://adsoncostanzifilho.github.io/favicon.ico">
+<link rel="apple-touch-icon" href="https://adsoncostanzifilho.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://adsoncostanzifilho.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://adsoncostanzifilho.github.io/blog/blogdown-tutorial/">
+<link rel="alternate" hreflang="pt" href="https://adsoncostanzifilho.github.io/pt/blog/blogdown-tutorial/">
+<link rel="alternate" hreflang="es" href="https://adsoncostanzifilho.github.io/es/blog/blogdown-tutorial/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<meta property="og:url" content="https://adsoncostanzifilho.github.io/es/blog/blogdown-tutorial/">
+  <meta property="og:site_name" content="Adson Costanzi Filho">
+  <meta property="og:title" content="Tutorial de Blogdown">
+  <meta property="og:description" content="Motivación Se me ocurrió escribir una “guía paso a paso” sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el libro de blogdown por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera…">
+  <meta property="og:locale" content="es">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2020-11-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-11-25T00:00:00+00:00">
+    <meta property="article:tag" content="Blogdown">
+    <meta property="article:tag" content="Rmarkdown">
+    <meta property="og:image" content="https://adsoncostanzifilho.github.io/img/banners/blogdown_tutorial.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://adsoncostanzifilho.github.io/img/banners/blogdown_tutorial.png">
+  <meta name="twitter:title" content="Tutorial de Blogdown">
+  <meta name="twitter:description" content="Motivación Se me ocurrió escribir una “guía paso a paso” sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el libro de blogdown por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera…">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://adsoncostanzifilho.github.io/es/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tutorial de Blogdown",
+      "item": "https://adsoncostanzifilho.github.io/es/blog/blogdown-tutorial/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Tutorial de Blogdown",
+  "name": "Tutorial de Blogdown",
+  "description": " Motivación Se me ocurrió escribir una “guía paso a paso” sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el libro de blogdown por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera…\n",
+  "keywords": [
+    "blogdown", "rmarkdown"
+  ],
+  "articleBody": " Motivación Se me ocurrió escribir una “guía paso a paso” sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el libro de blogdown por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera…\nEste post está dividido en 3 secciones: Cómo empezar, Cómo personalizar y usar, Cómo publicar. En la primera sección encontrarás algunos consejos sobre cómo empezar el desarrollo de tu propia página usando RStudio y blogdown; la segunda sección trata sobre las funcionalidades que blogdown tiene para hacernos la vida más fácil; y la última son los pasos necesarios para publicar tu página.\nCómo empezar Lo primero que hay que hacer es install.packages(\"blogdown\") para instalar el paquete blogdown. Una vez hecho esto, necesitarás instalar Hugo con blogdown::install_hugo(force = TRUE), que es el generador de sitios estáticos que usa blogdown (el parámetro force = TRUE actualizará la versión de Hugo que tengas instalada).\nAhora que todo está instalado podemos empezar el desarrollo de nuestra página. Hay dos formas de empezar: usando los Addins de RStudio o mediante líneas de comando en la consola. ¡Probemos ambas!\nPara iniciar un nuevo proyecto de blogdown en RStudio es muy fácil: solo tienes que ir al menú File \u003e New Project \u003e New Directory y hacer clic en la opción Website using blogdown.\nEn la segunda pantalla tendrás que elegir un nombre para la carpeta del proyecto, el subdirectorio del proyecto y la plantilla de Hugo (aquí viene la parte divertida). Hugo tiene MUCHAS plantillas disponibles aquí. Te recomiendo encarecidamente que pruebes algunas de ellas y elijas la que mejor se adapte a tus expectativas.\nDespués de elegir la plantilla de Hugo, solo necesitas hacer clic en el botón “Download” y serás redirigido al repositorio de la plantilla en Github.\nAhora solo tienes que completar el repositorio en la opción Hugo theme y hacer clic en Create Project.\nSi prefieres usar la consola (estilo de los de antes), solo necesitas ejecutar la función blogdown::new_site(theme = \"devcows/hugo-universal-theme\") y completar el parámetro theme.\nEsta página fue desarrollada usando el Universal Theme\nCómo personalizar y usar Si todo salió bien, RStudio debería mostrarte una vista previa de tu sitio en la pestaña Viewer, y debería abrir un script config.toml. Dentro de la carpeta de tu proyecto, blogdown creará MUCHAS carpetas; hablaremos de eso más adelante.\nEl script config.toml te da la opción de personalizar tu sitio sin cambiar nada en el CSS, HTML o JavaScript (por supuesto, si quieres cambiar profundamente tu sitio necesitarás al menos algo de conocimiento de CSS). En este archivo encontrarás opciones para cambiar el nombre de tu sitio, imágenes, algunos colores, etc. Te animo a modificar esas opciones y ver los resultados: una vez que guardes el archivo, la pestaña Viewer actualizará tu sitio automáticamente, así podrás ver tus cambios.\nCasi todas las plantillas tienen un archivo README con algunas explicaciones sobre las funcionalidades de la plantilla; te ayudará a usar el tema correctamente (puedes encontrarlo dentro de la carpeta themes).\nLas carpetas 😖 Sé que esta estructura de carpetas puede ser muy confusa al principio; esa es una de las razones por las que decidí crear este post (porque no sé si lo recordaré todo la próxima semana).\ncarpeta content La carpeta content es donde deben almacenarse todas tus publicaciones y pestañas; cada vez que escribas una nueva publicación, esta carpeta se actualizará con el contenido de tu post. Hablaremos más sobre las nuevas publicaciones más adelante.\ncarpeta static La carpeta static es donde actualizarás todas las imágenes que quieras usar en tu página. Debes reemplazar las imágenes existentes en esta carpeta con tus propias imágenes.\nA veces es necesario limpiar la caché de tu navegador para ver la nueva imagen que acabas de cambiar, y reiniciar R desde el menú de RStudio Session \u003e Restart R para verla en la pestaña Viewer.\ncarpeta themes La carpeta themes es la carpeta principal de tu plantilla; aquí puedes encontrar el archivo README, CSS, JS, HTML, y en algunos temas quizás una carpeta Example. Este es el lugar al que debes ir si quieres cambiar algunas estructuras de tu página.\nNuevas publicaciones Probablemente quieras crear nuevas publicaciones en tu página sin dolor. Con eso en mente, Yihui Xie, el responsable del paquete blogdown, creó la función blogdown::new_post() (o mediante Addins \u003e New Post de RStudio).\nAntes de empezar a usarla, hay otra cosa que podemos hacer para que el proceso de creación de “nuevo post” sea aún más fácil. ¡Cambiemos algunas Global options! Para ello necesitamos modificar y guardar el archivo .Rprofile, un script que se ejecuta cada vez que se inicia tu sesión de R. Este es el comando para abrir este script: file.edit('.Rprofile'). Ahora podemos establecer algunas opciones predeterminadas para nuestras nuevas publicaciones (echa un vistazo aquí para ver las otras opciones posibles).\n# default extension and default author options(blogdown.ext = '.Rmd', blogdown.author = 'Your Name') En mi caso elegí la extensión .Rmd porque me siento más cómodo escribiendo con ella, pero puedes, por ejemplo, elegir .md si lo prefieres. Ahora que tenemos todo configurado como queremos, empecemos con la parte de escribir el post 😰. Una vez que inicias un New Post, se creará un archivo .Rmd estándar; ahora solo se trata de escribir tu contenido.\nNo es necesario Knit el archivo; blogdown renderizará el post automáticamente cuando guardes el archivo, y podrás seguir las actualizaciones en la pestaña Viewer de RStudio.\nCómo publicar Ahora que todo está hecho en nuestra página, es hora de publicarla. Te mostraré cómo hacerlo usando Github Pages, pero por supuesto hay muchas otras opciones (solo creo que esta es la más fácil…). Para publicar nuestra página solo necesitamos estos 6 pasos:\nCrear una cuenta de Github\nCrear un nuevo repositorio\nEl nombre de tu repositorio DEBE SER tu nombre de usuario de Github + .github.io (USERNAME.github.io)\nClonar este repositorio DENTRO de tu carpeta de proyecto\nEjecutar la función blogdown::build_site()\nAntes de ejecutar esta función debes cambiar la opción publishDir dentro del config.toml a la carpeta USERNAME.github.io (que es tu repositorio de Github).\npublishDir = \"USERNAME.github.io\" PD: Si tu config.toml no tiene esta opción, puedes crearla tú mismo.\nSubir los cambios a tu repositorio de Github En la pestaña Terminal, entra en la carpeta USERNAME.github.io usando cd. Una vez dentro de esa carpeta solo necesitas: git add, git commit -m \"first deploy my blog\", git push.\nTu página estará en línea en USERNAME.github.io Eso es todo El paquete blogdown tiene MUCHAS MÁS funcionalidades que las presentadas en este post. Para aprender más al respecto te recomiendo leer el libro de blogdown.\nEspero que alguien encuentre útil este tutorial. Como siempre, tus comentarios son muy apreciados; ¡no dudes en ponerte en contacto conmigo a través de las redes sociales! 😄\n",
+  "wordCount" : "1157",
+  "inLanguage": "es",
+  "image":"https://adsoncostanzifilho.github.io/img/banners/blogdown_tutorial.png","datePublished": "2020-11-25T00:00:00Z",
+  "dateModified": "2020-11-25T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Adson Costanzi Filho"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adsoncostanzifilho.github.io/es/blog/blogdown-tutorial/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adson Costanzi Filho",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adsoncostanzifilho.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://adsoncostanzifilho.github.io/es/" accesskey="h" title="Adson Costanzi Filho (Alt + H)">Adson Costanzi Filho</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/" title="English"
+                                aria-label="English">English</a>
+                        </li>
+                        <li>
+                            <a href="https://adsoncostanzifilho.github.io/pt/" title="Português"
+                                aria-label="Português">Português</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/about/" title="Acerca">
+                    <span>Acerca</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/files/cv.pdf" title="Currículum">
+                    <span>Currículum</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://adsoncostanzifilho.github.io/es/search/" title="Búsqueda">
+                    <span>Búsqueda</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/es/">Inicio</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/es/blog/">Blog</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Tutorial de Blogdown
+    </h1>
+    <div class="post-meta">
+
+<span title='2020-11-25 00:00:00 +0000 UTC'>25 de noviembre de 2020</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>1157 palabras</span>&nbsp;·&nbsp;<span>Adson Costanzi Filho</span>&nbsp;|&nbsp;<span>Traducciones:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/blog/blogdown-tutorial/">English</a>
+        </li>
+        <li>
+            <a href="https://adsoncostanzifilho.github.io/pt/blog/blogdown-tutorial/">Português</a>
+        </li>
+    </ul>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <a href="https://adsoncostanzifilho.github.io/img/banners/blogdown_tutorial.png" target="_blank" rel="noopener noreferrer">
+        <img loading="eager" src="https://adsoncostanzifilho.github.io/img/banners/blogdown_tutorial.png" alt="tutorial de blogdown">
+        </a>
+        
+</figure><details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Tabla de Contenidos</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#" aria-label="Motivación">Motivación</a></li>
+            <li>
+                <a href="#" aria-label="Cómo empezar">Cómo empezar</a></li>
+            <li>
+                <a href="#" aria-label="Cómo personalizar y usar">Cómo personalizar y usar</a><ul>
+                    
+            <li>
+                <a href="#" aria-label="Las carpetas 😖">Las carpetas 😖</a></li>
+            <li>
+                <a href="#" aria-label="Nuevas publicaciones">Nuevas publicaciones</a></li></ul>
+            </li>
+            <li>
+                <a href="#" aria-label="Cómo publicar">Cómo publicar</a></li>
+            <li>
+                <a href="#" aria-label="Eso es todo">Eso es todo</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content">
+
+
+<div id="motivación" class="section level2">
+<h2>Motivación</h2>
+<p>Se me ocurrió escribir una “guía paso a paso” sobre blogdown, primero porque fue mi primera vez usando el paquete y todavía tengo todos los pasos necesarios frescos en la mente, y segundo porque probablemente necesitaré tenerlo todo documentado si algún día decido renovar este blog. Por supuesto, hay muchísimos tutoriales excelentes sobre blogdown en internet (el <a href="https://bookdown.org/yihui/blogdown/">libro de blogdown</a> por ejemplo), pero tal vez alguien pueda encontrar este más fácil de alguna manera…</p>
+<p>Este post está dividido en 3 secciones: <strong>Cómo empezar</strong>, <strong>Cómo personalizar y usar</strong>, <strong>Cómo publicar</strong>. En la primera sección encontrarás algunos consejos sobre cómo empezar el desarrollo de tu propia página usando RStudio y blogdown; la segunda sección trata sobre las funcionalidades que blogdown tiene para hacernos la vida más fácil; y la última son los pasos necesarios para publicar tu página.</p>
+</div>
+<div id="cómo-empezar" class="section level2">
+<h2>Cómo empezar</h2>
+<p>Lo primero que hay que hacer es <code>install.packages("blogdown")</code> para instalar el paquete blogdown. Una vez hecho esto, necesitarás instalar Hugo con <code>blogdown::install_hugo(force = TRUE)</code>, que es el generador de sitios estáticos que usa blogdown (el parámetro <code>force = TRUE</code> actualizará la versión de Hugo que tengas instalada).</p>
+<p>Ahora que todo está instalado podemos empezar el desarrollo de nuestra página. Hay dos formas de empezar: usando los Addins de RStudio o mediante líneas de comando en la consola. ¡Probemos ambas!</p>
+<p>Para iniciar un nuevo proyecto de blogdown en RStudio es muy fácil: solo tienes que ir al menú <em>File &gt; New Project &gt; New Directory</em> y hacer clic en la opción <strong>Website using blogdown</strong>.</p>
+<p><img src="/img/blogdown_tutorial/project.png" style="width:70.0%" /></p>
+<p>En la segunda pantalla tendrás que elegir un nombre para la carpeta del proyecto, el subdirectorio del proyecto y la <strong>plantilla de Hugo</strong> (aquí viene la parte divertida). Hugo tiene MUCHAS plantillas disponibles <a href="https://themes.gohugo.io/">aquí</a>. Te recomiendo encarecidamente que pruebes algunas de ellas y elijas la que mejor se adapte a tus expectativas.</p>
+<p>Después de elegir la plantilla de Hugo, solo necesitas hacer clic en el botón “Download” y serás redirigido al <strong>repositorio de la plantilla</strong> en Github.</p>
+<p>Ahora solo tienes que completar el repositorio en la opción <strong>Hugo theme</strong> y hacer clic en Create Project.</p>
+<p><img src="/img/blogdown_tutorial/project2.png" style="width:70.0%" /></p>
+<p>Si prefieres usar la consola (<em>estilo de los de antes</em>), solo necesitas ejecutar la función <code>blogdown::new_site(theme = "devcows/hugo-universal-theme")</code> y completar el parámetro theme.</p>
+<blockquote>
+<p>Esta página fue desarrollada usando el <a href="https://themes.gohugo.io/hugo-universal-theme/">Universal Theme</a></p>
+</blockquote>
+</div>
+<div id="cómo-personalizar-y-usar" class="section level2">
+<h2>Cómo personalizar y usar</h2>
+<p>Si todo salió bien, RStudio debería mostrarte una vista previa de tu sitio en la pestaña <strong>Viewer</strong>, y debería abrir un script <strong>config.toml</strong>. Dentro de la carpeta de tu proyecto, blogdown creará MUCHAS carpetas; hablaremos de eso más adelante.</p>
+<p>El script <strong>config.toml</strong> te da la opción de personalizar tu sitio sin cambiar nada en el CSS, HTML o JavaScript (por supuesto, si quieres cambiar profundamente tu sitio necesitarás al menos algo de conocimiento de CSS). En este archivo encontrarás opciones para cambiar el nombre de tu sitio, imágenes, algunos colores, etc. Te animo a modificar esas opciones y ver los resultados: una vez que guardes el archivo, la pestaña <strong>Viewer</strong> actualizará tu sitio automáticamente, así podrás ver tus cambios.</p>
+<blockquote>
+<p>Casi todas las plantillas tienen un archivo README con algunas explicaciones sobre las funcionalidades de la plantilla; te ayudará a usar el tema correctamente (puedes encontrarlo dentro de la carpeta themes).</p>
+</blockquote>
+<div id="las-carpetas" class="section level3">
+<h3>Las carpetas 😖</h3>
+<p>Sé que esta estructura de carpetas puede ser muy confusa al principio; esa es una de las razones por las que decidí crear este post (porque no sé si lo recordaré todo la próxima semana).</p>
+<ol style="list-style-type: decimal">
+<li>carpeta content</li>
+</ol>
+<p>La carpeta <strong><em>content</em></strong> es donde deben almacenarse todas tus publicaciones y pestañas; cada vez que escribas una nueva publicación, esta carpeta se actualizará con el contenido de tu post. Hablaremos más sobre las nuevas publicaciones más adelante.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>carpeta static</li>
+</ol>
+<p>La carpeta <strong><em>static</em></strong> es donde actualizarás todas las imágenes que quieras usar en tu página. Debes reemplazar las imágenes existentes en esta carpeta con tus propias imágenes.</p>
+<blockquote>
+<p>A veces es necesario limpiar la caché de tu navegador para ver la nueva imagen que acabas de cambiar, y reiniciar R desde el menú de RStudio <em>Session &gt; Restart R</em> para verla en la pestaña Viewer.</p>
+</blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>carpeta themes</li>
+</ol>
+<p>La carpeta <strong><em>themes</em></strong> es la carpeta principal de tu plantilla; aquí puedes encontrar el archivo README, CSS, JS, HTML, y en algunos temas quizás una carpeta Example. Este es el lugar al que debes ir si quieres cambiar algunas estructuras de tu página.</p>
+</div>
+<div id="nuevas-publicaciones" class="section level3">
+<h3>Nuevas publicaciones</h3>
+<p>Probablemente quieras crear nuevas publicaciones en tu página sin dolor. Con eso en mente, Yihui Xie, el responsable del paquete blogdown, creó la función <code>blogdown::new_post()</code> (o mediante <em>Addins &gt; New Post</em> de RStudio).</p>
+<p>Antes de empezar a usarla, hay otra cosa que podemos hacer para que el proceso de creación de “nuevo post” sea aún más fácil. ¡Cambiemos algunas <em>Global options</em>! Para ello necesitamos modificar y guardar el archivo <code>.Rprofile</code>, un script que se ejecuta cada vez que se inicia tu sesión de R. Este es el comando para abrir este script: <code>file.edit('.Rprofile')</code>. Ahora podemos establecer algunas opciones predeterminadas para nuestras nuevas publicaciones (echa un vistazo <a href="https://bookdown.org/yihui/blogdown/global-options.html">aquí</a> para ver las otras opciones posibles).</p>
+<pre class="r"><code># default extension and default author
+
+options(blogdown.ext = &#39;.Rmd&#39;, blogdown.author = &#39;Your Name&#39;)</code></pre>
+<p>En mi caso elegí la extensión <em>.Rmd</em> porque me siento más cómodo escribiendo con ella, pero puedes, por ejemplo, elegir <em>.md</em> si lo prefieres. Ahora que tenemos todo configurado como queremos, empecemos con la parte de escribir el post 😰. Una vez que inicias un New Post, se creará un archivo .Rmd estándar; ahora solo se trata de escribir tu contenido.</p>
+<blockquote>
+<p>No es necesario <em>Knit</em> el archivo; blogdown renderizará el post automáticamente cuando guardes el archivo, y podrás seguir las actualizaciones en la pestaña Viewer de RStudio.</p>
+</blockquote>
+</div>
+</div>
+<div id="cómo-publicar" class="section level2">
+<h2>Cómo publicar</h2>
+<p>Ahora que todo está hecho en nuestra página, es hora de publicarla. Te mostraré cómo hacerlo usando <a href="https://pages.github.com/">Github Pages</a>, pero por supuesto hay muchas otras opciones (solo creo que esta es la más fácil…). Para publicar nuestra página solo necesitamos estos 6 pasos:</p>
+<ol style="list-style-type: decimal">
+<li><p>Crear una cuenta de <a href="https://github.com/">Github</a></p></li>
+<li><p>Crear un nuevo repositorio</p></li>
+</ol>
+<p>El nombre de tu repositorio <strong>DEBE SER</strong> tu nombre de usuario de Github + .github.io (USERNAME.github.io)</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Clonar este repositorio <strong>DENTRO</strong> de tu carpeta de proyecto</p></li>
+<li><p>Ejecutar la función <code>blogdown::build_site()</code></p></li>
+</ol>
+<p>Antes de ejecutar esta función debes cambiar la opción <code>publishDir</code> dentro del <code>config.toml</code> a la carpeta USERNAME.github.io (que es tu repositorio de Github).</p>
+<pre class="r"><code>publishDir = &quot;USERNAME.github.io&quot;</code></pre>
+<p><strong>PD</strong>: Si tu <code>config.toml</code> no tiene esta opción, puedes crearla tú mismo.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Subir los cambios a tu repositorio de Github</li>
+</ol>
+<p>En la pestaña Terminal, entra en la carpeta <em>USERNAME.github.io</em> usando <code>cd</code>. Una vez dentro de esa carpeta solo necesitas: <code>git add</code>, <code>git commit -m "first deploy my blog"</code>, <code>git push</code>.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Tu página estará en línea en USERNAME.github.io</li>
+</ol>
+</div>
+<div id="eso-es-todo" class="section level2">
+<h2>Eso es todo</h2>
+<p>El paquete blogdown tiene <strong>MUCHAS MÁS</strong> funcionalidades que las presentadas en este post. Para aprender más al respecto te recomiendo leer el <a href="https://bookdown.org/yihui/blogdown/">libro de blogdown</a>.</p>
+<p>Espero que alguien encuentre útil este tutorial. Como siempre, tus comentarios son muy apreciados; ¡no dudes en ponerte en contacto conmigo a través de las redes sociales! 😄</p>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://adsoncostanzifilho.github.io/es/tags/blogdown/">Blogdown</a></li>
+      <li><a href="https://adsoncostanzifilho.github.io/es/tags/rmarkdown/">Rmarkdown</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://adsoncostanzifilho.github.io/es/blog/package-development-tutorial/">
+    <span class="title">« Anterior</span>
+    <span>Tutorial de Desarrollo de Paquetes</span>
+  </a>
+  <a class="next" href="https://adsoncostanzifilho.github.io/es/blog/text-mining-tool/">
+    <span class="title">Siguiente »</span>
+    <span>Herramienta de Minería de Texto</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://adsoncostanzifilho.github.io/es/">Adson Costanzi Filho</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copiar';
+
+        function copyingDone() {
+            copybutton.innerHTML = '¡copiado!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copiar';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

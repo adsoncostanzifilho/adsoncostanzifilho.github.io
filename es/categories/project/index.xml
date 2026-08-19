@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Project on Adson Costanzi Filho</title>
+    <link>https://adsoncostanzifilho.github.io/es/categories/project/</link>
+    <description>Recent content in Project on Adson Costanzi Filho</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adsoncostanzifilho.github.io/es/categories/project/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Paquete CSGo</title>
+      <link>https://adsoncostanzifilho.github.io/es/blog/csgo-package/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/blog/csgo-package/</guid>
+      <description>&lt;script src=&#34;https://adsoncostanzifilho.github.io/es/blog/csgo-package/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://adsoncostanzifilho.github.io/es/blog/csgo-package/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+
+
+&lt;div id=&#34;resumen&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Resumen&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/CSGo&#34;&gt;adsoncostanzifilho/CSGo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;El paquete &lt;strong&gt;CSGo&lt;/strong&gt; es un cliente de R para acceder a la API REST de Steam, específicamente para los datos del juego Counter-Strike Global Offensive (CS Go). Consulta el &lt;a href=&#34;https://developer.valvesoftware.com/wiki/Steam_Web_API&#34;&gt;sitio web de documentación de Steam&lt;/a&gt; y la &lt;a href=&#34;https://adsoncostanzifilho.github.io/CSGo/&#34;&gt;Página del Paquete&lt;/a&gt; para más información.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;instalación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Instalación&lt;/h2&gt;
+&lt;p&gt;Para obtener la versión actual publicada desde &lt;a href=&#34;https://cran.r-project.org/web/packages/CSGo/index.html&#34;&gt;CRAN&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;CSGo&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Para obtener la versión de desarrollo actual desde &lt;a href=&#34;https://github.com/adsoncostanzifilho/CSGo&#34;&gt;GitHub&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;devtools&amp;quot;)
+devtools::install_github(&amp;quot;adsoncostanzifilho/CSGo&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ejemplo&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Ejemplo&lt;/h2&gt;
+&lt;p&gt;El primer paso para usar el paquete &lt;code&gt;CSGo&lt;/code&gt; es tener tus propias credenciales (API key) para obtener los datos de CSGo desde la API de Steam. Para más información sobre cómo obtener tu propia API Key, ejecuta en tu R &lt;code&gt;vignette(&#34;auth&#34;, package = &#34;CSGo&#34;)&lt;/code&gt;, o haz clic &lt;a href=&#34;https://cran.r-project.org/web/packages/CSGo/vignettes/auth.html&#34;&gt;aquí&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Herramienta de Minería de Texto</title>
+      <link>https://adsoncostanzifilho.github.io/es/blog/text-mining-tool/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/blog/text-mining-tool/</guid>
+      <description>&lt;div id=&#34;resumen&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Resumen&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/TextMining&#34;&gt;adsoncostanzifilho/TextMining&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Herramienta de Minería de Texto&lt;/strong&gt; es una interfaz desarrollada en R que utiliza principalmente los paquetes shiny, tidytext y rtweet. La idea de esta interfaz es permitirte hacer tu propio análisis de texto usando datos de Twitter en tiempo real.&lt;/p&gt;
+&lt;p&gt;La herramienta está en línea en el repositorio de shinyapps en la dirección &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/TextMining/&#34; class=&#34;uri&#34;&gt;https://adsoncostanzi.shinyapps.io/TextMining/&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cómo-funciona-esta-interfaz&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;¿Cómo funciona esta interfaz?&lt;/h2&gt;
+&lt;p&gt;La interfaz está dividida en 5 pestañas presentadas en el menú de la izquierda: Home, Search, Word Cloud, Sentiment Analysis y Topic Modeling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>soothsayeR</title>
+      <link>https://adsoncostanzifilho.github.io/es/blog/soothsayer/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adsoncostanzifilho.github.io/es/blog/soothsayer/</guid>
+      <description>&lt;div id=&#34;resumen&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Resumen&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/adsoncostanzifilho/soothsayeR&#34;&gt;adsoncostanzifilho/soothsayeR&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SoothsayeR&lt;/strong&gt; es una interfaz basada en la vieja broma llamada ‘Peter answers’..&lt;/p&gt;
+&lt;p&gt;La idea del juego es jugar con tus amigos haciendo preguntas cuya respuesta ya conoces, y hacerles creer que R es quien está respondiendo…&lt;/p&gt;
+&lt;p&gt;La aplicación demuestra lo fácil que es integrar &lt;strong&gt;Shiny&lt;/strong&gt; con &lt;strong&gt;Javascript&lt;/strong&gt; a través de la librería &lt;strong&gt;shinyjs&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;La herramienta está en línea en el repositorio de shinyapps en la dirección &lt;a href=&#34;https://adsoncostanzi.shinyapps.io/soothsayeR/&#34; class=&#34;uri&#34;&gt;https://adsoncostanzi.shinyapps.io/soothsayeR/&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cómo-jugar-con-soothsayer&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;¿Cómo jugar con soothsayeR?&lt;/h2&gt;
+&lt;p&gt;Solo necesitas presionar el punto (.) en el teclado durante la sesión de preguntas y luego escribir la respuesta en secreto. Cuando presionas el punto en el campo de texto de la pregunta, todo lo que escribas quedará enmascarado, así puedes poner la respuesta sin que nadie se dé cuenta.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
