@@ -3,9 +3,26 @@
    Loaded via PaperMod's assets/css/extended/ mechanism.
    ============================================================= */
 
-/* Brand/site title font — Roboto, like the previous (Universal) theme */
+/* Site name font — "Reenie Beanie", matching the previous theme's navbar brand
+   (.navbar-default .navbar-brand: Reenie Beanie, weight 900, italic) */
 .logo a,
-.home-info h1,
+.home-info h1 {
+    font-family: "Reenie Beanie", cursive;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.logo a {
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.home-info h1 {
+    font-size: 3.2rem;
+    line-height: 1.2;
+}
+
+/* Post and page titles — Roboto, the body font of the previous theme */
 .post-title,
 .page-header h1 {
     font-family: "Roboto", system-ui, -apple-system, sans-serif;
