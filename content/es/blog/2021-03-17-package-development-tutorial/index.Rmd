@@ -249,15 +249,15 @@ pkgdown::build_site()
 
 Para ello debes entrar en el repositorio de Github de tu paquete e ir a *Settings > GitHub Pages*:
 
-![](/img/packagedev_tutorial/settings.png){width="100%"}
+<img src="/img/packagedev_tutorial/settings.png" alt="" style="width: 100%; height: auto;">
 
-![](/img/packagedev_tutorial/githubpages.png){width="100%"}
+<img src="/img/packagedev_tutorial/githubpages.png" alt="" style="width: 100%; height: auto;">
 
 Ahora solo necesitas cambiar la *Source* donde estará la estructura de la página (para mí está en la *rama master* y dentro de la *carpeta docs*).
 
 > ¡`pkgdown` creará la carpeta **docs** por ti cuando ejecutes `pkgdown::build_site()`!
 
-![](/img/packagedev_tutorial/master_docs.png){width="100%"}
+<img src="/img/packagedev_tutorial/master_docs.png" alt="" style="width: 100%; height: auto;">
 
 ¡Listo! Solo **add**, **commit**, **push** y la página de tu paquete estará en línea en: *your_github_user.github.io/repository_name*.
 

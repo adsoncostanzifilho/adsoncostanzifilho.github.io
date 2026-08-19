@@ -193,21 +193,21 @@ Agora vem a parte complicada! Para fazer a conexão entre sua máquina do GitHub
 
 Primeiro, você precisa ir até sua [conta de shiny apps](https://www.shinyapps.io/admin/), clicar no seu nome de perfil e entrar na opção de tokens. 
 
-![](/img/githubact_tutorial/shinyapps_token1.png){width="70%"}
+<img src="/img/githubact_tutorial/shinyapps_token1.png" alt="" style="width: 70%; height: auto;">
 
 Se você ainda não criou seus tokens do shinyapps, ou se quiser usar um novo, pode clicar no botão **+ Add Token**. Depois de fazer isso, uma nova linha aparecerá e você poderá ver seu Token, mas não seu Secret. Você precisa pressionar o botão **Show** e, em seguida, o **Show Secret** para conseguir copiar sua credencial Secret.
 
 Agora precisamos incluir essas credenciais nos **GitHub Secrets**! Para isso, você precisa entrar na página do seu repositório no GitHub e ir em *Settings*.
 
-![](/img/githubact_tutorial/settings.png){width="100%"}
+<img src="/img/githubact_tutorial/settings.png" alt="" style="width: 100%; height: auto;">
 
 No menu à esquerda, você deve conseguir ver a opção **Secrets**. Ao entrar na aba Secrets, você verá o título "Actions secrets" e, logo ao lado, o botão "New repository secret". Você precisa clicar nesse botão para criar suas variáveis de ambiente criptografadas (neste caso, suas credenciais do shinyapps).
 
-![](/img/githubact_tutorial/secrets1.png){width="100%"}
+<img src="/img/githubact_tutorial/secrets1.png" alt="" style="width: 100%; height: auto;">
 
 Vamos criar 2 variáveis de ambiente diferentes: a primeira chamada "SHINYAPP_TOKEN" e a segunda chamada "SHINYAPP_SECRET" (é claro que você pode definir qualquer nome que quiser). Depois de clicar no botão "New repository secret", você precisará fornecer o nome da sua variável e o valor dela e pressionar "Add Secret", como você pode ver abaixo.
 
-![](/img/githubact_tutorial/shiny_token.png){width="100%"}
+<img src="/img/githubact_tutorial/shiny_token.png" alt="" style="width: 100%; height: auto;">
 
 > Seu Secret e Token não precisam estar entre aspas ("my token")!
 

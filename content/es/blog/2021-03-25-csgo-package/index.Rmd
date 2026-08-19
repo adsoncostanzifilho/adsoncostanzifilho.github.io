@@ -91,7 +91,7 @@ rodrigo_weapon_kill %>%
 
 ```
  
-![](/img/csgo_package/kills_weapon.png){width="100%"}
+<img src="/img/csgo_package/kills_weapon.png" alt="" style="width: 100%; height: auto;">
 
 Entonces, estas son las 10 mejores armas por muertes, pero... ¿Qué pasa con la eficiencia? ¿Es la **ak47** el arma más eficiente de Rodrigo? Primero, definamos "eficiencia":
 
@@ -164,7 +164,7 @@ rodrigo_efficiency %>%
 
 ```
 
-![](/img/csgo_package/weapon_effic.png){width="100%"}
+<img src="/img/csgo_package/weapon_effic.png" alt="" style="width: 100%; height: auto;">
 En conclusión, le aconsejaría a Rodrigo usar la **awp** en sus próximas partidas, porque esta arma presentó la mejor eficiencia en términos de **disparos para matar**, **disparos para dar en el blanco** e **impactos para matar**. Pero definitivamente necesitamos más disparos con esta arma para ver si esta eficiencia se mantiene.. jajajaja
 
 

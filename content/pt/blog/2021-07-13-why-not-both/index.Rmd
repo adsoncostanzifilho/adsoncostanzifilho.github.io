@@ -120,7 +120,7 @@ pr('functions/sum_r.R') %>%
 
 Pronto! Agora nossa API está exposta e você pode acessar a documentação Swagger em http://localhost:8000/__docs__/ e interagir com ela pressionando **GET**, seguido do botão **Try it out**, **preenchendo os parâmetros** e pressionando **Execute**. 
 
-![](/img/plumber_fast_tutorial/swagger_plumber.gif){width="100%"}
+<img src="/img/plumber_fast_tutorial/swagger_plumber.gif" alt="" style="width: 100%; height: auto;">
 
 > Se quiser aprender mais sobre o *Swagger UI*, aqui está o [link](https://swagger.io/) para você.
 
@@ -163,7 +163,7 @@ $ uvicorn sum_py:app --port 8080 --reload
 
 Pronto! Agora nossa API está exposta e você pode acessar a documentação Swagger em http://localhost:8080/docs#/ e interagir com ela pressionando **GET**, seguido do botão **Try it out**, **preenchendo os parâmetros** e pressionando **Execute**. 
 
-![](/img/plumber_fast_tutorial/swagger_fastapi.gif){width="100%"}
+<img src="/img/plumber_fast_tutorial/swagger_fastapi.gif" alt="" style="width: 100%; height: auto;">
 
 É claro que, no mundo real, a publicação das suas APIs não deveria ser local, mas a lógica será (quase) a mesma. Além disso, há **MUITOS MAIS RECURSOS** no desenvolvimento de APIs, então meu conselho seria ler a documentação do [plumber](https://www.rplumber.io/) e do [FastAPI](https://fastapi.tiangolo.com/) para aprender mais sobre isso.
 

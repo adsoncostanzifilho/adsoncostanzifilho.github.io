@@ -255,15 +255,15 @@ Eu te disse que essa era a parte mais fácil! Agora vamos hospedar a página no 
 
 Para isso, você deve entrar no repositório do Github do seu pacote e ir em *Settings > GitHub Pages*:
 
-![](/img/packagedev_tutorial/settings.png){width="100%"}
+<img src="/img/packagedev_tutorial/settings.png" alt="" style="width: 100%; height: auto;">
 
-![](/img/packagedev_tutorial/githubpages.png){width="100%"}
+<img src="/img/packagedev_tutorial/githubpages.png" alt="" style="width: 100%; height: auto;">
 
 Agora você só precisa mudar a *Source* de onde estará a estrutura da página (para mim, está no *master branch* e dentro da *docs folder*). 
 
 > Por padrão, o `pkgdown` criará a pasta **docs** para você quando você executar `pkgdown::build_site()`!
 
-![](/img/packagedev_tutorial/master_docs.png){width="100%"}
+<img src="/img/packagedev_tutorial/master_docs.png" alt="" style="width: 100%; height: auto;">
 
 Pronto! Basta **add**, **commit**, **push** e a página do seu pacote estará online em: *your_github_user.github.io/repository_name*.
 

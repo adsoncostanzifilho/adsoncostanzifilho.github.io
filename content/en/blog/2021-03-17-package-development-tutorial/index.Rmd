@@ -257,15 +257,15 @@ I told you that this is the easier part! Now let's host the page on Github Pages
 
 To do that you should enter your package Github repository and go to *Settings > GitHub Pages*:
 
-![](/img/packagedev_tutorial/settings.png){width="100%"}
+<img src="/img/packagedev_tutorial/settings.png" alt="" style="width: 100%; height: auto;">
 
-![](/img/packagedev_tutorial/githubpages.png){width="100%"}
+<img src="/img/packagedev_tutorial/githubpages.png" alt="" style="width: 100%; height: auto;">
 
 Now you only need to change the *Source* where will be the page structure (for me it is in the *master branch* and inside the *docs folder*). 
 
 > The `pkgdown` by default will create the **docs** folder for you when you run `pkgdown::build_site()`!
 
-![](/img/packagedev_tutorial/master_docs.png){width="100%"}
+<img src="/img/packagedev_tutorial/master_docs.png" alt="" style="width: 100%; height: auto;">
 
 Done! Just **add**, **commit**, **push** and your package's page will be online at: *your_github_user.github.io/repository_name*.
 

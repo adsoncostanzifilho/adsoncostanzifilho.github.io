@@ -56,8 +56,11 @@ Personal blog about statistics, data science and R, built with [blogdown](https:
 
 ## Notes
 
-- Posts are rendered with the blogdown **HTML method** (`blogdown.method = "html"`),
-  which supports the Pandoc image attributes (`{width="70%"}`) used in the posts.
+- Posts are rendered with the blogdown **markdown method** (`blogdown.method = "markdown"`),
+  so Hugo (Goldmark/Chroma) generates language-tagged code blocks
+  (`<code class="language-r">`) with syntax highlighting. Images with a fixed
+  width are written as raw `<img>` HTML in the sources (Goldmark drops the
+  Pandoc `{width="70%"}` attributes).
 - The `csgo-package` post executes R chunks that need `dplyr`, `tidyr`, `stringr`
   and `kableExtra`, and the `why-not-both` post executes Python chunks (via
   `reticulate`). The CI workflow installs these dependencies.

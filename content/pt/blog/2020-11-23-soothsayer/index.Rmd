@@ -34,7 +34,7 @@ Você só precisa pressionar o ponto (.) no teclado na sessão de perguntas e en
 
 Então, quando terminar de digitar a resposta, você só precisa pressionar o ponto novamente e completar a frase da pergunta da maneira que quiser.
 
-![](/img/soothsayeR/request2.png){width="80%"}
+<img src="/img/soothsayeR/request2.png" alt="" style="width: 80%; height: auto;">
 
 ### Exemplo
 
@@ -44,6 +44,6 @@ Na sessão de perguntas você vai escrever '.**red**.ase answer', mas apenas 'R 
 
 Feito isso, basta pressionar o botão 'Guess' e a resposta **red** aparecerá! 
 
-![](/img/soothsayeR/ex.gif){width="80%"}
+<img src="/img/soothsayeR/ex.gif" alt="" style="width: 80%; height: auto;">
 
 

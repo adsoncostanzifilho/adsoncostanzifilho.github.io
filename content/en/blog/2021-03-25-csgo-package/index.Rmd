@@ -93,7 +93,7 @@ rodrigo_weapon_kill %>%
 
 ```
  
-![](/img/csgo_package/kills_weapon.png){width="100%"}
+<img src="/img/csgo_package/kills_weapon.png" alt="" style="width: 100%; height: auto;">
 
 So, these are the top 10 weapons by kills, but.. What about the efficiency? Is the **ak47** the Rodrigo's more efficient weapon? First, let's define "efficiency":
 
@@ -166,7 +166,7 @@ rodrigo_efficiency %>%
 
 ```
 
-![](/img/csgo_package/weapon_effic.png){width="100%"}
+<img src="/img/csgo_package/weapon_effic.png" alt="" style="width: 100%; height: auto;">
 In conclusion, I would advise Rodrigo to use the **awp** in his next games, because this weapon presented the best efficiency in terms of **shots to kill**, **shots to hit**, and **hits to kill**. But we definitely need more shots with this weapon to see if this efficiency remains.. hahahaha
 
 

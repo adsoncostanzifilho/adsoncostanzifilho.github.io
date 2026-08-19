@@ -180,21 +180,21 @@ Ahora viene la parte complicada. Para hacer la conexión entre tu máquina de Gi
 
 Primero necesitas ir a tu [cuenta de shiny apps](https://www.shinyapps.io/admin/), hacer clic en tu nombre de perfil y entrar en la opción de tokens.
 
-![](/img/githubact_tutorial/shinyapps_token1.png){width="70%"}
+<img src="/img/githubact_tutorial/shinyapps_token1.png" alt="" style="width: 70%; height: auto;">
 
 Si aún no has creado tus tokens de shinyapps, o si quieres usar uno nuevo, puedes hacer clic en el botón **+ Add Token**. Una vez que lo hagas, aparecerá una nueva línea y deberías poder ver tu Token pero no tu Secret. Necesitas presionar el botón **Show** seguido del **Show Secret** para poder copiar tu credencial Secret.
 
 Ahora necesitamos incluir estas credenciales en **GitHub Secrets**. Para ello debes entrar en la página de tu repositorio de GitHub e ir a *Settings*.
 
-![](/img/githubact_tutorial/settings.png){width="100%"}
+<img src="/img/githubact_tutorial/settings.png" alt="" style="width: 100%; height: auto;">
 
 En el menú de la izquierda deberías poder ver la opción **Secrets**. Una vez que entres en la pestaña Secrets verás el título "Actions secrets", y justo a su lado verás el botón "New repository secret". Necesitas hacer clic en este botón para crear tus variables de entorno encriptadas (en este caso, tus credenciales de shinyapps).
 
-![](/img/githubact_tutorial/secrets1.png){width="100%"}
+<img src="/img/githubact_tutorial/secrets1.png" alt="" style="width: 100%; height: auto;">
 
 Vamos a crear 2 variables de entorno diferentes: la primera llamada "SHINYAPP_TOKEN" y la segunda llamada "SHINYAPP_SECRET" (por supuesto, puedes ponerles el nombre que quieras). Una vez que hagas clic en el botón "New repository secret", deberás proporcionar el nombre de tu variable y su valor, y presionar "Add Secret", como puedes ver a continuación.
 
-![](/img/githubact_tutorial/shiny_token.png){width="100%"}
+<img src="/img/githubact_tutorial/shiny_token.png" alt="" style="width: 100%; height: auto;">
 
 > ¡Tu Secret y Token no necesitan estar entre comillas ("my token")!
 

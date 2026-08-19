@@ -28,7 +28,7 @@ Ahora que todo está instalado podemos empezar el desarrollo de nuestra página.
 
 Para iniciar un nuevo proyecto de blogdown en RStudio es muy fácil: solo tienes que ir al menú *File > New Project > New Directory* y hacer clic en la opción **Website using blogdown**.
 
-![](/img/blogdown_tutorial/project.png){width="70%"}
+<img src="/img/blogdown_tutorial/project.png" alt="" style="width: 70%; height: auto;">
 
 En la segunda pantalla tendrás que elegir un nombre para la carpeta del proyecto, el subdirectorio del proyecto y la **plantilla de Hugo** (aquí viene la parte divertida). Hugo tiene MUCHAS plantillas disponibles [aquí](https://themes.gohugo.io/). Te recomiendo encarecidamente que pruebes algunas de ellas y elijas la que mejor se adapte a tus expectativas.
 
@@ -36,7 +36,7 @@ Después de elegir la plantilla de Hugo, solo necesitas hacer clic en el botón 
 
 Ahora solo tienes que completar el repositorio en la opción **Hugo theme** y hacer clic en Create Project.
 
-![](/img/blogdown_tutorial/project2.png){width="70%"}
+<img src="/img/blogdown_tutorial/project2.png" alt="" style="width: 70%; height: auto;">
 
 Si prefieres usar la consola (*estilo de los de antes*), solo necesitas ejecutar la función `blogdown::new_site(theme = "devcows/hugo-universal-theme")` y completar el parámetro theme.
 

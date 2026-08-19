@@ -9,3 +9,4 @@ public/
 content/**/index.html
 content/**/index_files/
 .hugo_build.lock
+content/**/index.md

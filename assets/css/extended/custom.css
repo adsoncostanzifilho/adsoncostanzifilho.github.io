@@ -4,15 +4,17 @@
    ============================================================= */
 
 /* Site name font — "Reenie Beanie", matching the previous theme's navbar brand
-   (.navbar-default .navbar-brand: Reenie Beanie, weight 900, italic) */
-.logo a,
+   (.navbar-default .navbar-brand: Reenie Beanie, weight 900, italic).
+   Only the brand link (.logo > a) and the home title get this font; the
+   language switcher and other header links keep the site's normal font. */
+.logo > a,
 .home-info h1 {
     font-family: "Reenie Beanie", cursive;
     font-weight: 900;
     font-style: italic;
 }
 
-.logo a {
+.logo > a {
     font-size: 2.8rem; /* ≈45px, matching the old navbar brand */
     line-height: 1.2;
 }

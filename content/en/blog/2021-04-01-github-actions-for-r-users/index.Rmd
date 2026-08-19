@@ -195,21 +195,21 @@ Now comes the tricky part! In order to make the connection between your GitHub A
 
 First you need to go to your [shiny apps account](https://www.shinyapps.io/admin/) click in your profile name and enter in the tokes option. 
 
-![](/img/githubact_tutorial/shinyapps_token1.png){width="70%"}
+<img src="/img/githubact_tutorial/shinyapps_token1.png" alt="" style="width: 70%; height: auto;">
 
 If you don't have created your shinyapps tokens yet, or if you want to use a new one, you can click on the **+ Add Token** button. Once you did that a new line will appear and you should be able to see your Token but not your Secret. You need to press the **Show** button followed by the **Show Secret** to be bale to copy your Secret credential.
 
 Now we need to include this credentials on **GitHub Secrets**! To do that you need to enter in your GitHub repository page and go to *Settings*.
 
-![](/img/githubact_tutorial/settings.png){width="100%"}
+<img src="/img/githubact_tutorial/settings.png" alt="" style="width: 100%; height: auto;">
 
 On the left menu you should be able to see the **Secrets** option. Once you enter in the Secrets tab you will see the title "Actions secrets", and just on its side you will see the "New repository secret" button. You need to click this button to create your encrypted environment variables (in this case your shinyapps credentials).
 
-![](/img/githubact_tutorial/secrets1.png){width="100%"}
+<img src="/img/githubact_tutorial/secrets1.png" alt="" style="width: 100%; height: auto;">
 
 We are going to create 2 different environment variables, the first named "SHINYAPP_TOKEN" and the second named "SHINYAPP_SECRET" (of course you can set any name you want). Once you clicked on the "New repository secret" button you will need to provide the name of your variable and the value of it and press "Add Secret", as you can see below.
 
-![](/img/githubact_tutorial/shiny_token.png){width="100%"}
+<img src="/img/githubact_tutorial/shiny_token.png" alt="" style="width: 100%; height: auto;">
 
 > Your Secret and Token don't need to be in quotes ("my token")!
 
